@@ -1,13 +1,29 @@
+
+# Python
 __pycache__/
 *.py[cod]
+.pytest_cache/
+
+# Virtual environments
 .venv/
+.conda-env/
+.conda/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Outputs
 outputs/
+
 # Track the root sample data; keep other output directories ignored.
 !/outputs/
 /outputs/*
 !/outputs/sample/
+
+# Generated files
 /run.mp4
 /trace_log.json
 /local/run.mp4
 /local/trace_log.json
-.pytest_cache/
