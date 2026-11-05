@@ -1,0 +1,2 @@
+# Visible ground-truth generation and capture-array tests; no Ollama required.
+numpy>=1.24,<3

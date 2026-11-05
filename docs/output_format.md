@@ -1,9 +1,9 @@
 # Text output contract
 
-For the editable four-relation ground-truth specification, see
-[ground-truth relations](ground_truth_relations.md) and `relation_definitions.json`.
-The previous receptacle type override exporter is a legacy prototype and does not
-implement that specification. The original model relation definitions below are retained.
+For the implemented Visible GT JSON format and rules, see
+[ground-truth relations](ground_truth_relations.md). Its parent-type classification,
+strict comparisons without gap thresholds, and accepted-only final edges are separate
+from the model output contract below. Each GT run saves its rules in `definitions.json`.
 
 See [README](../README.md) for quick start, [architecture](architecture.md) for module
 interactions, [Ollama guide](ollama_guide.md) for retry/recovery usage, and
