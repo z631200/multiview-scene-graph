@@ -5,11 +5,14 @@ import copy
 import csv
 import json
 import math
+import pickle
+import numpy as np
 from pathlib import Path
 import sys
 import tempfile
 from types import SimpleNamespace
 import unittest
+import zipfile
 from unittest.mock import patch
 
 
@@ -31,12 +34,10 @@ def obj(object_id, visible=False, view=0):
                 distance=view + 0.5, parentReceptacles=["CounterTop"])
 
 
-class FakeMask:
-    def __init__(self, count):
-        self.pixels = [True] * count + [False]
-
-    def sum(self):
-        return sum(self.pixels)
+def FakeMask(count):
+    mask = np.zeros((4, 4), dtype=bool)
+    mask.flat[:count] = True
+    return mask
 
 
 class FakeController:
@@ -45,6 +46,8 @@ class FakeController:
         self.captures = iter(captures)
         self.events = []
         self.last_position = None
+        self.third_party_cameras = []
+        self.server = SimpleNamespace(camera_near_plane=0.1, camera_far_plane=20.0)
 
     def step(self, action, **kwargs):
         pixel_counts = {}
@@ -55,6 +58,19 @@ class FakeController:
             metadata = dict(lastActionSuccess=True, actionReturn=[
                 dict(x=x, y=0.9, z=z) for x, z in ((0, 0), (2, 0), (2, 2), (0, 2))
             ])
+        elif action == "GetMapViewCameraProperties":
+            metadata = dict(lastActionSuccess=True, actionReturn=dict(
+                position=dict(x=1.0, y=2.8, z=1.0), rotation=dict(x=90, y=0, z=0),
+                orthographic=True, orthographicSize=2.0))
+            segmentation_enabled = False
+        elif action in ("AddThirdPartyCamera", "UpdateThirdPartyCamera"):
+            if action == "AddThirdPartyCamera":
+                self.third_party_cameras.append(dict(thirdPartyCameraId=len(self.third_party_cameras)))
+            else:
+                assert kwargs["thirdPartyCameraId"] < len(self.third_party_cameras)
+            # Deliberately omit object/mask data: reference capture must not need it.
+            metadata = dict(lastActionSuccess=True, thirdPartyCameras=copy.deepcopy(self.third_party_cameras))
+            segmentation_enabled = False
         else:
             assert action == "Teleport"
             capture = next(self.captures)
@@ -63,17 +79,21 @@ class FakeController:
             position = self.last_position if capture.get("repeat") else kwargs["position"]
             metadata = dict(lastActionSuccess=capture.get("success", True),
                             errorMessage="fake teleport failure", objects=capture["objects"],
-                            agent=dict(position=position, rotation=kwargs["rotation"]),
+                            agent=dict(position=position, rotation=kwargs["rotation"], cameraHorizon=kwargs["horizon"]),
                             cameraPosition=position, fov=90)
             if metadata["lastActionSuccess"]:
                 self.last_position = position
         event = SimpleNamespace(
-            metadata=metadata, frame=bytearray(b"fake frame"),
-            instance_segmentation_frame=bytearray(b"segmentation") if segmentation_enabled else None,
+            metadata=metadata, frame=np.zeros((4, 4, 3), dtype=np.uint8),
+            depth_frame=np.arange(16, dtype=np.float32).reshape(4, 4) + len(self.events) + 1,
+            object_id_to_color={key: (i + 1, 0, 0) for i, key in enumerate(pixel_counts)},
+            third_party_camera_frames=[bytearray(b"fake overhead frame") for _ in self.third_party_cameras],
+            instance_segmentation_frame=np.zeros((4, 4, 3), dtype=np.uint8) if segmentation_enabled else None,
             instance_masks={key: FakeMask(count) for key, count in pixel_counts.items()}
                            if segmentation_enabled else None,
         )
         self.events.append(event)
+        self.last_event = event
         return event
 
 
@@ -87,8 +107,8 @@ class CaptureTests(unittest.TestCase):
     def context(self, captures, num_views=4):
         controller = FakeController(self.initial_objects, captures)
         context = dict(controller=controller, Path=Path, copy=copy, json=json, math=math,
-                       csv=csv, output_dir=self.output_dir, NUM_VIEWS=num_views,
-                       SCENE="FloorPlan1", HORIZON=0,
+                       csv=csv, np=np, IMAGE_SIZE=4, output_dir=self.output_dir, NUM_VIEWS=num_views,
+                       SCENE="FloorPlan1", HORIZON=0, _overhead_camera_id=None,
                        ai2thor=SimpleNamespace(__version__="fake"),
                        show_objects_table=lambda objects: None, plot_frames=lambda event: None,
                        Image=SimpleNamespace(fromarray=lambda frame: SimpleNamespace(
@@ -98,7 +118,7 @@ class CaptureTests(unittest.TestCase):
         return context
 
     def capture(self, context):
-        exec(code_cell("event = controller.step(action='GetReachablePositions')"), context)
+        exec(code_cell("# Invalidate a prior"), context)
         return json.loads((self.output_dir / "objects.json").read_text(encoding="utf-8"))
 
     def captures(self, num_views):
@@ -129,7 +149,7 @@ class CaptureTests(unittest.TestCase):
                     self.assertEqual(item["visible"], bool(item["visible_views"]))
                 visible = json.loads((self.output_dir / "visible_objects.json").read_text(encoding="utf-8"))
                 self.assertEqual(visible, [
-                    {key: item[key] for key in ("name", "position", "rotation", "visible_views")}
+                    {key: item[key] for key in ("objectId", "objectType", "name", "position", "rotation", "visible_views")}
                     for item in result if item["visible"]
                 ])
                 with (self.output_dir / "objects.csv").open(encoding="utf-8-sig", newline="") as f:
@@ -208,14 +228,22 @@ class CaptureTests(unittest.TestCase):
 
     def test_workspace_creates_controller_with_matching_resolution_and_timeout(self):
         workspace = ast.parse(code_cell("SCENE = "))
+        image_size = next(ast.literal_eval(node.value) for node in workspace.body
+                          if isinstance(node, ast.Assign)
+                          and any(isinstance(target, ast.Name) and target.id == "IMAGE_SIZE"
+                                  for target in node.targets))
+        self.assertEqual(image_size, 1600)
         creation = next(node for node in ast.walk(workspace)
                         if isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
                         and node.func.id == "Controller")
         options = eval(compile(ast.Expression(creation), "workspace-controller", "eval"),
-                       dict(Controller=lambda **kwargs: kwargs, SCENE="FloorPlan1", IMAGE_SIZE=800,
+                       dict(Controller=lambda **kwargs: kwargs, SCENE="FloorPlan1", IMAGE_SIZE=image_size,
+                            DepthFormat=SimpleNamespace(Meters="Meters"),
                             os=SimpleNamespace(environ={"DISPLAY": ":91"})))
         self.assertIs(options["renderInstanceSegmentation"], True)
-        self.assertEqual((options["width"], options["height"]), (800, 800))
+        self.assertIs(options["renderDepthImage"], True)
+        self.assertEqual(options["depth_format"], "Meters")
+        self.assertEqual((options["width"], options["height"]), (1600, 1600))
         self.assertEqual(options["x_display"], ":91")
         self.assertEqual(options["server_timeout"], 300)
 
@@ -270,7 +298,7 @@ class CaptureTests(unittest.TestCase):
             raise TimeoutError("fake Initialize timeout")
 
         context = dict(controller=SimpleNamespace(stop=lambda: calls.append("stop")),
-                       Controller=factory, os=SimpleNamespace(environ={"DISPLAY": ":90"}),
+                       Controller=factory, DepthFormat=SimpleNamespace(Meters="Meters"), os=SimpleNamespace(environ={"DISPLAY": ":90"}),
                        x11_ready=lambda *args, **kwargs: (False, "1024x768 is too small"),
                        show_thor_logs=lambda: calls.append("logs"), print=lambda *args: None)
         exec(compile(ast.Module(body=[stop_function], type_ignores=[]), "stop-controller", "exec"), context)
@@ -282,6 +310,168 @@ class CaptureTests(unittest.TestCase):
             exec(workspace, context)
         self.assertEqual(calls, ["stop", "create", "logs"])
         self.assertIsNone(context["controller"])
+
+    def test_overhead_only_writes_reference_png_without_changing_capture_data(self):
+        overhead_code = code_cell("def save_overhead_reference(")
+        for num_views in (3, 4):
+            with self.subTest(num_views=num_views):
+                (self.output_dir / "view_00.png").unlink(missing_ok=True)
+                context = self.context(self.captures(num_views), num_views)
+                self.capture(context)
+                before_files = {path.name: path.read_bytes() for path in self.output_dir.iterdir()}
+                before_state = copy.deepcopy({key: context[key] for key in (
+                    "objects", "objects_by_id", "views", "frames", "positions", "manifest")})
+                normal_event = context["event"]
+                context["visible_object_pixel_counts"] = lambda event: self.fail("Reference used for visibility")
+                context["plot_frames"] = lambda event: self.fail("Reference passed to normal view display")
+                controller = context["controller"]
+                with patch.object(controller, "step", wraps=controller.step) as step:
+                    exec(overhead_code, context)
+                    exec(overhead_code, context)
+                self.assertEqual([call.kwargs["action"] for call in step.call_args_list], [
+                    "GetMapViewCameraProperties", "AddThirdPartyCamera",
+                    "GetMapViewCameraProperties", "UpdateThirdPartyCamera",
+                ])
+                add_options = step.call_args_list[1].kwargs
+                self.assertIs(add_options["orthographic"], True)
+                self.assertEqual(add_options["rotation"], dict(x=90, y=0, z=0))
+                self.assertEqual(add_options["position"]["y"], 2.8)
+                self.assertIs(add_options["raise_for_failure"], True)
+                self.assertEqual(len(controller.third_party_cameras), 1)
+                self.assertEqual((self.output_dir / "view_00.png").read_bytes(), b"fake overhead frame")
+                after_files = {path.name: path.read_bytes() for path in self.output_dir.iterdir()}
+                self.assertEqual(after_files.pop("view_00.png"), b"fake overhead frame")
+                self.assertEqual(after_files, before_files)
+                self.assertEqual(pickle.dumps({key: context[key] for key in before_state}), pickle.dumps(before_state))
+                self.assertIs(context["event"], normal_event)
+                self.assertNotIn("camera_event", context)
+                self.assertNotIn("map_event", context)
+                self.assertNotIn("nearClippingPlane", controller.events[-2].metadata["actionReturn"])
+
+    def test_overhead_failure_preserves_normal_exports(self):
+        for failed_action in ("GetMapViewCameraProperties", "AddThirdPartyCamera"):
+            with self.subTest(failed_action=failed_action):
+                context = self.context(self.captures(4))
+                self.capture(context)
+                before_files = {path.name: path.read_bytes() for path in self.output_dir.iterdir()}
+                controller = context["controller"]
+                original_step = controller.step
+
+                def step(action, **kwargs):
+                    if action == failed_action:
+                        raise RuntimeError("fake overhead failure")
+                    return original_step(action, **kwargs)
+
+                with patch.object(controller, "step", side_effect=step):
+                    with self.assertRaisesRegex(RuntimeError, "fake overhead failure"):
+                        exec(code_cell("def save_overhead_reference("), context)
+                self.assertFalse((self.output_dir / "view_00.png").exists())
+                self.assertEqual({path.name: path.read_bytes() for path in self.output_dir.iterdir()}, before_files)
+                self.assertIsNone(context["_overhead_camera_id"])
+
+    def test_download_requires_and_includes_overhead_reference(self):
+        context = self.context(self.captures(4))
+        self.capture(context)
+        downloads = []
+        colab = SimpleNamespace(files=SimpleNamespace(download=downloads.append))
+        archive_path = self.output_dir.with_suffix(".zip")
+        self.addCleanup(archive_path.unlink, missing_ok=True)
+        with patch.dict(sys.modules, {"google": SimpleNamespace(), "google.colab": colab}):
+            with self.assertRaisesRegex(RuntimeError, "view_00.png"):
+                exec(code_cell("import zipfile\n"), context)
+            self.assertEqual(downloads, [])
+            exec(code_cell("def save_overhead_reference("), context)
+            exec(code_cell("import zipfile\n"), context)
+        self.assertEqual(downloads, [str(archive_path)])
+        with zipfile.ZipFile(archive_path) as archive:
+            self.assertIn("view_00.png", archive.namelist())
+            manifest = json.loads(archive.read("views.json"))
+            self.assertEqual(manifest["num_views"], 4)
+            self.assertEqual([view["image"] for view in manifest["views"]],
+                             [f"view_{index:02d}.png" for index in range(1, 5)])
+            self.assertNotIn("view_00", archive.read("visible_objects.json").decode("utf-8"))
+
+    def test_saved_arrays_and_metadata_round_trip(self):
+        context = self.context(self.captures(4))
+        self.capture(context)
+        captures = [e for e in context["controller"].events if "agent" in e.metadata]
+        for view, event in zip(context["views"], captures):
+            depth = np.load(self.output_dir / view["depth"], allow_pickle=False)
+            np.testing.assert_array_equal(depth, event.depth_frame)
+            self.assertEqual(depth.dtype, np.float32)
+            raw = json.loads((self.output_dir / view["metadata"]).read_text(encoding="utf-8"))
+            self.assertEqual(raw, event.metadata)
+            self.assertTrue(all("visible_views" not in item for item in raw["objects"]))
+            self.assertEqual(view["camera"]["camera_horizon"], event.metadata["agent"]["cameraHorizon"])
+            self.assertEqual((view["image_width"], view["image_height"]), (4, 4))
+            mapping = json.loads((self.output_dir / view["segmentation_mapping"]).read_text())
+            with np.load(self.output_dir / view["instance_masks"], allow_pickle=False) as masks:
+                self.assertEqual(masks["object_ids"].tolist(), list(view["visible_object_pixel_counts"]))
+                for entry in mapping["masks"]:
+                    np.testing.assert_array_equal(masks[entry["key"]], event.instance_masks[entry["objectId"]])
+                    self.assertEqual(masks[entry["key"]].dtype, np.bool_)
+                    self.assertEqual(int(masks[entry["key"]].sum()), entry["pixel_count"])
+
+    def test_missing_depth_or_misaligned_arrays_rejected(self):
+        context = self.context(self.captures(3), 3)
+        self.capture(context)
+        event = copy.deepcopy(context["event"])
+        counts = context["visible_object_pixel_counts"](event)
+        for value, pattern in ((None, "Depth unavailable"), (np.ones((2, 2)), "Depth shape")):
+            event.depth_frame = value
+            with self.assertRaisesRegex(RuntimeError, pattern):
+                context["save_view_data"](event, self.output_dir, 9, counts)
+            self.assertFalse((self.output_dir / "metadata_09.json").exists())
+        event.depth_frame = np.ones((4, 4), dtype=np.float32)
+        object_id = next(iter(counts))
+        event.instance_masks[object_id] = np.ones((2, 2), dtype=bool)
+        with self.assertRaisesRegex(RuntimeError, "Mask shape/count"):
+            context["save_view_data"](event, self.output_dir, 9, counts)
+
+    def test_invalid_depth_preserved_and_reported(self):
+        context = self.context(self.captures(3), 3)
+        self.capture(context)
+        event = copy.deepcopy(context["event"])
+        event.depth_frame.flat[:3] = [np.nan, np.inf, 0]
+        info = context["save_view_data"](event, self.output_dir, 9,
+                                         context["visible_object_pixel_counts"](event))
+        self.assertEqual(info["depth_info"]["invalid_pixel_count"], 3)
+        np.testing.assert_array_equal(np.load(self.output_dir / info["depth"]), event.depth_frame)
+
+    def test_failed_recapture_invalidates_manifest(self):
+        context = self.context(self.captures(3), 3)
+        self.capture(context)
+        context["controller"].captures = iter([dict(objects=[obj("bad")], segmentation_enabled=False)])
+        with self.assertRaises(RuntimeError):
+            self.capture(context)
+        self.assertFalse((self.output_dir / "views.json").exists())
+        colab = SimpleNamespace(files=SimpleNamespace(download=lambda path: self.fail("Downloaded failed capture")))
+        with patch.dict(sys.modules, {"google": SimpleNamespace(), "google.colab": colab}):
+            with self.assertRaisesRegex(RuntimeError, "Capture incomplete"):
+                exec(code_cell("import zipfile\n"), context)
+
+    def test_zip_excludes_old_views_and_requires_per_view_data(self):
+        context = self.context(self.captures(4))
+        self.capture(context)
+        context["NUM_VIEWS"] = 3
+        context["controller"].captures = iter(self.captures(3))
+        self.capture(context)
+        exec(code_cell("def save_overhead_reference("), context)
+        (self.output_dir / "ground_truth_scene_graph.json").write_text("{}")
+        archive_path = self.output_dir.with_suffix(".zip")
+        self.addCleanup(archive_path.unlink, missing_ok=True)
+        colab = SimpleNamespace(files=SimpleNamespace(download=lambda path: None))
+        with patch.dict(sys.modules, {"google": SimpleNamespace(), "google.colab": colab}):
+            exec(code_cell("import zipfile\n"), context)
+            with zipfile.ZipFile(archive_path) as archive:
+                self.assertNotIn("view_04.png", archive.namelist())
+                self.assertNotIn("depth_04.npy", archive.namelist())
+                self.assertNotIn("ground_truth_scene_graph.json", archive.namelist())
+                self.assertIn("depth_03.npy", archive.namelist())
+                self.assertIn("instance_masks_03.npz", archive.namelist())
+            (self.output_dir / "depth_02.npy").unlink()
+            with self.assertRaisesRegex(RuntimeError, "depth_02.npy"):
+                exec(code_cell("import zipfile\n"), context)
 
     def test_all_python_cells_compile(self):
         for index, cell in enumerate(CELLS):
