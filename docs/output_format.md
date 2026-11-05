@@ -1,5 +1,10 @@
 # Text output contract
 
+For the editable four-relation ground-truth specification, see
+[ground-truth relations](ground_truth_relations.md) and `relation_definitions.json`.
+The previous receptacle type override exporter is a legacy prototype and does not
+implement that specification. The original model relation definitions below are retained.
+
 See [README](../README.md) for quick start, [architecture](architecture.md) for module
 interactions, [Ollama guide](ollama_guide.md) for retry/recovery usage, and
 [research design](research_design.md) for the complete prompts.
