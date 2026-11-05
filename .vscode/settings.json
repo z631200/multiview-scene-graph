@@ -1,0 +1,21 @@
+
+{
+    "terminal.integrated.profiles.linux": {
+        "Project Conda": {
+            "path": "/bin/bash",
+            "args": [
+                "--rcfile",
+                "${workspaceFolder}/.vscode/conda.bashrc",
+                "-i"
+            ]
+        }
+    },
+
+    "terminal.integrated.defaultProfile.linux": "Project Conda",
+
+    "terminal.integrated.cwd": "${workspaceFolder}",
+
+    "python.defaultInterpreterPath": "/home/cheng/anaconda3/envs/multi-view/bin/python",
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda"
+}
