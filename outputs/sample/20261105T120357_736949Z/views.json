@@ -1,0 +1,407 @@
+{
+  "schema_version": "capture-v2",
+  "capture_complete": true,
+  "scene": "FloorPlan1",
+  "num_views": 4,
+  "ai2thor_version": "5.0.0",
+  "position_unit": "meter",
+  "rotation_unit": "degree",
+  "depth_unit": "meter",
+  "depth_format": "Meters",
+  "render_depth_image": true,
+  "image_size": 1600,
+  "reference_image": "view_00.png",
+  "reference_image_used_for_computation": false,
+  "object_snapshot": "latest captured view per object",
+  "object_count": 77,
+  "object_visibility": "at least one instance segmentation pixel in any captured view",
+  "visibility_source": "instance_masks",
+  "min_visible_pixels": 1,
+  "look_at_center_xz": {
+    "x": 0.25,
+    "z": 0.125
+  },
+  "views": [
+    {
+      "view_id": "view_1",
+      "image": "view_01.png",
+      "depth": "depth_01.npy",
+      "instance_masks": "instance_masks_01.npz",
+      "instance_segmentation": "instance_segmentation_v01.png",
+      "segmentation_mapping": "segmentation_mapping_01.json",
+      "metadata": "metadata_01.json",
+      "image_width": 1600,
+      "image_height": 1600,
+      "camera": {
+        "position": {
+          "x": -1.25,
+          "y": 1.575999140739441,
+          "z": -1.75
+        },
+        "agent_rotation": {
+          "x": -0.0,
+          "y": 38.65980911254883,
+          "z": 0.0
+        },
+        "camera_horizon": -0.0,
+        "vertical_fov": 90.0,
+        "horizon_positive": "down",
+        "position_unit": "meter",
+        "rotation_unit": "degree"
+      },
+      "depth_info": {
+        "unit": "meter",
+        "dtype": "float32",
+        "source": "event.depth_frame",
+        "convention": "AI2-THOR native depth; no geometric conversion",
+        "invalid_pixel_count": 0,
+        "invalid_values": "preserved; finite positive pixels are usable",
+        "near_plane": 0.009999999776482582,
+        "far_plane": 20.0
+      },
+      "agent": {
+        "name": "agent",
+        "position": {
+          "x": -1.25,
+          "y": 0.900999128818512,
+          "z": -1.75
+        },
+        "rotation": {
+          "x": -0.0,
+          "y": 38.65980911254883,
+          "z": 0.0
+        },
+        "cameraHorizon": -0.0,
+        "isStanding": true,
+        "inHighFrictionArea": false
+      },
+      "cameraPosition": {
+        "x": -1.25,
+        "y": 1.575999140739441,
+        "z": -1.75
+      },
+      "fov": 90.0,
+      "visible_object_pixel_counts": {
+        "Apple|-00.47|+01.15|+00.48": 1116,
+        "Book|+00.15|+01.10|+00.62": 4153,
+        "Bowl|+00.27|+01.10|-00.75": 4137,
+        "Bread|-00.52|+01.17|-00.03": 5603,
+        "ButterKnife|-00.41|+01.11|-00.46": 454,
+        "CounterTop|-00.08|+01.15|00.00": 93416,
+        "CreditCard|-00.46|+01.10|+00.87": 86,
+        "Floor|+00.00|+00.00|+00.00": 357399,
+        "LightSwitch|+02.33|+01.31|-00.16": 705,
+        "Stool|+00.70|+00.00|-00.51": 2981,
+        "Tomato|-00.39|+01.14|-00.81": 3127
+      }
+    },
+    {
+      "view_id": "view_2",
+      "image": "view_02.png",
+      "depth": "depth_02.npy",
+      "instance_masks": "instance_masks_02.npz",
+      "instance_segmentation": "instance_segmentation_v02.png",
+      "segmentation_mapping": "segmentation_mapping_02.json",
+      "metadata": "metadata_02.json",
+      "image_width": 1600,
+      "image_height": 1600,
+      "camera": {
+        "position": {
+          "x": 2.0,
+          "y": 1.575999140739441,
+          "z": -2.0
+        },
+        "agent_rotation": {
+          "x": -0.0,
+          "y": 320.52752685546875,
+          "z": 0.0
+        },
+        "camera_horizon": 0.0,
+        "vertical_fov": 90.0,
+        "horizon_positive": "down",
+        "position_unit": "meter",
+        "rotation_unit": "degree"
+      },
+      "depth_info": {
+        "unit": "meter",
+        "dtype": "float32",
+        "source": "event.depth_frame",
+        "convention": "AI2-THOR native depth; no geometric conversion",
+        "invalid_pixel_count": 0,
+        "invalid_values": "preserved; finite positive pixels are usable",
+        "near_plane": 0.009999999776482582,
+        "far_plane": 20.0
+      },
+      "agent": {
+        "name": "agent",
+        "position": {
+          "x": 2.0,
+          "y": 0.900999128818512,
+          "z": -2.0
+        },
+        "rotation": {
+          "x": -0.0,
+          "y": 320.52752685546875,
+          "z": 0.0
+        },
+        "cameraHorizon": 0.0,
+        "isStanding": true,
+        "inHighFrictionArea": false
+      },
+      "cameraPosition": {
+        "x": 2.0,
+        "y": 1.575999140739441,
+        "z": -2.0
+      },
+      "fov": 90.0,
+      "visible_object_pixel_counts": {
+        "Apple|-00.47|+01.15|+00.48": 435,
+        "Book|+00.15|+01.10|+00.62": 2953,
+        "Bowl|+00.27|+01.10|-00.75": 2775,
+        "Bread|-00.52|+01.17|-00.03": 2313,
+        "ButterKnife|-00.41|+01.11|-00.46": 103,
+        "Cabinet|-01.85|+02.02|+00.38": 16517,
+        "Cabinet|-01.55|+00.50|-01.97": 52415,
+        "CoffeeMachine|-01.98|+00.90|-00.19": 7695,
+        "CounterTop|-00.08|+01.15|00.00": 29911,
+        "CounterTop|-01.87|+00.95|-01.21": 4415,
+        "CreditCard|-00.46|+01.10|+00.87": 30,
+        "Faucet|-02.15|+00.91|-01.50": 838,
+        "Floor|+00.00|+00.00|+00.00": 548477,
+        "Fridge|-02.10|+00.00|+01.07": 27216,
+        "Lettuce|-01.81|+00.97|-00.94": 1456,
+        "Mug|-01.76|+00.90|-00.62": 702,
+        "PaperTowelRoll|-02.06|+01.01|-00.81": 517,
+        "Sink|-01.90|+00.97|-01.50": 5312,
+        "Stool|+00.70|+00.00|-00.51": 46019,
+        "Stool|+00.74|+00.00|+00.56": 23835,
+        "Toaster|-01.84|+00.90|+00.13": 2615,
+        "Tomato|-00.39|+01.14|-00.81": 848,
+        "Window|-02.23|+01.43|-01.20": 104556
+      }
+    },
+    {
+      "view_id": "view_3",
+      "image": "view_03.png",
+      "depth": "depth_03.npy",
+      "instance_masks": "instance_masks_03.npz",
+      "instance_segmentation": "instance_segmentation_v03.png",
+      "segmentation_mapping": "segmentation_mapping_03.json",
+      "metadata": "metadata_03.json",
+      "image_width": 1600,
+      "image_height": 1600,
+      "camera": {
+        "position": {
+          "x": 2.0,
+          "y": 1.575999140739441,
+          "z": 2.0
+        },
+        "agent_rotation": {
+          "x": -0.0,
+          "y": 223.02505493164062,
+          "z": 0.0
+        },
+        "camera_horizon": 0.0,
+        "vertical_fov": 90.0,
+        "horizon_positive": "down",
+        "position_unit": "meter",
+        "rotation_unit": "degree"
+      },
+      "depth_info": {
+        "unit": "meter",
+        "dtype": "float32",
+        "source": "event.depth_frame",
+        "convention": "AI2-THOR native depth; no geometric conversion",
+        "invalid_pixel_count": 0,
+        "invalid_values": "preserved; finite positive pixels are usable",
+        "near_plane": 0.009999999776482582,
+        "far_plane": 20.0
+      },
+      "agent": {
+        "name": "agent",
+        "position": {
+          "x": 2.0,
+          "y": 0.900999128818512,
+          "z": 2.0
+        },
+        "rotation": {
+          "x": -0.0,
+          "y": 223.02505493164062,
+          "z": 0.0
+        },
+        "cameraHorizon": 0.0,
+        "isStanding": true,
+        "inHighFrictionArea": false
+      },
+      "cameraPosition": {
+        "x": 2.0,
+        "y": 1.575999140739441,
+        "z": 2.0
+      },
+      "fov": 90.0,
+      "visible_object_pixel_counts": {
+        "Apple|-00.47|+01.15|+00.48": 689,
+        "Book|+00.15|+01.10|+00.62": 5987,
+        "Bottle|+01.54|+00.89|-02.54": 1352,
+        "Bowl|+00.27|+01.10|-00.75": 1054,
+        "Bread|-00.52|+01.17|-00.03": 2160,
+        "ButterKnife|-00.41|+01.11|-00.46": 48,
+        "Cabinet|+00.68|+00.50|-02.20": 12825,
+        "Cabinet|+00.72|+02.02|-02.46": 16414,
+        "Cabinet|-01.85|+02.02|+00.38": 17188,
+        "Cabinet|+00.68|+02.02|-02.46": 12871,
+        "Cabinet|-01.69|+02.02|-02.46": 5931,
+        "Cabinet|-00.73|+02.02|-02.46": 7082,
+        "CoffeeMachine|-01.98|+00.90|-00.19": 5407,
+        "CounterTop|+00.69|+00.95|-02.48": 2636,
+        "CounterTop|-00.08|+01.15|00.00": 26604,
+        "CounterTop|-01.87|+00.95|-01.21": 2091,
+        "CreditCard|-00.46|+01.10|+00.87": 87,
+        "Drawer|+00.95|+00.83|-02.20": 2791,
+        "Drawer|+00.95|+00.56|-02.20": 3818,
+        "Drawer|+00.95|+00.22|-02.20": 3873,
+        "Drawer|+00.95|+00.71|-02.20": 2814,
+        "Drawer|+00.95|+00.39|-02.20": 3838,
+        "Faucet|-02.15|+00.91|-01.50": 157,
+        "Floor|+00.00|+00.00|+00.00": 562834,
+        "Fridge|-02.10|+00.00|+01.07": 148371,
+        "GarbageCan|-01.94|00.00|+02.03": 3015,
+        "HousePlant|-01.95|+00.89|-02.52": 1342,
+        "Kettle|+01.04|+00.90|-02.60": 1082,
+        "Microwave|-00.24|+01.69|-02.53": 6785,
+        "Mug|-01.76|+00.90|-00.62": 361,
+        "Pan|+00.72|+00.90|-02.42": 577,
+        "PaperTowelRoll|-02.06|+01.01|-00.81": 250,
+        "PepperShaker|+00.30|+00.90|-02.47": 159,
+        "Pot|-01.22|+00.90|-02.36": 306,
+        "Potato|-01.66|+00.93|-02.15": 75,
+        "SaltShaker|+00.35|+00.90|-02.57": 148,
+        "Shelf|+01.75|+00.17|-02.56": 5670,
+        "Shelf|+01.75|+00.88|-02.56": 1906,
+        "Shelf|+01.75|+00.55|-02.56": 3329,
+        "ShelvingUnit|+01.75|+00.01|-02.56": 16121,
+        "Sink|-01.90|+00.97|-01.50": 676,
+        "SoapBottle|-01.99|+00.90|-02.03": 189,
+        "Spatula|+00.38|+00.91|-02.33": 75,
+        "Statue|+01.96|+00.18|-02.54": 2711,
+        "Stool|+00.70|+00.00|-00.51": 25101,
+        "Stool|+00.74|+00.00|+00.56": 51419,
+        "StoveBurner|-00.47|+00.92|-02.37": 220,
+        "StoveBurner|-00.04|+00.92|-02.58": 186,
+        "StoveBurner|-00.47|+00.92|-02.58": 154,
+        "StoveBurner|-00.04|+00.92|-02.37": 274,
+        "StoveKnob|-00.02|+00.88|-02.19": 111,
+        "Toaster|-01.84|+00.90|+00.13": 2746,
+        "Tomato|-00.39|+01.14|-00.81": 325,
+        "Vase|+01.56|+00.56|-02.50": 490,
+        "Vase|+01.99|+00.56|-02.49": 3227,
+        "Window|-02.23|+01.43|-01.20": 36865
+      }
+    },
+    {
+      "view_id": "view_4",
+      "image": "view_04.png",
+      "depth": "depth_04.npy",
+      "instance_masks": "instance_masks_04.npz",
+      "instance_segmentation": "instance_segmentation_v04.png",
+      "segmentation_mapping": "segmentation_mapping_04.json",
+      "metadata": "metadata_04.json",
+      "image_width": 1600,
+      "image_height": 1600,
+      "camera": {
+        "position": {
+          "x": -1.5,
+          "y": 1.575999140739441,
+          "z": 2.0
+        },
+        "agent_rotation": {
+          "x": -0.0,
+          "y": 136.9749298095703,
+          "z": 0.0
+        },
+        "camera_horizon": -0.0,
+        "vertical_fov": 90.0,
+        "horizon_positive": "down",
+        "position_unit": "meter",
+        "rotation_unit": "degree"
+      },
+      "depth_info": {
+        "unit": "meter",
+        "dtype": "float32",
+        "source": "event.depth_frame",
+        "convention": "AI2-THOR native depth; no geometric conversion",
+        "invalid_pixel_count": 0,
+        "invalid_values": "preserved; finite positive pixels are usable",
+        "near_plane": 0.009999999776482582,
+        "far_plane": 20.0
+      },
+      "agent": {
+        "name": "agent",
+        "position": {
+          "x": -1.5,
+          "y": 0.900999128818512,
+          "z": 2.0
+        },
+        "rotation": {
+          "x": -0.0,
+          "y": 136.9749298095703,
+          "z": 0.0
+        },
+        "cameraHorizon": -0.0,
+        "isStanding": true,
+        "inHighFrictionArea": false
+      },
+      "cameraPosition": {
+        "x": -1.5,
+        "y": 1.575999140739441,
+        "z": 2.0
+      },
+      "fov": 90.0,
+      "visible_object_pixel_counts": {
+        "Apple|-00.47|+01.15|+00.48": 1659,
+        "Book|+00.15|+01.10|+00.62": 7728,
+        "Bottle|+01.54|+00.89|-02.54": 366,
+        "Bowl|+00.27|+01.10|-00.75": 1028,
+        "Bread|-00.52|+01.17|-00.03": 3997,
+        "ButterKnife|-00.41|+01.11|-00.46": 29,
+        "Cabinet|-01.18|+00.50|-02.20": 42951,
+        "Cabinet|-01.55|+00.50|+00.38": 8794,
+        "Cabinet|+00.72|+02.02|-02.46": 7833,
+        "Cabinet|+00.68|+02.02|-02.46": 10771,
+        "Cabinet|-01.55|+00.50|-01.97": 640,
+        "Cabinet|-01.69|+02.02|-02.46": 26500,
+        "Cabinet|-00.73|+02.02|-02.46": 21476,
+        "CounterTop|+00.69|+00.95|-02.48": 998,
+        "CounterTop|-00.08|+01.15|00.00": 45967,
+        "CounterTop|-01.87|+00.95|-01.21": 11218,
+        "CreditCard|-00.46|+01.10|+00.87": 386,
+        "Drawer|-01.56|+00.66|-00.20": 474,
+        "Drawer|-01.56|+00.84|+00.20": 1469,
+        "Drawer|-01.56|+00.33|-00.20": 218,
+        "Drawer|-01.56|+00.84|-00.20": 261,
+        "Floor|+00.00|+00.00|+00.00": 434145,
+        "Kettle|+01.04|+00.90|-02.60": 600,
+        "LightSwitch|+02.33|+01.31|-00.16": 445,
+        "Microwave|-00.24|+01.69|-02.53": 9600,
+        "Pan|+00.72|+00.90|-02.42": 391,
+        "PepperShaker|+00.30|+00.90|-02.47": 92,
+        "Pot|-01.22|+00.90|-02.36": 1105,
+        "Potato|-01.66|+00.93|-02.15": 117,
+        "SaltShaker|+00.35|+00.90|-02.57": 26,
+        "Shelf|+01.75|+00.88|-02.56": 320,
+        "ShelvingUnit|+01.75|+00.01|-02.56": 2866,
+        "Sink|-01.90|+00.97|-01.50": 40,
+        "Spatula|+00.38|+00.91|-02.33": 58,
+        "Stool|+00.74|+00.00|+00.56": 10137,
+        "StoveBurner|-00.47|+00.92|-02.37": 396,
+        "StoveBurner|-00.04|+00.92|-02.58": 224,
+        "StoveBurner|-00.47|+00.92|-02.58": 257,
+        "StoveBurner|-00.04|+00.92|-02.37": 327,
+        "StoveKnob|-00.48|+00.88|-02.19": 179,
+        "StoveKnob|-00.33|+00.88|-02.19": 167,
+        "Tomato|-00.39|+01.14|-00.81": 614,
+        "Vase|+01.99|+00.56|-02.49": 162
+      }
+    }
+  ]
+}
