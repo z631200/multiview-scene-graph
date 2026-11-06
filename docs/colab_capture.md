@@ -4,6 +4,8 @@ Notebook 自行完成拍攝與資料匯出，不需額外上傳 Python 檔案。
 預設 4 個 1600×1600 一般視角，可選擇 3 個。此階段只保存資料，不計算場景圖關係。
 VLM 後續僅讀取照片；Metadata、遮罩及深度供另外的 ground-truth 計算使用。
 
+也可使用 [本機 CLI](local_capture.md) 產生相同的 `capture-v2` 格式，直接保存於本機目錄。
+
 ## 檔案格式
 
 | 檔案 | 內容 |
@@ -77,4 +79,4 @@ python -m unittest discover -s tests -v
 ~~~
 
 測試使用 NumPy 小型陣列檢查資料還原、視角對應及失敗情況，不需 AI2-THOR 或 Colab。
-實際 Unity 渲染仍需在 Colab 執行新版 Notebook 驗證。
+實際 Unity 渲染仍需在可用的 AI2-THOR 環境執行 Notebook 或本機 CLI 驗證。

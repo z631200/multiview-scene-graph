@@ -13,13 +13,14 @@
 | [Visible ground-truth](docs/ground_truth_relations.md) | 四種關係計算、執行方式與場景驗收數量。 |
 | [Full ground-truth](docs/full_ground_truth.md) | 全物件建圖、指定／全部視角、人工待辦與 HTML 檢查器。 |
 | [GT 統一輸出與檢視](docs/ground_truth_outputs.md) | 兩種 GT 共用的操作、檔案格式、草稿狀態與舊結果相容方式。 |
+| [本機場景擷取](docs/local_capture.md) | 將 Colab 拍攝流程改為本機 CLI，產生相容的視角、深度、遮罩與 Metadata。 |
 | [研究設計與 prompts](docs/research_design.md) | 階段 0–6 的設計、完整中英文 prompts 與評估規劃。 |
 | [本機任務示範](local/README.md) | 獨立的 AI2-THOR 動作計畫、環境設定與測試。 |
 | [歷史範例](local/examples/legacy/README.md) | 舊動作草稿、影片、紀錄與環境清單的用途。 |
 
 ## 快速開始
 
-1. 在可執行 AI2-THOR 的環境使用 [Colab Notebook](colab/AI2_THOR_Scene_Capture.ipynb) 擷取 **四個**視角，將 ZIP 解壓縮至 `colab/scene_output/<場景資料夾>/`。操作說明在 Notebook 內。
+1. 在可執行 AI2-THOR 的環境使用 [Colab Notebook](colab/AI2_THOR_Scene_Capture.ipynb) 擷取 **四個**視角，將 ZIP 解壓縮至 `colab/scene_output/<場景資料夾>/`；或使用[本機擷取版](docs/local_capture.md)：`python -m pip install -r requirements-capture.txt` 後執行 `python capture_scene.py`。Linux 無視窗可加 `--headless`，需可用的 Vulkan 驅動。本機輸出預設在 `outputs/captures/<UTC>/`，可直接傳給後續程式的 `--scene-dir`。
 2. 建圖電腦需有 Python 3.10+ 與 Ollama；Python 部分只用標準函式庫。啟動服務並準備模型：
 
 ```sh

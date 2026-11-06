@@ -1,1 +1,4 @@
 -r ../requirements-ground-truth.txt
+# Exercise local PNG/plot exports without installing AI2-THOR.
+Pillow>=9
+matplotlib>=3.6,<4

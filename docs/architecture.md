@@ -8,6 +8,8 @@
 
 ```text
 ai2thor_benchmark/
+├── capture_scene.py           本機場景擷取，輸出與 Colab 相同的 capture-v2 格式
+├── requirements-capture.txt   本機擷取所需套件
 ├── run_scene_graph.py         建圖入口與流程控制
 ├── scene_prompts.py           英文 prompts 與關係定義
 ├── ollama_client.py           Ollama HTTP 通訊
@@ -58,6 +60,11 @@ flowchart TD
 ### 步驟 0：擷取 AI2-THOR 場景
 
 [Colab Notebook](../colab/AI2_THOR_Scene_Capture.ipynb) 啟動 AI2-THOR，透過 `GetReachablePositions` 選點，再用 `Teleport` 調整拍攝位置與朝向。匯出 ZIP 後，將資料解壓縮至 `colab/scene_output/<資料夾>/`。
+
+也可直接執行 [capture_scene.py](../capture_scene.py) 在本機完成相同選點與資料匯出，
+預設保存於 `outputs/captures/<UTC>/`，以 `--scene-dir` 傳給建圖與 GT 程式。
+參數與顯示環境需求見[本機擷取說明](local_capture.md)。Colab 與本機入口各自獨立，
+本機版不會載入或執行 Notebook 檔案。
 
 | 檔案 | 後續用途 |
 | --- | --- |
