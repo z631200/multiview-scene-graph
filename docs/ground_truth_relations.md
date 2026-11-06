@@ -1,7 +1,7 @@
 # Visible ground-truth 產生器
 
 `visible_ground_truth.py` 從 Colab capture-v2 匯出資料產生各視角 Visible GT，
-不呼叫 AI，也不執行模擬器。Full GT、合併推理及模型評分不在此程式範圍。
+不呼叫 AI，也不執行模擬器。[Full GT](full_ground_truth.md) 由獨立程式產生；合併推理及模型評分不在此程式範圍。
 此文件取代先前要求幾何接觸證據、差距門檻及 unresolved 的 GT 草案。
 
 ## 執行
@@ -35,7 +35,7 @@ python3 visible_ground_truth.py \
 ## 四種關係
 
 版本：`visible-parent-mask-depth-v1`。規則在程式的 `DEFINITIONS` 與
-`PARENT_RELATIONS` 中定義，每次執行另存 `definitions.json` 快照。
+`ground_truth_common.py` 的 `PARENT_RELATIONS` 中定義，每次執行另存 `definitions.json` 快照。
 
 ### on / inside
 
@@ -148,4 +148,6 @@ python3 inspect_graph.py \
 
 預設輸出為 `outputs/graph_inspection/<UTC>.html`。可用 `--output PATH` 指定檔名，
 已有檔案不覆寫；`--no-open` 只產生檔案，供遠端或無桌面環境使用。
-檢查器只讀取 `visible/` 的正式 JSON 圖，尚不解析 VLM 的 Markdown 輸出。
+檢查器預設讀取 `visible/` 或 `full/` 的正式 JSON 圖，可用 `--graph-kind visible|full`
+指定種類；加上 `--include-drafts` 可瀏覽草稿及人工待辦。草稿在介面與匯出的篩選 JSON
+中都保留狀態，不會被當成完整真值。尚不解析 VLM 的 Markdown 輸出。

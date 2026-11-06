@@ -10,6 +10,7 @@
 | [Ollama 指南](docs/ollama_guide.md) | 合併原 instruction／interaction：呼叫與隔離、參數、重試、續跑、紀錄位置及實測案例。 |
 | [輸出格式](docs/output_format.md) | 各階段的固定欄位、ID、引用與正規化規則。 |
 | [Visible ground-truth](docs/ground_truth_relations.md) | 四種關係計算、執行方式與場景驗收數量。 |
+| [Full ground-truth](docs/full_ground_truth.md) | 全物件建圖、指定／全部視角、人工待辦與 HTML 檢查器。 |
 | [研究設計與 prompts](docs/research_design.md) | 階段 0–6 的設計、完整中英文 prompts 與評估規劃。 |
 | [本機任務示範](local/README.md) | 獨立的 AI2-THOR 動作計畫、環境設定與測試。 |
 | [歷史範例](local/examples/legacy/README.md) | 舊動作草稿、影片、紀錄與環境清單的用途。 |
@@ -51,7 +52,7 @@ python3 visible_ground_truth.py --scene-dir colab/scene_output/20261105T120357_7
 預設寫入新的 `outputs/ground_truth/<scene_id>/<UTC run_id>/`，正式圖為
 `visible/view_1.json`～`view_4.json`。輸出包含測量值、來源雜湊與驗收報告。
 資料不一致會停止；未知父物件類型或缺少有效深度會產生人工處理清單及草稿，
-不輸出正式圖。Full GT 尚未實作。規則及已驗證數量見 [GT 文件](docs/ground_truth_relations.md)。
+不輸出正式圖。規則及已驗證數量見 [GT 文件](docs/ground_truth_relations.md)。
 
 互動檢查指定 run：
 
@@ -61,6 +62,22 @@ python3 inspect_graph.py --run-dir outputs/ground_truth/20261105T120357_736949Z/
 
 在瀏覽器切換視角、多選物件類型及關係，點箭頭查看證據；可切換只看所選物件之間，
 或包含它們與其他物件的關係。檢查器只需 Python 標準函式庫。
+
+## 產生 Full ground-truth
+
+Full GT 使用物件位置、父容器及相機資訊，保留全部 metadata 物件，包含不可見物件。
+Python 部分只使用標準函式庫，預設計算全部一般視角並附上可離線開啟的 `inspect.html`：
+
+```sh
+python3 full_ground_truth.py --scene-dir colab/scene_output/20261105T120357_736949Z
+# 只計算指定視角：
+python3 full_ground_truth.py --scene-dir colab/scene_output/20261105T120357_736949Z --view view_3
+```
+
+每個視角獨立定稿：正式圖位於 `full/`，仍需人工處理的圖位於 `drafts/`。
+這批資料的 view_3 已完整；其他視角因相機後方物件的左右配對需要人工處理，保留草稿。
+有待辦時結束碼為 `2`，但四個視角的圖、證據、待辦及 HTML 均已輸出。
+算法、實際數量與操作方式見 [Full GT 文件](docs/full_ground_truth.md)。
 
 ## 匯出可見物件
 
