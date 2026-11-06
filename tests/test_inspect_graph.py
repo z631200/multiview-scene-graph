@@ -4,6 +4,7 @@ import tempfile
 import unittest
 
 from visualization.inspect_graph import load_run, render_html
+from common.paths import ROOT
 
 
 class InspectorTests(unittest.TestCase):
@@ -42,6 +43,24 @@ class InspectorTests(unittest.TestCase):
         html = render_html(load_run(self.root))
         self.assertNotIn(self.graph["nodes"][0]["name"], html)
         self.assertIn('\\u003c/script>', html)
+
+    def test_display_path_starts_at_project_and_preserves_source(self):
+        data = load_run(self.root)
+        path = ROOT / "data/scenes/sample/FloorPlan1/capture/gt/result/visible"
+        data["run_dir"] = str(path)
+        html = render_html(data)
+        payload = json.loads(html.split('<script type="application/json" id="data">')[1].split('</script>')[0])
+        self.assertEqual(payload["display_run_dir"], f"{ROOT.name}/data/scenes/sample/FloorPlan1/capture/gt/result/visible")
+        self.assertEqual(payload["run_dir"], str(path))
+        data["run_dir"] = "data/scenes/sample/FloorPlan1/capture/gt/result/visible"
+        relative_html = render_html(data)
+        relative_payload = json.loads(relative_html.split('<script type="application/json" id="data">')[1].split('</script>')[0])
+        self.assertEqual(relative_payload["display_run_dir"], payload["display_run_dir"])
+
+    def test_external_run_does_not_display_its_absolute_path(self):
+        html = render_html(load_run(self.root))
+        payload = json.loads(html.split('<script type="application/json" id="data">')[1].split('</script>')[0])
+        self.assertEqual(payload["display_run_dir"], self.root.name)
 
     def test_invalid_selection_rejected(self):
         data = load_run(self.root)

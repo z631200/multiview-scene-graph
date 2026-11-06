@@ -9,10 +9,19 @@ from pathlib import Path
 import re
 import webbrowser
 
-from common.paths import RUNS
+from common.paths import ROOT, RUNS
 
 
 RELATIONS = ("on", "inside", "image_left_of", "closer_to_camera")
+
+
+def display_run_path(run_dir):
+    path = Path(run_dir).resolve()
+    try:
+        return (Path(ROOT.name) / path.relative_to(ROOT)).as_posix()
+    except ValueError:
+        # External runs have no project-relative location; show only their folder name.
+        return path.name
 
 
 def load_run(run_dir, graph_kind="auto", include_drafts=None, complete_only=False):
@@ -92,7 +101,8 @@ def render_html(data, *, view=None, types=(), relations=("on", "inside"), scope=
         raise ValueError(f"找不到物件類型：{', '.join(unknown)}")
     if not set(relations) <= set(RELATIONS) or scope not in ("between", "connected"):
         raise ValueError("無效的關係或篩選範圍")
-    payload = dict(data, initial={"view": view, "types": [available[t.lower()] for t in types],
+    payload = dict(data, display_run_dir=display_run_path(data["run_dir"]),
+                   initial={"view": view, "types": [available[t.lower()] for t in types],
                                 "relations": list(relations), "scope": scope})
     # Prevent input text from terminating the embedded JSON script element.
     encoded = json.dumps(payload, ensure_ascii=False, allow_nan=False).replace("<", "\\u003c")
@@ -184,7 +194,7 @@ function draw(nodes,edges){
 function setCamera(){ $('svg').setAttribute('viewBox',`${camera.x} ${camera.y} ${camera.w} ${camera.h}`);}
 function reset(){camera={x:0,y:0,w:1000,h:620};setCamera();}
 function zoom(factor){camera.x+=camera.w*(1-factor)/2;camera.y+=camera.h*(1-factor)/2;camera.w*=factor;camera.h*=factor;setCamera();}
-$('run').textContent=DATA.run_dir;DATA.graphs.forEach(g=>{const option=el('option',g.view_id+(g.status==='needs_review'?'（草稿）':''));option.value=g.view_id;$('view').append(option);});$('view').value=DATA.initial.view;
+$('run').textContent=DATA.display_run_dir;DATA.graphs.forEach(g=>{const option=el('option',g.view_id+(g.status==='needs_review'?'（草稿）':''));option.value=g.view_id;$('view').append(option);});$('view').value=DATA.initial.view;
 if(!selectedTypes.size)selectedTypes=new Set(DATA.graphs.find(g=>g.view_id===DATA.initial.view).nodes.map(n=>n.objectType));
 choices($('relations'),Object.keys(COLORS),new Set(DATA.initial.relations),()=>render());
 Object.entries(COLORS).forEach(([r,color])=>{const span=el('span'),dot=el('i');dot.className='dot';dot.style.background=color;span.append(dot,document.createTextNode(r));$('legend').append(span);});
