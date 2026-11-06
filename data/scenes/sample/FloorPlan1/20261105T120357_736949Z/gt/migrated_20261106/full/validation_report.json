@@ -1,0 +1,80 @@
+{
+  "status": "needs_review",
+  "views": {
+    "view_1": {
+      "status": "needs_review",
+      "node_count": 77,
+      "edge_count": 4853,
+      "relations": {
+        "on": 26,
+        "inside": 12,
+        "image_left_of": 1889,
+        "closer_to_camera": 2926
+      },
+      "equal_pair_count": 2,
+      "review_task_count": 1035,
+      "camera_regions": {
+        "front": 62,
+        "behind": 15
+      },
+      "visible_node_count": 11,
+      "excluded_parent_count": 0
+    },
+    "view_2": {
+      "status": "needs_review",
+      "node_count": 77,
+      "edge_count": 5308,
+      "relations": {
+        "on": 26,
+        "inside": 12,
+        "image_left_of": 2344,
+        "closer_to_camera": 2926
+      },
+      "equal_pair_count": 2,
+      "review_task_count": 580,
+      "camera_regions": {
+        "front": 69,
+        "behind": 8
+      },
+      "visible_node_count": 23,
+      "excluded_parent_count": 0
+    },
+    "view_3": {
+      "status": "complete",
+      "node_count": 77,
+      "edge_count": 5888,
+      "relations": {
+        "on": 26,
+        "inside": 12,
+        "image_left_of": 2924,
+        "closer_to_camera": 2926
+      },
+      "equal_pair_count": 2,
+      "review_task_count": 0,
+      "camera_regions": {
+        "front": 77
+      },
+      "visible_node_count": 56,
+      "excluded_parent_count": 0
+    },
+    "view_4": {
+      "status": "needs_review",
+      "node_count": 77,
+      "edge_count": 5812,
+      "relations": {
+        "on": 26,
+        "inside": 12,
+        "image_left_of": 2848,
+        "closer_to_camera": 2926
+      },
+      "equal_pair_count": 2,
+      "review_task_count": 76,
+      "camera_regions": {
+        "front": 76,
+        "behind": 1
+      },
+      "visible_node_count": 43,
+      "excluded_parent_count": 0
+    }
+  }
+}

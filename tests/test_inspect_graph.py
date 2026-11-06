@@ -3,7 +3,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from inspect_graph import load_run, render_html
+from visualization.inspect_graph import load_run, render_html
 
 
 class InspectorTests(unittest.TestCase):

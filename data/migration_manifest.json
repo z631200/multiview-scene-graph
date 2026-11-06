@@ -1,0 +1,158 @@
+{
+  "description": "Repository relocation map; raw capture bytes preserved, historical artifacts retained, current GT regenerated and compared.",
+  "moves": [
+    {
+      "from": "colab/scene_output/20261105T120357_736949Z",
+      "to": "data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic"
+    },
+    {
+      "from": "outputs/captures/20261106T041640_960537Z",
+      "to": "data/scenes/FloorPlan1/20261106T041640_960537Z/basic"
+    },
+    {
+      "from": "outputs/ground_truth/20261105T120357_736949Z/full-20261106T034111_353641Z",
+      "to": "data/scenes/sample/FloorPlan1/20261105T120357_736949Z/gt/migrated_20261106/full"
+    },
+    {
+      "from": "outputs/ground_truth/20261105T120357_736949Z/visible-20261106T033915_167356Z",
+      "to": "data/scenes/sample/FloorPlan1/20261105T120357_736949Z/gt/migrated_20261106/visible"
+    },
+    {
+      "from": "outputs/sample/20261021T162018_966707Z",
+      "to": "data/runs/sample/exp_20261021T162018_966707Z/unidentified_scene/legacy"
+    },
+    {
+      "from": "outputs/graph_inspection",
+      "to": "data/runs/legacy_graph_inspection"
+    },
+    {
+      "from": "local/examples/legacy",
+      "to": "data/runs/sample/demo_legacy/FloorPlan1/demo"
+    },
+    {
+      "from": "local/tests/test_offline.py",
+      "to": "tests/test_demo.py"
+    },
+    {
+      "from": "local/README.md",
+      "to": "docs/demo.md"
+    },
+    {
+      "from": "local/requirements.txt",
+      "to": "scene_capture/demo/requirements.txt"
+    },
+    {
+      "from": "local/robot_interface.py",
+      "to": "scene_capture/demo/robot_interface.py"
+    },
+    {
+      "from": "local/simulation_platform.py",
+      "to": "scene_capture/demo/simulation_platform.py"
+    },
+    {
+      "from": "local/pddl_goal.py",
+      "to": "scene_capture/demo/pddl_goal.py"
+    },
+    {
+      "from": "local/task_definition.py",
+      "to": "scene_capture/demo/task_definition.py"
+    },
+    {
+      "from": "local/main.py",
+      "to": "scene_capture/demo/main.py"
+    },
+    {
+      "from": "local/demo_task.py",
+      "to": "scene_capture/demo/demo_task.py"
+    },
+    {
+      "from": "local/benchmark_referee.py",
+      "to": "scene_capture/demo/benchmark_referee.py"
+    },
+    {
+      "from": "colab/AI2_THOR_Scene_Capture.ipynb",
+      "to": "scene_capture/colab/AI2_THOR_Scene_Capture.ipynb"
+    },
+    {
+      "from": "capture_scene.py",
+      "to": "scene_capture/local/capture.py"
+    },
+    {
+      "from": "visible_ground_truth.py",
+      "to": "gt/visible/generate.py"
+    },
+    {
+      "from": "full_ground_truth.py",
+      "to": "gt/full/generate.py"
+    },
+    {
+      "from": "ground_truth_common.py",
+      "to": "gt/common.py"
+    },
+    {
+      "from": "inspect_graph.py",
+      "to": "visualization/inspect_graph.py"
+    },
+    {
+      "from": "run_scene_graph.py",
+      "to": "reasoning/pipeline.py"
+    },
+    {
+      "from": "ollama_client.py",
+      "to": "reasoning/ollama_client.py"
+    },
+    {
+      "from": "scene_prompts.py",
+      "to": "reasoning/prompts.py"
+    },
+    {
+      "from": "scene_validation.py",
+      "to": "reasoning/validation.py"
+    }
+  ],
+  "schema_version": 1,
+  "raw_capture_verification": {
+    "capture": "data/scenes/sample/FloorPlan1/20261105T120357_736949Z",
+    "file_sha256": {
+      "depth_03.npy": "60497a117808ac3d5e6a7bc7d8f45b2367d55fb45ccc4c397d010dc8509175d4",
+      "view_02.png": "9aa8f7e40f907d3a0fd060d35baf209d0f723abc1a0bf5e049f0ef881db1bd5c",
+      "metadata_03.json": "41db2113b32f256a5c46b4086686e6240c26fb65dcea150625b98ccd243d6418",
+      "objects.json": "cf76d00ce018fc106c31b0da05350c2b9919a32cdeb62a8403659127bc8f1afb",
+      "objects.csv": "ded2b9b538b542bddba246982abd7a29a878be7784b4dade8a520b735ea7c5b8",
+      "instance_segmentation_v02.png": "65970a36acaaaea8b2b835d549c400b41358a9a0eb66bd96cd0890b524a375db",
+      "instance_masks_01.npz": "abcb783329711471b43afc35ba7f31aec6d4718d2ed7abeedec37e2d6c7f7245",
+      "view_03.png": "dc0b85c2686ce3dd2aa19a1e5dd515ffdd089bddc8645d3010dad0d37f4240ef",
+      "visible_objects.json": "cf28d48b00def698eeca2d7876523877e2494b713741b532dfaf0008724f6a91",
+      "reachable_positions.json": "87a89246cdb69c33499934339d33b43cc9aef9d5658dbb77070bfb9c81565346",
+      "instance_masks_02.npz": "c59acac168f85a4485977ed65f49657e0268b08282fc2c6b7ba76c7c9323786b",
+      "metadata_01.json": "a58bcb03de954f1573dca14b047ff71d696008c60409089cb361858caa0be910",
+      "instance_segmentation_v03.png": "174b25efb9e81c1cdeab79279041982a399b83200ab3313c210501a605646a9b",
+      "views.json": "208d559277daebe44518affe18eecb1cdcd7ee422db27c07a08f1e4c7cfa8489",
+      "instance_masks_03.npz": "5d5017c52e4e66cfa107c84aaa7c96c7171a8e703adebeba992a62d2346a4161",
+      "depth_02.npy": "ab32d7b85033041fda2d8fdfb4774cd4cdf0988be5a9a556da7c4daa5f4f2a41",
+      "instance_segmentation_v01.png": "7b79c36d81a7d5daa03f5b9144bdcdcc0c0d2ac28bec626fb45bd3dd61831981",
+      "segmentation_mapping_02.json": "8f0eceee9f53f36b7933d8c93fc8bfff4f9f77e1135f27b614ab7a9e83a3379c",
+      "instance_masks_04.npz": "ec82505f2fcdbe6ca78cbf283c00b54f951ba8ea88f3ed6b12f34c157a90c825",
+      "instance_segmentation_v04.png": "742cbad76cd4aa8db83d804862db4362e5f88a210214262c401cd3e9e08aef50",
+      "view_04.png": "e2ec06c6a2c108232ac2bba4bad25ac453d3c4794dbc035e9d4d12aa7e6e2e4a",
+      "metadata_02.json": "1971cbc9317878619ff8fd5c193caf5f1ff2dedc7c6b21c745f01ca1a5922b3e",
+      "depth_04.npy": "c270c24a3f5afa20e41bab8f7ebb55ea105cbdf248e964e7d6c3aa224f464c03",
+      "viewpoints.png": "5216ccd2ce65f4d2684dd760cc85a8d274441c6d0cce4d5981a5483a88c7c44b",
+      "view_00.png": "163d976c138055f8cef71c9cd885c0b32825f78a7b6a60f26512a2bfb8a609d1",
+      "segmentation_mapping_01.json": "123cf7676fbef049ec8427fb0bceb8480ba174bd92e3e6ddd2044e65f0d8d8d5",
+      "depth_01.npy": "8151345fcd8806aef054e35219227246396a836b37e1f1f2734b03531263f24d",
+      "metadata_04.json": "87c17b518dbe2c621b8ad5e66ae02a2a0d7a1fafb3616c3ff427cd8d814f156d",
+      "segmentation_mapping_03.json": "147967e7117cdf683cd91002d3557947ca033d6b80096a675a53d07970dc0cb4",
+      "segmentation_mapping_04.json": "c4afb1464c2adb43a3a6b302e70dbdb13748345e6685ee38c1f43ccb313310ae",
+      "view_01.png": "0b30ea796599c1f8a457918a7979961220699695c4714ab7eff703451c919962"
+    }
+  },
+  "gt_verification": {
+    "views": 4,
+    "kinds": [
+      "visible",
+      "full"
+    ],
+    "graphs_and_measurements_equal": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "scene_dir": "data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic",
+  "scene": "FloorPlan1",
+  "ai2thor_version": "5.0.0",
+  "inputs_sha256": {
+    "views.json": "208d559277daebe44518affe18eecb1cdcd7ee422db27c07a08f1e4c7cfa8489",
+    "objects.json": "cf76d00ce018fc106c31b0da05350c2b9919a32cdeb62a8403659127bc8f1afb",
+    "visible_objects.json": "cf28d48b00def698eeca2d7876523877e2494b713741b532dfaf0008724f6a91",
+    "metadata_01.json": "a58bcb03de954f1573dca14b047ff71d696008c60409089cb361858caa0be910",
+    "metadata_02.json": "1971cbc9317878619ff8fd5c193caf5f1ff2dedc7c6b21c745f01ca1a5922b3e",
+    "metadata_03.json": "41db2113b32f256a5c46b4086686e6240c26fb65dcea150625b98ccd243d6418",
+    "metadata_04.json": "87c17b518dbe2c621b8ad5e66ae02a2a0d7a1fafb3616c3ff427cd8d814f156d"
+  },
+  "original_scene_dir": "/home/cheng/桌面/multiview-scene-graph/colab/scene_output/20261105T120357_736949Z",
+  "migration_note": "Path updated after repository migration; input bytes and measurement results unchanged."
+}

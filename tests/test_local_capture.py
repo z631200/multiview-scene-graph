@@ -19,11 +19,11 @@ import zipfile
 import numpy as np
 from PIL import Image
 
-import capture_scene as local
-from full_ground_truth import build_full_gt
-from run_scene_graph import load_scene
+import scene_capture.local.capture as local
+from gt.full.generate import build_full_gt
+from reasoning.pipeline import load_scene
 from test_scene_capture import FakeController, code_cell, obj
-from visible_ground_truth import build_visible_gt
+from gt.visible.generate import build_visible_gt
 
 
 class LocalController(FakeController):
@@ -220,7 +220,7 @@ class LocalCaptureTests(unittest.TestCase):
                     local.build_parser().parse_args(args)
 
     def test_help_works_without_site_packages(self):
-        result = subprocess.run([sys.executable, '-S', str(Path(local.__file__)), '--help'],
+        result = subprocess.run([sys.executable, '-S', '-m', 'scene_capture.local', '--help'],
                                 capture_output=True, text=True, timeout=10)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn('--headless', result.stdout)

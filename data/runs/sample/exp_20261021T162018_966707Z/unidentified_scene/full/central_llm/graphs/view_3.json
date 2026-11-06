@@ -1,0 +1,422 @@
+{
+  "schema_version": "reasoning-graph-v1",
+  "graph_type": "full_reasoning",
+  "view_id": "view_3",
+  "method": "central_llm",
+  "status": "model_prediction",
+  "nodes": [
+    {
+      "id": "g1",
+      "description": "kitchen island, large, brown/dark brown, rectangular/blocky, has a countertop",
+      "sources": [
+        "v1_o1",
+        "v2_o5",
+        "v3_o5",
+        "v4_o1"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g2",
+      "description": "wooden door, dark brown, double door style",
+      "sources": [
+        "v1_o5",
+        "v4_o3"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g3",
+      "description": "wooden door, dark brown, double door style",
+      "sources": [
+        "v1_o6"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g4",
+      "description": "stool, black, high, rectangular seat",
+      "sources": [
+        "v2_o6",
+        "v3_o6"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g5",
+      "description": "stool, black, high, rectangular seat",
+      "sources": [
+        "v2_o7",
+        "v3_o7"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g6",
+      "description": "floor, light brown wood planks",
+      "sources": [
+        "v2_o2",
+        "v3_o4",
+        "v4_o7"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g22",
+      "description": "cabinets, white, modern, includes upper and lower sections",
+      "sources": [
+        "v2_o4",
+        "v4_o6"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g23",
+      "description": "wall, lower/cabinets, white",
+      "sources": [
+        "v3_o3"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g24",
+      "description": "upper cabinets, white, horizontal rows",
+      "sources": [
+        "v3_o8"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g25",
+      "description": "lower cabinets, white, below counter",
+      "sources": [
+        "v3_o9"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g8",
+      "description": "shelving unit, brown wood, multiple shelves",
+      "sources": [
+        "v3_o12"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g9",
+      "description": "refrigerator, large, white, rectangular",
+      "sources": [
+        "v3_o10"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g10",
+      "description": "pendant light, dark fixture, hanging",
+      "sources": [
+        "v1_o7"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g11",
+      "description": "pendant light, dark fixture, hanging",
+      "sources": [
+        "v1_o8"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g12",
+      "description": "pendant light, dark fixture, hanging",
+      "sources": [
+        "v1_o9"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g13",
+      "description": "brown object, round, brown/tan",
+      "sources": [
+        "v1_o2"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "id": "g14",
+      "description": "orange object, round, orange",
+      "sources": [
+        "v1_o3"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "id": "g15",
+      "description": "grey/white object, rectangular/dish shape, grey/white",
+      "sources": [
+        "v1_o4"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "id": "g16",
+      "description": "blue box, blue, rectangular",
+      "sources": [
+        "v2_o8"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g17",
+      "description": "red object, small",
+      "sources": [
+        "v2_o9"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "id": "g18",
+      "description": "brown basket, brown, woven/basket shape",
+      "sources": [
+        "v2_o10"
+      ],
+      "status": "provisional"
+    },
+    {
+      "id": "g19",
+      "description": "red object, small",
+      "sources": [
+        "v2_o11"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "id": "g20",
+      "description": "small round object, reddish/brown, small",
+      "sources": [
+        "v4_o4"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "id": "g21",
+      "description": "small flat object, light colored, rectangular",
+      "sources": [
+        "v4_o5"
+      ],
+      "status": "unresolved"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "g13",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "unresolved",
+      "sources": [
+        "v1_r1"
+      ],
+      "evidence": "The brown object is situated on the kitchen island countertop."
+    },
+    {
+      "id": "e2",
+      "source": "g14",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "unresolved",
+      "sources": [
+        "v1_r2"
+      ],
+      "evidence": "The orange object is situated on the kitchen island countertop."
+    },
+    {
+      "id": "e3",
+      "source": "g15",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "unresolved",
+      "sources": [
+        "v1_r3"
+      ],
+      "evidence": "The grey/white object is situated on the kitchen island countertop."
+    },
+    {
+      "id": "e6",
+      "source": "g10",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "provisional",
+      "sources": [
+        "v1_r6"
+      ],
+      "evidence": "The first pendant light hangs above the kitchen island."
+    },
+    {
+      "id": "e7",
+      "source": "g11",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "provisional",
+      "sources": [
+        "v1_r7"
+      ],
+      "evidence": "The second pendant light hangs above the kitchen island."
+    },
+    {
+      "id": "e8",
+      "source": "g12",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "provisional",
+      "sources": [
+        "v1_r8"
+      ],
+      "evidence": "The third pendant light hangs above the kitchen island."
+    },
+    {
+      "id": "e10",
+      "source": "g16",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "provisional",
+      "sources": [
+        "v2_r2"
+      ],
+      "evidence": "Visual contact"
+    },
+    {
+      "id": "e11",
+      "source": "g17",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "unresolved",
+      "sources": [
+        "v2_r3"
+      ],
+      "evidence": "Visual contact"
+    },
+    {
+      "id": "e12",
+      "source": "g18",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "provisional",
+      "sources": [
+        "v2_r4"
+      ],
+      "evidence": "Visual contact"
+    },
+    {
+      "id": "e13",
+      "source": "g19",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "unresolved",
+      "sources": [
+        "v2_r5"
+      ],
+      "evidence": "Visual contact"
+    },
+    {
+      "id": "e14",
+      "source": "g4",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "provisional",
+      "sources": [
+        "v2_r6"
+      ],
+      "evidence": "Visual contact"
+    },
+    {
+      "id": "e15",
+      "source": "g5",
+      "target": "g1",
+      "relation": "on",
+      "frame": "physical",
+      "status": "provisional",
+      "sources": [
+        "v2_r7"
+      ],
+      "evidence": "Visual contact"
+    },
+    {
+      "id": "e16",
+      "source": "g4",
+      "target": "g5",
+      "relation": "image_left_of",
+      "frame": "view_3",
+      "status": "provisional",
+      "sources": [
+        "v3_r1"
+      ],
+      "evidence": "Stool 1 is positioned to the left of Stool 2."
+    },
+    {
+      "id": "e17",
+      "source": "g1",
+      "target": "g6",
+      "relation": "on",
+      "frame": "physical",
+      "status": "provisional",
+      "sources": [
+        "v3_r2"
+      ],
+      "evidence": "The kitchen island is situated on the wooden floor."
+    },
+    {
+      "id": "e18",
+      "source": "g8",
+      "target": "g6",
+      "relation": "on",
+      "frame": "physical",
+      "status": "provisional",
+      "sources": [
+        "v3_r7"
+      ],
+      "evidence": "The shelving unit is placed on the wooden floor."
+    }
+  ],
+  "verification_requests": {
+    "q1": {
+      "view": "view_1",
+      "objects": [
+        "v1_o2"
+      ],
+      "question": "What is the color and shape of the brown object?"
+    },
+    "q2": {
+      "view": "view_1",
+      "objects": [
+        "v1_o3"
+      ],
+      "question": "What is the color of the orange object?"
+    },
+    "q3": {
+      "view": "view_1",
+      "objects": [
+        "v1_o4"
+      ],
+      "question": "Describe the shape and color of the grey/white object."
+    },
+    "q4": {
+      "view": "view_4",
+      "objects": [
+        "v4_o5"
+      ],
+      "question": "What is the color and shape of the small flat object?"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+scene: FloorPlan1
+num_views: 4
+image_size: 1600
+horizon: 0
+timeout: 300
+headless: false

@@ -1,0 +1,35 @@
+{
+  "scene_dir": "/home/cheng/桌面/multiview-scene-graph/data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic",
+  "scene": "FloorPlan1",
+  "ai2thor_version": "5.0.0",
+  "inputs_sha256": {
+    "views.json": "208d559277daebe44518affe18eecb1cdcd7ee422db27c07a08f1e4c7cfa8489",
+    "objects.json": "cf76d00ce018fc106c31b0da05350c2b9919a32cdeb62a8403659127bc8f1afb",
+    "visible_objects.json": "cf28d48b00def698eeca2d7876523877e2494b713741b532dfaf0008724f6a91",
+    "view_01.png": "0b30ea796599c1f8a457918a7979961220699695c4714ab7eff703451c919962",
+    "metadata_01.json": "a58bcb03de954f1573dca14b047ff71d696008c60409089cb361858caa0be910",
+    "depth_01.npy": "8151345fcd8806aef054e35219227246396a836b37e1f1f2734b03531263f24d",
+    "segmentation_mapping_01.json": "123cf7676fbef049ec8427fb0bceb8480ba174bd92e3e6ddd2044e65f0d8d8d5",
+    "instance_masks_01.npz": "abcb783329711471b43afc35ba7f31aec6d4718d2ed7abeedec37e2d6c7f7245",
+    "view_02.png": "9aa8f7e40f907d3a0fd060d35baf209d0f723abc1a0bf5e049f0ef881db1bd5c",
+    "metadata_02.json": "1971cbc9317878619ff8fd5c193caf5f1ff2dedc7c6b21c745f01ca1a5922b3e",
+    "depth_02.npy": "ab32d7b85033041fda2d8fdfb4774cd4cdf0988be5a9a556da7c4daa5f4f2a41",
+    "segmentation_mapping_02.json": "8f0eceee9f53f36b7933d8c93fc8bfff4f9f77e1135f27b614ab7a9e83a3379c",
+    "instance_masks_02.npz": "c59acac168f85a4485977ed65f49657e0268b08282fc2c6b7ba76c7c9323786b",
+    "view_03.png": "dc0b85c2686ce3dd2aa19a1e5dd515ffdd089bddc8645d3010dad0d37f4240ef",
+    "metadata_03.json": "41db2113b32f256a5c46b4086686e6240c26fb65dcea150625b98ccd243d6418",
+    "depth_03.npy": "60497a117808ac3d5e6a7bc7d8f45b2367d55fb45ccc4c397d010dc8509175d4",
+    "segmentation_mapping_03.json": "147967e7117cdf683cd91002d3557947ca033d6b80096a675a53d07970dc0cb4",
+    "instance_masks_03.npz": "5d5017c52e4e66cfa107c84aaa7c96c7171a8e703adebeba992a62d2346a4161",
+    "view_04.png": "e2ec06c6a2c108232ac2bba4bad25ac453d3c4794dbc035e9d4d12aa7e6e2e4a",
+    "metadata_04.json": "87c17b518dbe2c621b8ad5e66ae02a2a0d7a1fafb3616c3ff427cd8d814f156d",
+    "depth_04.npy": "c270c24a3f5afa20e41bab8f7ebb55ea105cbdf248e964e7d6c3aa224f464c03",
+    "segmentation_mapping_04.json": "c4afb1464c2adb43a3a6b302e70dbdb13748345e6685ee38c1f43ccb313310ae",
+    "instance_masks_04.npz": "ec82505f2fcdbe6ca78cbf283c00b54f951ba8ea88f3ed6b12f34c157a90c825"
+  },
+  "capture": {
+    "scene": "FloorPlan1",
+    "capture_id": "20261105T120357_736949Z",
+    "basic_dir": "/home/cheng/桌面/multiview-scene-graph/data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic"
+  }
+}

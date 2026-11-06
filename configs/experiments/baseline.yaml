@@ -1,0 +1,11 @@
+model: gemma4:e4b
+ollama_url: http://localhost:11434
+stage: all
+timeout: 600
+num_ctx: 32768
+num_predict: 8192
+temperature: 0.2
+seed: 42
+thinking: auto
+format_retries: 3
+verification_budget: 4

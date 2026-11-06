@@ -1,0 +1,21 @@
+{
+  "version": "full-parent-position-camera-v1",
+  "graph_type": "full_ground_truth",
+  "scope": "All metadata objects, including invisible and out-of-frame objects.",
+  "parent_relations": {
+    "CounterTop": "on",
+    "Floor": "on",
+    "Cabinet": "inside",
+    "Fridge": "inside",
+    "Drawer": "inside",
+    "Shelf": "inside"
+  },
+  "physical_candidates": "Only parentReceptacles; initially inside if never visible, else on; type overrides.",
+  "image_left_of": "Strict comparison of camera X/Z for object position with Z > 0; no clipping.",
+  "closer_to_camera": "Euclidean object-position to camera-position distance; compare squared meters.",
+  "camera_convention": "World Y up; yaw 0 faces +Z, yaw 90 faces +X; pitch positive downward; no roll.",
+  "aabb": "Diagnostic camera-depth bounds only; never substitutes for object position.",
+  "ties": "Exact equality creates no directional edge and is recorded separately.",
+  "nonpositive_camera_z": "Keep nodes and calculable edges; queue image_left_of pairs for human review.",
+  "gap_threshold": null
+}

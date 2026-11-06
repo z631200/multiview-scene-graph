@@ -1,0 +1,1837 @@
+{
+  "schema_version": "ground-truth-v1",
+  "definition_version": "visible-parent-mask-depth-v1",
+  "graph_type": "visible_ground_truth",
+  "view_id": "view_1",
+  "status": "complete",
+  "nodes": [
+    {
+      "id": "Apple|-00.47|+01.15|+00.48",
+      "objectType": "Apple",
+      "name": "Apple_3fef4551"
+    },
+    {
+      "id": "Book|+00.15|+01.10|+00.62",
+      "objectType": "Book",
+      "name": "Book_e5ef3174"
+    },
+    {
+      "id": "Bowl|+00.27|+01.10|-00.75",
+      "objectType": "Bowl",
+      "name": "Bowl_208f368b"
+    },
+    {
+      "id": "Bread|-00.52|+01.17|-00.03",
+      "objectType": "Bread",
+      "name": "Bread_c6b4566e"
+    },
+    {
+      "id": "ButterKnife|-00.41|+01.11|-00.46",
+      "objectType": "ButterKnife",
+      "name": "ButterKnife_4ae287b7"
+    },
+    {
+      "id": "CounterTop|-00.08|+01.15|00.00",
+      "objectType": "CounterTop",
+      "name": "CounterTop_203f0cf4"
+    },
+    {
+      "id": "CreditCard|-00.46|+01.10|+00.87",
+      "objectType": "CreditCard",
+      "name": "CreditCard_5e829d70"
+    },
+    {
+      "id": "Floor|+00.00|+00.00|+00.00",
+      "objectType": "Floor",
+      "name": "Floor_86781be7"
+    },
+    {
+      "id": "LightSwitch|+02.33|+01.31|-00.16",
+      "objectType": "LightSwitch",
+      "name": "LightSwitch_cfaab6e3"
+    },
+    {
+      "id": "Stool|+00.70|+00.00|-00.51",
+      "objectType": "Stool",
+      "name": "Stool_b084fe8e"
+    },
+    {
+      "id": "Tomato|-00.39|+01.14|-00.81",
+      "objectType": "Tomato",
+      "name": "Tomato_caaae6b0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "on",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "physical",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "parentReceptacles_type_lookup",
+        "metadata": "metadata_01.json",
+        "parent_type": "CounterTop",
+        "initial_relation": "on"
+      }
+    },
+    {
+      "id": "e2",
+      "source": "Book|+00.15|+01.10|+00.62",
+      "relation": "on",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "physical",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "parentReceptacles_type_lookup",
+        "metadata": "metadata_01.json",
+        "parent_type": "CounterTop",
+        "initial_relation": "on"
+      }
+    },
+    {
+      "id": "e3",
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "relation": "on",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "physical",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "parentReceptacles_type_lookup",
+        "metadata": "metadata_01.json",
+        "parent_type": "CounterTop",
+        "initial_relation": "on"
+      }
+    },
+    {
+      "id": "e4",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "on",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "physical",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "parentReceptacles_type_lookup",
+        "metadata": "metadata_01.json",
+        "parent_type": "CounterTop",
+        "initial_relation": "on"
+      }
+    },
+    {
+      "id": "e5",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "on",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "physical",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "parentReceptacles_type_lookup",
+        "metadata": "metadata_01.json",
+        "parent_type": "CounterTop",
+        "initial_relation": "on"
+      }
+    },
+    {
+      "id": "e6",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "on",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "physical",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "parentReceptacles_type_lookup",
+        "metadata": "metadata_01.json",
+        "parent_type": "CounterTop",
+        "initial_relation": "on"
+      }
+    },
+    {
+      "id": "e7",
+      "source": "Stool|+00.70|+00.00|-00.51",
+      "relation": "on",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "physical",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "parentReceptacles_type_lookup",
+        "metadata": "metadata_01.json",
+        "parent_type": "Floor",
+        "initial_relation": "on"
+      }
+    },
+    {
+      "id": "e8",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "on",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "physical",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "parentReceptacles_type_lookup",
+        "metadata": "metadata_01.json",
+        "parent_type": "CounterTop",
+        "initial_relation": "on"
+      }
+    },
+    {
+      "id": "e9",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "image_left_of",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 519.7939068100359,
+        "target_value": 684.1757765470744,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e10",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "closer_to_camera",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 2.193384528160095,
+        "target_value": 2.5404210090637207,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e11",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "image_left_of",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 519.7939068100359,
+        "target_value": 1062.3555716702924,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e12",
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "relation": "closer_to_camera",
+      "target": "Apple|-00.47|+01.15|+00.48",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.6735622882843018,
+        "target_value": 2.193384528160095,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e13",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "image_left_of",
+      "target": "Bread|-00.52|+01.17|-00.03",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 519.7939068100359,
+        "target_value": 575.7945743351776,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e14",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "closer_to_camera",
+      "target": "Apple|-00.47|+01.15|+00.48",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.7101600170135498,
+        "target_value": 2.193384528160095,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e15",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "image_left_of",
+      "target": "ButterKnife|-00.41|+01.11|-00.46",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 519.7939068100359,
+        "target_value": 723.647577092511,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e16",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "closer_to_camera",
+      "target": "Apple|-00.47|+01.15|+00.48",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5143014788627625,
+        "target_value": 2.193384528160095,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e17",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "image_left_of",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 519.7939068100359,
+        "target_value": 833.3278988610089,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e18",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "closer_to_camera",
+      "target": "Apple|-00.47|+01.15|+00.48",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5958648920059204,
+        "target_value": 2.193384528160095,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e19",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "image_left_of",
+      "target": "Apple|-00.47|+01.15|+00.48",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 477.24418604651163,
+        "target_value": 519.7939068100359,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e20",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "closer_to_camera",
+      "target": "CreditCard|-00.46|+01.10|+00.87",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 2.193384528160095,
+        "target_value": 2.5290822982788086,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e21",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "image_left_of",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 519.7939068100359,
+        "target_value": 740.828144454797,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e22",
+      "source": "Floor|+00.00|+00.00|+00.00",
+      "relation": "closer_to_camera",
+      "target": "Apple|-00.47|+01.15|+00.48",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 2.0642380714416504,
+        "target_value": 2.193384528160095,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e23",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "image_left_of",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 519.7939068100359,
+        "target_value": 1214.0127659574468,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e24",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "closer_to_camera",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 2.193384528160095,
+        "target_value": 3.4627015590667725,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e25",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "image_left_of",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 519.7939068100359,
+        "target_value": 1186.0057027843006,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e26",
+      "source": "Stool|+00.70|+00.00|-00.51",
+      "relation": "closer_to_camera",
+      "target": "Apple|-00.47|+01.15|+00.48",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.9433238506317139,
+        "target_value": 2.193384528160095,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e27",
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "relation": "image_left_of",
+      "target": "Tomato|-00.39|+01.14|-00.81",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 519.7939068100359,
+        "target_value": 856.8583306683722,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e28",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "closer_to_camera",
+      "target": "Apple|-00.47|+01.15|+00.48",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.2343170642852783,
+        "target_value": 2.193384528160095,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e29",
+      "source": "Book|+00.15|+01.10|+00.62",
+      "relation": "image_left_of",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 684.1757765470744,
+        "target_value": 1062.3555716702924,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e30",
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "relation": "closer_to_camera",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.6735622882843018,
+        "target_value": 2.5404210090637207,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e31",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "image_left_of",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 575.7945743351776,
+        "target_value": 684.1757765470744,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e32",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "closer_to_camera",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.7101600170135498,
+        "target_value": 2.5404210090637207,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e33",
+      "source": "Book|+00.15|+01.10|+00.62",
+      "relation": "image_left_of",
+      "target": "ButterKnife|-00.41|+01.11|-00.46",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 684.1757765470744,
+        "target_value": 723.647577092511,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e34",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "closer_to_camera",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5143014788627625,
+        "target_value": 2.5404210090637207,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e35",
+      "source": "Book|+00.15|+01.10|+00.62",
+      "relation": "image_left_of",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 684.1757765470744,
+        "target_value": 833.3278988610089,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e36",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "closer_to_camera",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5958648920059204,
+        "target_value": 2.5404210090637207,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e37",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "image_left_of",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 477.24418604651163,
+        "target_value": 684.1757765470744,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e38",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "closer_to_camera",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 2.5290822982788086,
+        "target_value": 2.5404210090637207,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e39",
+      "source": "Book|+00.15|+01.10|+00.62",
+      "relation": "image_left_of",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 684.1757765470744,
+        "target_value": 740.828144454797,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e40",
+      "source": "Floor|+00.00|+00.00|+00.00",
+      "relation": "closer_to_camera",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 2.0642380714416504,
+        "target_value": 2.5404210090637207,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e41",
+      "source": "Book|+00.15|+01.10|+00.62",
+      "relation": "image_left_of",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 684.1757765470744,
+        "target_value": 1214.0127659574468,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e42",
+      "source": "Book|+00.15|+01.10|+00.62",
+      "relation": "closer_to_camera",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 2.5404210090637207,
+        "target_value": 3.4627015590667725,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e43",
+      "source": "Book|+00.15|+01.10|+00.62",
+      "relation": "image_left_of",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 684.1757765470744,
+        "target_value": 1186.0057027843006,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e44",
+      "source": "Stool|+00.70|+00.00|-00.51",
+      "relation": "closer_to_camera",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.9433238506317139,
+        "target_value": 2.5404210090637207,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e45",
+      "source": "Book|+00.15|+01.10|+00.62",
+      "relation": "image_left_of",
+      "target": "Tomato|-00.39|+01.14|-00.81",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 684.1757765470744,
+        "target_value": 856.8583306683722,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e46",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "closer_to_camera",
+      "target": "Book|+00.15|+01.10|+00.62",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.2343170642852783,
+        "target_value": 2.5404210090637207,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e47",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "image_left_of",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 575.7945743351776,
+        "target_value": 1062.3555716702924,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e48",
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "relation": "closer_to_camera",
+      "target": "Bread|-00.52|+01.17|-00.03",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.6735622882843018,
+        "target_value": 1.7101600170135498,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e49",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "image_left_of",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 723.647577092511,
+        "target_value": 1062.3555716702924,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e50",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "closer_to_camera",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5143014788627625,
+        "target_value": 1.6735622882843018,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e51",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "image_left_of",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 833.3278988610089,
+        "target_value": 1062.3555716702924,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e52",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "closer_to_camera",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5958648920059204,
+        "target_value": 1.6735622882843018,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e53",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "image_left_of",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 477.24418604651163,
+        "target_value": 1062.3555716702924,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e54",
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "relation": "closer_to_camera",
+      "target": "CreditCard|-00.46|+01.10|+00.87",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.6735622882843018,
+        "target_value": 2.5290822982788086,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e55",
+      "source": "Floor|+00.00|+00.00|+00.00",
+      "relation": "image_left_of",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 740.828144454797,
+        "target_value": 1062.3555716702924,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e56",
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "relation": "closer_to_camera",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.6735622882843018,
+        "target_value": 2.0642380714416504,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e57",
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "relation": "image_left_of",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 1062.3555716702924,
+        "target_value": 1214.0127659574468,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e58",
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "relation": "closer_to_camera",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.6735622882843018,
+        "target_value": 3.4627015590667725,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e59",
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "relation": "image_left_of",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 1062.3555716702924,
+        "target_value": 1186.0057027843006,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e60",
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "relation": "closer_to_camera",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.6735622882843018,
+        "target_value": 1.9433238506317139,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e61",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "image_left_of",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 856.8583306683722,
+        "target_value": 1062.3555716702924,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e62",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "closer_to_camera",
+      "target": "Bowl|+00.27|+01.10|-00.75",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.2343170642852783,
+        "target_value": 1.6735622882843018,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e63",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "image_left_of",
+      "target": "ButterKnife|-00.41|+01.11|-00.46",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 575.7945743351776,
+        "target_value": 723.647577092511,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e64",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "closer_to_camera",
+      "target": "Bread|-00.52|+01.17|-00.03",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5143014788627625,
+        "target_value": 1.7101600170135498,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e65",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "image_left_of",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 575.7945743351776,
+        "target_value": 833.3278988610089,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e66",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "closer_to_camera",
+      "target": "Bread|-00.52|+01.17|-00.03",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5958648920059204,
+        "target_value": 1.7101600170135498,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e67",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "image_left_of",
+      "target": "Bread|-00.52|+01.17|-00.03",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 477.24418604651163,
+        "target_value": 575.7945743351776,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e68",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "closer_to_camera",
+      "target": "CreditCard|-00.46|+01.10|+00.87",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.7101600170135498,
+        "target_value": 2.5290822982788086,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e69",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "image_left_of",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 575.7945743351776,
+        "target_value": 740.828144454797,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e70",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "closer_to_camera",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.7101600170135498,
+        "target_value": 2.0642380714416504,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e71",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "image_left_of",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 575.7945743351776,
+        "target_value": 1214.0127659574468,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e72",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "closer_to_camera",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.7101600170135498,
+        "target_value": 3.4627015590667725,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e73",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "image_left_of",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 575.7945743351776,
+        "target_value": 1186.0057027843006,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e74",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "closer_to_camera",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.7101600170135498,
+        "target_value": 1.9433238506317139,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e75",
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "relation": "image_left_of",
+      "target": "Tomato|-00.39|+01.14|-00.81",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 575.7945743351776,
+        "target_value": 856.8583306683722,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e76",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "closer_to_camera",
+      "target": "Bread|-00.52|+01.17|-00.03",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.2343170642852783,
+        "target_value": 1.7101600170135498,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e77",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "image_left_of",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 723.647577092511,
+        "target_value": 833.3278988610089,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e78",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "closer_to_camera",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5143014788627625,
+        "target_value": 1.5958648920059204,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e79",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "image_left_of",
+      "target": "ButterKnife|-00.41|+01.11|-00.46",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 477.24418604651163,
+        "target_value": 723.647577092511,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e80",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "closer_to_camera",
+      "target": "CreditCard|-00.46|+01.10|+00.87",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5143014788627625,
+        "target_value": 2.5290822982788086,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e81",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "image_left_of",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 723.647577092511,
+        "target_value": 740.828144454797,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e82",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "closer_to_camera",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5143014788627625,
+        "target_value": 2.0642380714416504,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e83",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "image_left_of",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 723.647577092511,
+        "target_value": 1214.0127659574468,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e84",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "closer_to_camera",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5143014788627625,
+        "target_value": 3.4627015590667725,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e85",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "image_left_of",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 723.647577092511,
+        "target_value": 1186.0057027843006,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e86",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "closer_to_camera",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5143014788627625,
+        "target_value": 1.9433238506317139,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e87",
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "relation": "image_left_of",
+      "target": "Tomato|-00.39|+01.14|-00.81",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 723.647577092511,
+        "target_value": 856.8583306683722,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e88",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "closer_to_camera",
+      "target": "ButterKnife|-00.41|+01.11|-00.46",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.2343170642852783,
+        "target_value": 1.5143014788627625,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e89",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "image_left_of",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 477.24418604651163,
+        "target_value": 833.3278988610089,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e90",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "closer_to_camera",
+      "target": "CreditCard|-00.46|+01.10|+00.87",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5958648920059204,
+        "target_value": 2.5290822982788086,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e91",
+      "source": "Floor|+00.00|+00.00|+00.00",
+      "relation": "image_left_of",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 740.828144454797,
+        "target_value": 833.3278988610089,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e92",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "closer_to_camera",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5958648920059204,
+        "target_value": 2.0642380714416504,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e93",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "image_left_of",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 833.3278988610089,
+        "target_value": 1214.0127659574468,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e94",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "closer_to_camera",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5958648920059204,
+        "target_value": 3.4627015590667725,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e95",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "image_left_of",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 833.3278988610089,
+        "target_value": 1186.0057027843006,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e96",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "closer_to_camera",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.5958648920059204,
+        "target_value": 1.9433238506317139,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e97",
+      "source": "CounterTop|-00.08|+01.15|00.00",
+      "relation": "image_left_of",
+      "target": "Tomato|-00.39|+01.14|-00.81",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 833.3278988610089,
+        "target_value": 856.8583306683722,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e98",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "closer_to_camera",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.2343170642852783,
+        "target_value": 1.5958648920059204,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e99",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "image_left_of",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 477.24418604651163,
+        "target_value": 740.828144454797,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e100",
+      "source": "Floor|+00.00|+00.00|+00.00",
+      "relation": "closer_to_camera",
+      "target": "CreditCard|-00.46|+01.10|+00.87",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 2.0642380714416504,
+        "target_value": 2.5290822982788086,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e101",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "image_left_of",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 477.24418604651163,
+        "target_value": 1214.0127659574468,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e102",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "closer_to_camera",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 2.5290822982788086,
+        "target_value": 3.4627015590667725,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e103",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "image_left_of",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 477.24418604651163,
+        "target_value": 1186.0057027843006,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e104",
+      "source": "Stool|+00.70|+00.00|-00.51",
+      "relation": "closer_to_camera",
+      "target": "CreditCard|-00.46|+01.10|+00.87",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.9433238506317139,
+        "target_value": 2.5290822982788086,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e105",
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "relation": "image_left_of",
+      "target": "Tomato|-00.39|+01.14|-00.81",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 477.24418604651163,
+        "target_value": 856.8583306683722,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e106",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "closer_to_camera",
+      "target": "CreditCard|-00.46|+01.10|+00.87",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.2343170642852783,
+        "target_value": 2.5290822982788086,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e107",
+      "source": "Floor|+00.00|+00.00|+00.00",
+      "relation": "image_left_of",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 740.828144454797,
+        "target_value": 1214.0127659574468,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e108",
+      "source": "Floor|+00.00|+00.00|+00.00",
+      "relation": "closer_to_camera",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 2.0642380714416504,
+        "target_value": 3.4627015590667725,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e109",
+      "source": "Floor|+00.00|+00.00|+00.00",
+      "relation": "image_left_of",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 740.828144454797,
+        "target_value": 1186.0057027843006,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e110",
+      "source": "Stool|+00.70|+00.00|-00.51",
+      "relation": "closer_to_camera",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.9433238506317139,
+        "target_value": 2.0642380714416504,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e111",
+      "source": "Floor|+00.00|+00.00|+00.00",
+      "relation": "image_left_of",
+      "target": "Tomato|-00.39|+01.14|-00.81",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 740.828144454797,
+        "target_value": 856.8583306683722,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e112",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "closer_to_camera",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.2343170642852783,
+        "target_value": 2.0642380714416504,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e113",
+      "source": "Stool|+00.70|+00.00|-00.51",
+      "relation": "image_left_of",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 1186.0057027843006,
+        "target_value": 1214.0127659574468,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e114",
+      "source": "Stool|+00.70|+00.00|-00.51",
+      "relation": "closer_to_camera",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.9433238506317139,
+        "target_value": 3.4627015590667725,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e115",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "image_left_of",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 856.8583306683722,
+        "target_value": 1214.0127659574468,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e116",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "closer_to_camera",
+      "target": "LightSwitch|+02.33|+01.31|-00.16",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.2343170642852783,
+        "target_value": 3.4627015590667725,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e117",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "image_left_of",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "mask_center_x_px",
+        "source_value": 856.8583306683722,
+        "target_value": 1186.0057027843006,
+        "measurements": "measurements/view_1.json"
+      }
+    },
+    {
+      "id": "e118",
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "relation": "closer_to_camera",
+      "target": "Stool|+00.70|+00.00|-00.51",
+      "frame": "view_1",
+      "status": "accepted",
+      "definition_version": "visible-parent-mask-depth-v1",
+      "evidence": {
+        "method": "median_native_depth_m",
+        "source_value": 1.2343170642852783,
+        "target_value": 1.9433238506317139,
+        "measurements": "measurements/view_1.json"
+      }
+    }
+  ],
+  "review_task_count": 0
+}

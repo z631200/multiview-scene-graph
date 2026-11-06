@@ -1,0 +1,433 @@
+{
+  "nodes": {
+    "g1": {
+      "description": "kitchen island, large, brown/dark brown, rectangular/blocky, has a countertop",
+      "sources": [
+        "v1_o1",
+        "v2_o5",
+        "v3_o5",
+        "v4_o1"
+      ],
+      "status": "provisional",
+      "reason": "Consistent identification across multiple views (v1_o1, v2_o5, v3_o5, v4_o1)."
+    },
+    "g2": {
+      "description": "wooden door, dark brown, double door style",
+      "sources": [
+        "v1_o5",
+        "v4_o3"
+      ],
+      "status": "provisional",
+      "reason": "Both are dark brown doors located on the left side of the island view."
+    },
+    "g3": {
+      "description": "wooden door, dark brown, double door style",
+      "sources": [
+        "v1_o6"
+      ],
+      "status": "provisional",
+      "reason": "Dark brown door located on the right side of the island view."
+    },
+    "g4": {
+      "description": "stool, black, high, rectangular seat",
+      "sources": [
+        "v2_o6",
+        "v3_o6"
+      ],
+      "status": "provisional",
+      "reason": "Consistent description and placement relative to the island."
+    },
+    "g5": {
+      "description": "stool, black, high, rectangular seat",
+      "sources": [
+        "v2_o7",
+        "v3_o7"
+      ],
+      "status": "provisional",
+      "reason": "Consistent description and placement relative to the island."
+    },
+    "g6": {
+      "description": "floor, light brown wood planks",
+      "sources": [
+        "v2_o2",
+        "v3_o4",
+        "v4_o7"
+      ],
+      "status": "provisional",
+      "reason": "Consistent description of light brown wood planks."
+    },
+    "g22": {
+      "description": "cabinets, white, modern, includes upper and lower sections",
+      "sources": [
+        "v2_o4",
+        "v4_o6"
+      ],
+      "status": "provisional",
+      "reason": "Consistent description of white cabinetry structure in the background."
+    },
+    "g23": {
+      "description": "wall, lower/cabinets, white",
+      "sources": [
+        "v3_o3"
+      ],
+      "status": "provisional",
+      "reason": "Specific cabinet/wall section observed in view 3."
+    },
+    "g24": {
+      "description": "upper cabinets, white, horizontal rows",
+      "sources": [
+        "v3_o8"
+      ],
+      "status": "provisional",
+      "reason": "Specific upper cabinet section observed in view 3."
+    },
+    "g25": {
+      "description": "lower cabinets, white, below counter",
+      "sources": [
+        "v3_o9"
+      ],
+      "status": "provisional",
+      "reason": "Specific lower cabinet section observed in view 3."
+    },
+    "g8": {
+      "description": "shelving unit, brown wood, multiple shelves",
+      "sources": [
+        "v3_o12"
+      ],
+      "status": "provisional",
+      "reason": "Unique object observed in view 3."
+    },
+    "g9": {
+      "description": "refrigerator, large, white, rectangular",
+      "sources": [
+        "v3_o10"
+      ],
+      "status": "provisional",
+      "reason": "Unique object observed in view 3."
+    },
+    "g10": {
+      "description": "pendant light, dark fixture, hanging",
+      "sources": [
+        "v1_o7"
+      ],
+      "status": "provisional",
+      "reason": "Unique light fixture observed in view 1."
+    },
+    "g11": {
+      "description": "pendant light, dark fixture, hanging",
+      "sources": [
+        "v1_o8"
+      ],
+      "status": "provisional",
+      "reason": "Unique light fixture observed in view 1."
+    },
+    "g12": {
+      "description": "pendant light, dark fixture, hanging",
+      "sources": [
+        "v1_o9"
+      ],
+      "status": "provisional",
+      "reason": "Unique light fixture observed in view 1."
+    },
+    "g13": {
+      "description": "brown object, round, brown/tan",
+      "sources": [
+        "v1_o2"
+      ],
+      "status": "unresolved",
+      "reason": "Potential match with g20, but color description is not confirmed."
+    },
+    "g14": {
+      "description": "orange object, round, orange",
+      "sources": [
+        "v1_o3"
+      ],
+      "status": "unresolved",
+      "reason": "Potential match with g17/g19, but color description is not confirmed."
+    },
+    "g15": {
+      "description": "grey/white object, rectangular/dish shape, grey/white",
+      "sources": [
+        "v1_o4"
+      ],
+      "status": "unresolved",
+      "reason": "Potential match with g21, but shape/color description is not confirmed."
+    },
+    "g16": {
+      "description": "blue box, blue, rectangular",
+      "sources": [
+        "v2_o8"
+      ],
+      "status": "provisional",
+      "reason": "Unique object observed on the island in view 2."
+    },
+    "g17": {
+      "description": "red object, small",
+      "sources": [
+        "v2_o9"
+      ],
+      "status": "unresolved",
+      "reason": "Potential match with g14, but color description is not confirmed."
+    },
+    "g18": {
+      "description": "brown basket, brown, woven/basket shape",
+      "sources": [
+        "v2_o10"
+      ],
+      "status": "provisional",
+      "reason": "Unique object observed on the island in view 2."
+    },
+    "g19": {
+      "description": "red object, small",
+      "sources": [
+        "v2_o11"
+      ],
+      "status": "unresolved",
+      "reason": "Potential match with g14, but color description is not confirmed."
+    },
+    "g20": {
+      "description": "small round object, reddish/brown, small",
+      "sources": [
+        "v4_o4"
+      ],
+      "status": "unresolved",
+      "reason": "Potential match with g13, but color description is not confirmed."
+    },
+    "g21": {
+      "description": "small flat object, light colored, rectangular",
+      "sources": [
+        "v4_o5"
+      ],
+      "status": "unresolved",
+      "reason": "Potential match with g15, but shape/color description is not confirmed."
+    }
+  },
+  "mapping": {
+    "v1_o1": {
+      "candidates": [
+        "g1"
+      ],
+      "status": "provisional"
+    },
+    "v1_o2": {
+      "candidates": [
+        "g13"
+      ],
+      "status": "unresolved"
+    },
+    "v1_o3": {
+      "candidates": [
+        "g14"
+      ],
+      "status": "unresolved"
+    },
+    "v1_o4": {
+      "candidates": [
+        "g15"
+      ],
+      "status": "unresolved"
+    },
+    "v1_o5": {
+      "candidates": [
+        "g2"
+      ],
+      "status": "provisional"
+    },
+    "v1_o6": {
+      "candidates": [
+        "g3"
+      ],
+      "status": "provisional"
+    },
+    "v1_o7": {
+      "candidates": [
+        "g10"
+      ],
+      "status": "provisional"
+    },
+    "v1_o8": {
+      "candidates": [
+        "g11"
+      ],
+      "status": "provisional"
+    },
+    "v1_o9": {
+      "candidates": [
+        "g12"
+      ],
+      "status": "provisional"
+    },
+    "v2_o1": {
+      "candidates": [],
+      "status": "unresolved"
+    },
+    "v2_o2": {
+      "candidates": [
+        "g6"
+      ],
+      "status": "provisional"
+    },
+    "v2_o3": {
+      "candidates": [],
+      "status": "unresolved"
+    },
+    "v2_o4": {
+      "candidates": [
+        "g22"
+      ],
+      "status": "provisional"
+    },
+    "v2_o5": {
+      "candidates": [
+        "g1"
+      ],
+      "status": "provisional"
+    },
+    "v2_o6": {
+      "candidates": [
+        "g4"
+      ],
+      "status": "provisional"
+    },
+    "v2_o7": {
+      "candidates": [
+        "g5"
+      ],
+      "status": "provisional"
+    },
+    "v2_o8": {
+      "candidates": [
+        "g16"
+      ],
+      "status": "provisional"
+    },
+    "v2_o9": {
+      "candidates": [
+        "g17"
+      ],
+      "status": "unresolved"
+    },
+    "v2_o10": {
+      "candidates": [
+        "g18"
+      ],
+      "status": "provisional"
+    },
+    "v2_o11": {
+      "candidates": [
+        "g19"
+      ],
+      "status": "unresolved"
+    },
+    "v2_o12": {
+      "candidates": [],
+      "status": "unresolved"
+    },
+    "v3_o1": {
+      "candidates": [],
+      "status": "unresolved"
+    },
+    "v3_o2": {
+      "candidates": [],
+      "status": "unresolved"
+    },
+    "v3_o3": {
+      "candidates": [
+        "g23"
+      ],
+      "status": "provisional"
+    },
+    "v3_o4": {
+      "candidates": [
+        "g6"
+      ],
+      "status": "provisional"
+    },
+    "v3_o5": {
+      "candidates": [
+        "g1"
+      ],
+      "status": "provisional"
+    },
+    "v3_o6": {
+      "candidates": [
+        "g4"
+      ],
+      "status": "provisional"
+    },
+    "v3_o7": {
+      "candidates": [
+        "g5"
+      ],
+      "status": "provisional"
+    },
+    "v3_o8": {
+      "candidates": [
+        "g24"
+      ],
+      "status": "provisional"
+    },
+    "v3_o9": {
+      "candidates": [
+        "g25"
+      ],
+      "status": "provisional"
+    },
+    "v3_o10": {
+      "candidates": [
+        "g9"
+      ],
+      "status": "provisional"
+    },
+    "v3_o11": {
+      "candidates": [],
+      "status": "unresolved"
+    },
+    "v3_o12": {
+      "candidates": [
+        "g8"
+      ],
+      "status": "provisional"
+    },
+    "v4_o1": {
+      "candidates": [
+        "g1"
+      ],
+      "status": "provisional"
+    },
+    "v4_o2": {
+      "candidates": [],
+      "status": "unresolved"
+    },
+    "v4_o3": {
+      "candidates": [
+        "g2"
+      ],
+      "status": "provisional"
+    },
+    "v4_o4": {
+      "candidates": [
+        "g20"
+      ],
+      "status": "unresolved"
+    },
+    "v4_o5": {
+      "candidates": [
+        "g21"
+      ],
+      "status": "unresolved"
+    },
+    "v4_o6": {
+      "candidates": [
+        "g22"
+      ],
+      "status": "provisional"
+    },
+    "v4_o7": {
+      "candidates": [
+        "g6"
+      ],
+      "status": "provisional"
+    }
+  }
+}

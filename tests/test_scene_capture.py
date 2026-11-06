@@ -16,7 +16,7 @@ import zipfile
 from unittest.mock import patch
 
 
-NOTEBOOK = Path(__file__).resolve().parents[1] / "colab" / "AI2_THOR_Scene_Capture.ipynb"
+NOTEBOOK = Path(__file__).resolve().parents[1] / "scene_capture" / "colab" / "AI2_THOR_Scene_Capture.ipynb"
 CELLS = json.loads(NOTEBOOK.read_text(encoding="utf-8"))["cells"]
 
 

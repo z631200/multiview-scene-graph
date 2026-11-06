@@ -9,9 +9,9 @@ import threading
 import unittest
 from unittest.mock import patch
 
-from ollama_client import OllamaClient, OllamaError
-from run_scene_graph import load_scene, parser, run, run_lock
-from scene_validation import (
+from reasoning.ollama_client import OllamaClient, OllamaError
+from reasoning.pipeline import load_scene, parser, run, run_lock
+from reasoning.validation import (
     ValidationError, validate_observation, validate_correspondence, validate_graph,
     normalize_graph,
 )
@@ -238,13 +238,32 @@ class ValidationTests(unittest.TestCase):
 
 
 class PipelineTests(Fixture):
+    def test_experiment_layout_json_exports_and_scene_index(self):
+        out = run(self.args("--experiment-id", "exp_test"), FakeClient())
+        self.assertEqual(out.parent.name, "exp_test")
+        self.assertTrue((out.parent / "config.yaml").exists())
+        self.assertTrue((out.parent / "summary.csv").exists())
+        for index in range(1, 5):
+            local = json.loads((out / f"visible/graphs/view_{index}.json").read_text())
+            full = json.loads((out / f"full/central_llm/graphs/view_{index}.json").read_text())
+            self.assertEqual(len(local["nodes"]), 2)
+            self.assertEqual(len(full["edges"]), 1)
+            self.assertTrue(all(e["frame"] in ("physical", f"view_{index}") for e in full["edges"]))
+        self.data["scene"] = "FloorPlan2"
+        (self.scene / "views.json").write_text(json.dumps(self.data))
+        second = run(self.args("--experiment-id", "exp_test"), FakeClient())
+        self.assertEqual(second.name, "FloorPlan2")
+        manifest = json.loads((out.parent / "run_manifest.json").read_text())
+        self.assertEqual(set(manifest["scenes"]), {"scene", "FloorPlan2"})
+        self.assertEqual(len((out.parent / "summary.csv").read_text().splitlines()), 3)
+
     def test_frame_normalization_preserves_raw_response_and_audit(self):
         raw = GRAPH.replace("| physical |", "| on |")
         out = run(self.args(), FakeClient([*OBSERVATIONS.values(), CORRESPONDENCE, raw]))
-        self.assertEqual((out / "responses/scene_graph_01.md").read_text(), raw)
-        self.assertEqual(validate_graph((out / "scene_graph.md").read_text(), OBSERVATIONS, CORRESPONDENCE),
+        self.assertEqual((out / "full/central_llm/responses/scene_graph_01.md").read_text(), raw)
+        self.assertEqual(validate_graph((out / "full/central_llm/scene_graph.md").read_text(), OBSERVATIONS, CORRESPONDENCE),
                          validate_graph(GRAPH, OBSERVATIONS, CORRESPONDENCE))
-        audit = json.loads((out / "normalizations/scene_graph_01.json").read_text())
+        audit = json.loads((out / "full/central_llm/normalizations/scene_graph_01.json").read_text())
         self.assertEqual(audit["changes"][0]["after"], "physical")
 
     def test_fork_recovers_failed_graph_without_new_inference_or_source_changes(self):
@@ -252,14 +271,14 @@ class PipelineTests(Fixture):
         run(self.args("--stage", "2", "--resume", str(source)), FakeClient([CORRESPONDENCE]))
         manifest_path = source / "run_manifest.json"
         manifest = json.loads(manifest_path.read_text())
-        manifest["config"]["source_hashes"]["run_scene_graph.py"] = "previous-version"
+        manifest["config"]["source_hashes"]["reasoning/pipeline.py"] = "previous-version"
         manifest["status"] = "failed"
         manifest["attempts"].append(dict(task="scene_graph", number=1, status="invalid"))
         raw = GRAPH.replace("| physical |", "| on |")
         response = dict(message={"content": raw}, done=True, done_reason="stop")
-        (source / "responses").mkdir(exist_ok=True)
-        (source / "responses/scene_graph_01.md").write_text(raw)
-        (source / "responses/scene_graph_01.json").write_text(json.dumps(response))
+        (source / "full/central_llm/responses").mkdir(exist_ok=True)
+        (source / "full/central_llm/responses/scene_graph_01.md").write_text(raw)
+        (source / "full/central_llm/responses/scene_graph_01.json").write_text(json.dumps(response))
         manifest_path.write_text(json.dumps(manifest))
         before = manifest_path.read_bytes()
         with self.assertRaisesRegex(ValueError, "code differ"):
@@ -269,7 +288,7 @@ class PipelineTests(Fixture):
         self.assertNotEqual(out, source)
         self.assertEqual(client.calls, [])
         self.assertEqual(manifest_path.read_bytes(), before)
-        self.assertEqual(validate_graph((out / "scene_graph.md").read_text(), OBSERVATIONS, CORRESPONDENCE),
+        self.assertEqual(validate_graph((out / "full/central_llm/scene_graph.md").read_text(), OBSERVATIONS, CORRESPONDENCE),
                          validate_graph(GRAPH, OBSERVATIONS, CORRESPONDENCE))
         new = json.loads((out / "run_manifest.json").read_text())
         self.assertEqual(new["status"], "complete")
@@ -280,7 +299,7 @@ class PipelineTests(Fixture):
         run(self.args("--stage", "2", "--resume", str(source)), FakeClient([CORRESPONDENCE]))
         with self.assertRaisesRegex(ValueError, "same inputs"):
             run(self.args("--fork-from", str(source), "--seed", "99"), FakeClient([]))
-        (source / "observations/view_1.md").write_text("modified")
+        (source / "visible/observations/view_1.md").write_text("modified")
         with self.assertRaisesRegex(ValueError, "modified"):
             run(self.args("--fork-from", str(source)), FakeClient([]))
 
@@ -314,7 +333,7 @@ class PipelineTests(Fixture):
             else:
                 self.assertIsNone(call["image"])
                 self.assertIn("cameraPosition", call["prompt"])
-        self.assertEqual((out / "scene_graph.md").read_text(encoding="utf-8"), GRAPH)
+        self.assertEqual((out / "full/central_llm/scene_graph.md").read_text(encoding="utf-8"), GRAPH)
         manifest = json.loads((out / "run_manifest.json").read_text())
         self.assertEqual(manifest["status"], "complete")
         empty = FakeClient([])
@@ -325,7 +344,7 @@ class PipelineTests(Fixture):
         broken = FakeClient([observation(1), OllamaError("offline")])
         with self.assertRaises(OllamaError):
             run(self.args(), broken)
-        out = next((self.root / "outputs").iterdir())
+        out = next((self.root / "outputs").iterdir()) / "scene"
         client = FakeClient([observation(i) for i in range(2, 5)] + [CORRESPONDENCE, GRAPH])
         run(self.args("--resume", str(out)), client)
         self.assertEqual(len(client.calls), 5)
@@ -334,7 +353,7 @@ class PipelineTests(Fixture):
 
     def test_modified_artifact_or_input_blocks_resume(self):
         out = run(self.args("--stage", "1"), FakeClient())
-        path = out / "observations" / "view_1.md"
+        path = out / "visible/observations" / "view_1.md"
         path.write_text("changed", encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "modified"):
             run(self.args("--resume", str(out)), FakeClient())
@@ -347,15 +366,15 @@ class PipelineTests(Fixture):
         client = FakeClient([CORRESPONDENCE])
         run(self.args("--stage", "2", "--resume", str(out)), client)
         self.assertEqual(len(client.calls), 1)
-        self.assertFalse((out / "scene_graph.md").exists())
+        self.assertFalse((out / "full/central_llm/scene_graph.md").exists())
         run(self.args("--stage", "3", "--resume", str(out)), FakeClient([GRAPH]))
-        self.assertTrue((out / "scene_graph.md").exists())
+        self.assertTrue((out / "full/central_llm/scene_graph.md").exists())
 
     def test_format_repair_is_bounded_and_preserves_raw_answer(self):
         client = FakeClient(["bad", observation(1), *list(OBSERVATIONS.values())[1:], CORRESPONDENCE, GRAPH])
         out = run(self.args(), client)
         self.assertIsNotNone(client.calls[1]["repair"])
-        self.assertEqual((out / "responses" / "view_1_01.md").read_text(), "bad")
+        self.assertEqual((out / "visible/responses" / "view_1_01.md").read_text(), "bad")
         with self.assertRaises(ValidationError):
             run(self.args("--format-retries", "1"), FakeClient(["bad", "still bad"]))
 
@@ -365,16 +384,16 @@ class PipelineTests(Fixture):
             "done": True, "done_reason": "length", "message": {"content": observation(1)}
         }), self.assertRaisesRegex(ValueError, "truncated"):
             run(self.args(), client)
-        out = next((self.root / "outputs").iterdir())
-        self.assertFalse((out / "observations" / "view_1.md").exists())
+        out = next((self.root / "outputs").iterdir()) / "scene"
+        self.assertFalse((out / "visible/observations" / "view_1.md").exists())
 
     def test_dry_run_never_contacts_server(self):
         client = FakeClient()
         with patch.object(client, "preflight", side_effect=AssertionError("network")):
             out = run(self.args("--dry-run"), client)
         self.assertFalse(client.calls)
-        self.assertEqual(len(list((out / "prompts").iterdir())), 6)
-        self.assertFalse((out / "scene_graph.md").exists())
+        self.assertEqual(len(list((out / "visible/prompts").iterdir())) + len(list((out / "full/central_llm/prompts").iterdir())), 6)
+        self.assertFalse((out / "full/central_llm/scene_graph.md").exists())
 
     def test_camera_allowlist_and_path_validation(self):
         loaded = load_scene(self.scene)

@@ -1,29 +1,21 @@
-
-# Python
+# Python caches and local environments
 __pycache__/
 *.py[cod]
 .pytest_cache/
-
-# Virtual environments
 .venv/
 .conda-env/
 .conda/
-
-# Environment variables
 .env
 .env.*
 !.env.example
 
-# Outputs
-outputs/
+# Generated scenes and experiments; samples are intentionally versioned.
+/data/scenes/*
+!/data/scenes/sample/
+/data/runs/*
+!/data/runs/sample/
 
-# Track the root sample data; keep other output directories ignored.
-!/outputs/
-/outputs/*
-!/outputs/sample/
-
-# Generated files
-/run.mp4
-/trace_log.json
-/local/run.mp4
-/local/trace_log.json
+# Old commands must not accidentally add regenerated legacy output.
+/outputs/
+/colab/scene_output/
+*.egg-info/

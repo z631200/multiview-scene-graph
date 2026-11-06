@@ -1,3 +1,4 @@
+-r ../requirements.txt
 -r ../requirements-ground-truth.txt
 # Exercise local PNG/plot exports without installing AI2-THOR.
 Pillow>=9

@@ -1,6 +1,6 @@
 # Visible ground-truth 產生器
 
-`visible_ground_truth.py` 從 Colab capture-v2 匯出資料產生各視角 Visible GT，
+`gt/visible/generate.py` 從 Colab capture-v2 匯出資料產生各視角 Visible GT，
 不呼叫 AI，也不執行模擬器。[Full GT](full_ground_truth.md) 由獨立程式產生；合併推理及模型評分不在此程式範圍。
 此文件取代先前要求幾何接觸證據、差距門檻及 unresolved 的 GT 草案。
 
@@ -10,13 +10,14 @@ Python 3.10+，需要 NumPy：
 
 ```sh
 python3 -m pip install -r requirements-ground-truth.txt
-python3 visible_ground_truth.py \
-  --scene-dir colab/scene_output/20261105T120357_736949Z
+python3 -m gt.visible \
+  --scene-dir data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic
 ```
 
-預設輸出 `outputs/ground_truth/<scene_id>/visible-<UTC run_id>/`，與 Full GT 共用
+預設輸出 `data/scenes/<scene>/<capture_id>/gt/<gt_id>/visible/`，與 Full GT 共用
 [統一輸出與檢視方式](ground_truth_outputs.md)。兩者預設都產生 `inspect.html`。
-可用 `--output-dir PATH` 指定新的目錄，既有目錄一律拒絕覆寫。
+可用 `--config configs/gt.yaml` 載入設定、`--gt-id ID` 群組兩種 GT，
+或用 `--output-dir PATH` 指定新的目錄，既有目錄一律拒絕覆寫。
 預設處理全部一般視角，可用 `--view view_1 view_3` 指定視角，`--no-html` 略過 HTML。
 四視角輸入會得到四張圖，亦支援 capture-v2 的三視角資料。
 `view_00.png` 不參與計算。
@@ -37,7 +38,7 @@ python3 visible_ground_truth.py \
 ## 四種關係
 
 版本：`visible-parent-mask-depth-v1`。規則在程式的 `DEFINITIONS` 與
-`ground_truth_common.py` 的 `PARENT_RELATIONS` 中定義，每次執行另存 `definitions.json` 快照。
+`gt/common.py` 的 `PARENT_RELATIONS` 中定義，每次執行另存 `definitions.json` 快照。
 
 ### on / inside
 
@@ -75,6 +76,7 @@ python3 visible_ground_truth.py \
 
 ```text
 <run>/
+├── config.yaml
 ├── definitions.json
 ├── input_manifest.json
 ├── validation_report.json
@@ -119,7 +121,7 @@ view_3 有 10 對相等深度，不建立遠近邊。view_4 的
 
 ```sh
 python3 -m pip install -r tests/requirements.txt
-python3 -m unittest discover -s tests -p 'test_visible_ground_truth.py' -v
+python3 -m unittest discover -s tests -p 'test_gt/visible/generate.py' -v
 ```
 
 測試涵蓋關係方向、六種父物件分類、不可見父物件、空視角、相等值、無效深度、
@@ -128,16 +130,16 @@ python3 -m unittest discover -s tests -p 'test_visible_ground_truth.py' -v
 ## 互動檢查場景圖
 
 產生器已自動輸出 `inspect.html`，可直接開啟。若要另存檢查器，
-`inspect_graph.py` 只使用 Python 標準函式庫，讀取已產生的 GT run，輸出可離線開啟的
+`visualization/inspect_graph.py` 只使用 Python 標準函式庫，讀取已產生的 GT run，輸出可離線開啟的
 單一 HTML 檔，並嘗試開啟瀏覽器。不需要安裝網頁套件或啟動服務。
 
 ```sh
-python3 inspect_graph.py \
-  --run-dir outputs/ground_truth/20261105T120357_736949Z/visible-v1
+python3 -m visualization \
+  --run-dir data/scenes/sample/FloorPlan1/20261105T120357_736949Z/gt/gt_v1/visible
 
 # 也可指定初始篩選；之後仍能在介面切換。
-python3 inspect_graph.py \
-  --run-dir outputs/ground_truth/20261105T120357_736949Z/visible-v1 \
+python3 -m visualization \
+  --run-dir data/scenes/sample/FloorPlan1/20261105T120357_736949Z/gt/gt_v1/visible \
   --view view_3 --types Apple Bowl CounterTop \
   --relations on inside image_left_of closer_to_camera
 ```
@@ -151,7 +153,7 @@ python3 inspect_graph.py \
 - 相等配對與不可見父物件的排除紀錄：另行列出，依同一組條件篩選。
 - 匯出篩選 JSON：包含當前節點、邊、計算紀錄及所用篩選條件。
 
-預設輸出為 `outputs/graph_inspection/<UTC>.html`。可用 `--output PATH` 指定檔名，
+預設輸出為 `data/runs/inspection_<UTC>/inspect.html`。可用 `--output PATH` 指定檔名，
 已有檔案不覆寫；`--no-open` 只產生檔案，供遠端或無桌面環境使用。
 檢查器預設讀取 `graphs/`，包含所有完成與待人工處理視角。
 `--complete-only` 只載入完成圖；草稿在介面與匯出 JSON 中都保留狀態。

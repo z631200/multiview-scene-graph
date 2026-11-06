@@ -1,140 +1,118 @@
-# ai2thor_benchmark
+# Multiview Scene Graph
 
-讀取 AI2-THOR 匯出的四視角資料，透過本機 Ollama 的 `gemma4:e4b` 完成局部觀察、物件對應與 scene graph。**根目錄建圖流程不需執行 AI2-THOR**；目前完成研究階段 1–3，模型輸入與回答使用英文。
+從 AI2-THOR 收集多視角場景，分別執行 VLM 推理與 Ground Truth 計算。
+程式碼按功能分組，拍攝資料、GT 與實驗結果集中於 `data/`。
 
-## 文件索引
+## 文件
 
-| 文件 | 內容 |
-| --- | --- |
-| [程式操作指南](docs/operation_guide.md) | 依工作查指令：產生不同 GT、指定視角、檢視關係、模型推理及各項產物。 |
-| [專案架構](docs/architecture.md) | 目錄、各 Python 檔案功能與依流程的互動方式。 |
-| [Ollama 指南](docs/ollama_guide.md) | 合併原 instruction／interaction：呼叫與隔離、參數、重試、續跑、紀錄位置及實測案例。 |
-| [輸出格式](docs/output_format.md) | 各階段的固定欄位、ID、引用與正規化規則。 |
-| [Visible ground-truth](docs/ground_truth_relations.md) | 四種關係計算、執行方式與場景驗收數量。 |
-| [Full ground-truth](docs/full_ground_truth.md) | 全物件建圖、指定／全部視角、人工待辦與 HTML 檢查器。 |
-| [GT 統一輸出與檢視](docs/ground_truth_outputs.md) | 兩種 GT 共用的操作、檔案格式、草稿狀態與舊結果相容方式。 |
-| [本機場景擷取](docs/local_capture.md) | 將 Colab 拍攝流程改為本機 CLI，產生相容的視角、深度、遮罩與 Metadata。 |
-| [研究設計與 prompts](docs/research_design.md) | 階段 0–6 的設計、完整中英文 prompts 與評估規劃。 |
-| [本機任務示範](local/README.md) | 獨立的 AI2-THOR 動作計畫、環境設定與測試。 |
-| [歷史範例](local/examples/legacy/README.md) | 舊動作草稿、影片、紀錄與環境清單的用途。 |
+- [操作指南](docs/operation_guide.md)：依工作查指令、輸入及輸出。
+- [架構與遷移](docs/architecture.md)：目錄、模組對應及歷史成果。
+- [GT 輸出與檢視](docs/ground_truth_outputs.md)、[Visible GT](docs/ground_truth_relations.md)、[Full GT](docs/full_ground_truth.md)。
+- [本機拍攝](docs/local_capture.md)、[Colab 匯出](docs/colab_capture.md)。
+- [Ollama 推理](docs/ollama_guide.md)、[模型輸出格式](docs/output_format.md)、[研究設計](docs/research_design.md)。
+- [固定任務示範](docs/demo.md)。
 
-## 快速開始
+## 目錄
 
-1. 在可執行 AI2-THOR 的環境使用 [Colab Notebook](colab/AI2_THOR_Scene_Capture.ipynb) 擷取 **四個**視角，將 ZIP 解壓縮至 `colab/scene_output/<場景資料夾>/`；或使用[本機擷取版](docs/local_capture.md)：`python -m pip install -r requirements-capture.txt` 後執行 `python capture_scene.py`。Linux 無視窗可加 `--headless`，需可用的 Vulkan 驅動。本機輸出預設在 `outputs/captures/<UTC>/`，可直接傳給後續程式的 `--scene-dir`。
-2. 建圖電腦需有 Python 3.10+ 與 Ollama；Python 部分只用標準函式庫。啟動服務並準備模型：
+```text
+configs/                       拍攝、GT、實驗的 YAML 設定
+scene_capture/colab/            獨立 Colab Notebook
+scene_capture/local/            本機拍攝 CLI
+scene_capture/demo/             固定機器人任務示範
+reasoning/visible/              單視角觀察與 JSON 匯出
+reasoning/full/methods/         跨視角方法，目前提供 central_llm
+reasoning/pipeline.py          模型流程、重試、續跑與紀錄
+reasoning/ollama_client.py     Ollama 通訊
+reasoning/prompts.py           提示模板
+reasoning/validation.py        模型回答驗證與正規化
+gt/visible/、gt/full/           兩種 GT 產生器
+gt/common.py                   GT 共用規則、輸出及 CLI
+visualization/                 HTML 檢查器
+common/                        資料路徑、設定讀取與快照
+evaluate/                      評估模組預留，尚未實作
+data/scenes/                   場景與 GT
+data/runs/                     實驗、檢查器及歷史紀錄
+docs/、tests/                  文件與測試
+```
+
+所有命令從專案根目錄執行，使用 Python 3.10+。
+
+## 產生 GT
 
 ```sh
-ollama serve
-# 在另一個終端執行；模型已安裝可略過：
-ollama pull gemma4:e4b
+# YAML 設定與 Visible GT 的依賴；Full GT 使用純 CLI 時只需標準函式庫。
+python3 -m pip install -r requirements.txt -r requirements-ground-truth.txt
+SCENE_DIR="data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic"
+python3 -m gt.visible --scene-dir "$SCENE_DIR" --gt-id gt_example
+python3 -m gt.full --scene-dir "$SCENE_DIR" --gt-id gt_example
 ```
 
-3. 在專案根目錄執行，將範例路徑替換成自己的場景目錄：
+兩者共用參數：`--config`、`--view`、`--gt-id`、`--output-dir`、`--no-html`。
+相同 `--gt-id` 可把兩種 GT 放在同一組結果：
+
+```text
+data/scenes/[sample/]<scene>/<capture_id>/
+├── basic/                         原始資料，拍攝後保持不變
+└── gt/<gt_id>/
+    ├── visible/
+    └── full/                      與 visible 相同結構
+        ├── graphs/view_1.json ...
+        ├── measurements/view_1.json ...
+        ├── config.yaml
+        ├── definitions.json
+        ├── input_manifest.json
+        ├── validation_report.json
+        ├── review_tasks.json
+        └── inspect.html
+```
+
+直接以瀏覽器開啟 `inspect.html`。圖以 `complete`／`needs_review` 標示狀態，
+有人工待辦時程式結束碼為 `2`，結果仍已輸出。這批 Full GT 的 view_3 完成，其他視角
+的相機後方左右配對保留待辦。既有可直接瀏覽的範例為 `gt/gt_v1/visible/inspect.html`
+及 `gt/gt_v1/full/inspect.html`。
 
 ```sh
-python run_scene_graph.py --scene-dir colab/scene_output/20261021T030626_636386Z
-# 只檢查資料並輸出 prompt，不連線 Ollama：
-python run_scene_graph.py --scene-dir colab/scene_output/20261021T030626_636386Z --dry-run
-# 離線測試，不需模型或模擬器：
-python -m pip install -r tests/requirements.txt
-python -m unittest discover -s tests -v
+python3 -m visualization --run-dir "$SCENE_DIR/../gt/gt_v1/full" --view view_3 --types Apple Bowl CounterTop
 ```
 
-四個 view 使用相同英文模板，各自獨立、依序呼叫；中央模型另用純文字對話。完整新 run 若一次全通過共六次推論，每任務預設最多再修正三次。參數、失敗處理與恢復指令見 [Ollama 指南](docs/ollama_guide.md)。
-
-## 產生與檢視 Ground-truth
-
-Visible GT 使用可見遮罩與深度；Full GT 使用全部物件位置與相機幾何。
-兩者共用輸出格式與操作方式，關係定義分別見 [Visible GT](docs/ground_truth_relations.md)
-及 [Full GT](docs/full_ground_truth.md)，完整操作見 [統一輸出與檢視](docs/ground_truth_outputs.md)。
+## 拍攝資料
 
 ```sh
-# 首次安裝；只有 Visible GT 需要 NumPy。
-python3 -m pip install -r requirements-ground-truth.txt
-python3 visible_ground_truth.py --scene-dir colab/scene_output/20261105T120357_736949Z
-python3 full_ground_truth.py --scene-dir colab/scene_output/20261105T120357_736949Z
+python3 -m pip install -r requirements.txt -r requirements-capture.txt
+python3 -m scene_capture.local --config configs/capture.yaml --scene FloorPlan1 --headless
 ```
 
-預設分別輸出到 `outputs/ground_truth/<scene_id>/visible-<UTC>/` 與 `full-<UTC>/`。
-兩者都有 `graphs/view_N.json`、`measurements/view_N.json`、規則、來源、驗收報告、
-人工清單及 **`inspect.html`**。直接用瀏覽器開啟 `inspect.html`，不必另外產生 HTML。
+需具備 AI2-THOR 與可用的渲染環境。Linux `--headless` 使用 Vulkan，不需 X11。
+預設保存到 `data/scenes/<scene>/<UTC capture_id>/basic/`，設定快照在同一 capture 目錄。
+Colab 使用 `scene_capture/colab/AI2_THOR_Scene_Capture.ipynb`，下載後解壓縮至相同的 basic 結構。
 
-兩種程式都支援 `--view view_1 view_3`、`--output-dir PATH`、`--no-html`。
-圖以 `status=complete` 或 `needs_review` 區分完成／草稿，統一放在 `graphs/`。
-有人工待辦時結束碼為 `2`，結果與 HTML 仍會輸出；草稿在介面中明確標示，不是完整真值。
-每次執行建立新目錄，不覆寫舊結果。
-
-若要依新的篩選條件另存檢查器，兩種 GT 使用相同指令：
+## 模型推理
 
 ```sh
-python3 inspect_graph.py --run-dir <輸出目錄>
-# 只載入已完成的視角：
-python3 inspect_graph.py --run-dir <輸出目錄> --complete-only
+# 準備 Ollama 服務及已安裝的影像模型後執行。
+python3 -m reasoning --config configs/experiments/baseline.yaml --scene-dir "$SCENE_DIR"
+# 只檢查輸入並保存提示，不呼叫模型。
+python3 -m reasoning --scene-dir "$SCENE_DIR" --dry-run
 ```
 
-檢查器可切換視角、多選物件類型及關係、點箭頭查看證據，並匯出篩選結果。
-舊版 `visible/`、`full/`、`drafts/` 仍可讀取；舊版草稿需加 `--include-drafts`。
+預設輸出 `data/runs/exp_<UTC>/<scene>/`，包含單視角觀察、各視角 JSON、
+`full/central_llm/` 的對應與逐視角 JSON，以及原始 prompts／responses。
+實驗根目錄有設定快照、場景索引與 `summary.csv`（目前只彙總狀態，不含未實作的評分）。
+同一實驗可用 `--experiment-id exp_001` 加入不同場景；相同場景不得覆寫。
+單視角的自然語言關係忠實保留，尚未新增自動的四關係語意轉換。
 
-## 匯出可見物件
+## Sample 與 Git
 
-Colab 目前負責收集後續推理與 ground-truth 計算的資料，不產生場景圖。每個一般視角另外匯出完整原始 Metadata、深度陣列、物件遮罩、分割圖片與對應表。檔案格式及讀取方法見 [Colab 資料匯出](docs/colab_capture.md)。
+`data/scenes/sample/`、`data/runs/sample/` 會被 Git 追蹤，可上傳 GitHub；
+其他場景與實驗預設忽略。`data/migration_manifest.json` 記錄舊位置到新位置的對應。
+原 Colab 範例原始檔保持位元組一致；歷史模型回答仍完整保存在 sample 實驗的 `legacy/`。
+原始來源場景缺失的歷史實驗以 `unidentified_scene` 標記，不推測它與目前 GT 的對應。
 
-Notebook 啟動環境會檢查 GLX、24-bit 色深與至少 1920×1920 的 X11 螢幕；尺寸不足時改用新的 Xvfb。Workspace 預設 `IMAGE_SIZE=1600`，可選 400／600／800／1600，並以 `server_timeout=300` 建立新的 Controller。遇到 `800x800 vs. 1024x768` 時，先重跑啟動環境及後續各格，或在目前螢幕下先用 600×600 測試；提高 timeout 不會解決螢幕尺寸不足。
-
-Notebook 另外以正投影地圖相機儲存天花板垂直向下的 `view_00.png`，預設同為 1600×1600，只供觀看並隨 ZIP 下載。此圖不加入 `views.json`、`frames`、`visible_views`、可見物件統計或後續建圖計算；`NUM_VIEWS` 仍僅計算原本 3／4 個一般視角。
-
-Notebook 啟用 `renderInstanceSegmentation=True` 與 `renderDepthImage=True`，拍攝完成後自動輸出完整 `objects.json`。每次成功拍攝都檢查所有物件，以同一個 event 的 `instance_masks` 判定畫面可見性，並依 `objectId` 累積 `visible_views`，例如 `["view_1", "view_3"]`。`view_1` 對應 `view_01.png`，其餘依此類推。只要物件在某視角有至少 1 個分割像素，就記錄該視角；`visible` 等於 `visible_views` 是否非空。從未可見者保留在完整檔案中，標記為 `visible: false`、`visible_views: []`。拍攝前視角不計入，重跑拍攝會清空清單並重新累積。
-
-AI2-THOR 原生 `visible` 受預設 1.5 公尺的 `visibilityDistance` 限制，會漏掉照片中的遠處物件，因此另以 `ai2thor_visible` 保存最近一次拍攝的原生值。`views.json` 記錄各視角的 `view_id` 與 `visible_object_pixel_counts`，可核對每個物件的分割像素數及可見視角。判定範圍限於 metadata 中的物件；透明材質依模擬器分割渲染結果為準。參見[官方可見性定義](https://ai2thor.allenai.org/ithor/documentation/concepts/)與[instance masks 說明](https://ai2thor.allenai.org/ithor/documentation/environment-state/)。
-
-`visible_objects.json` 由這份 `objects.json` 篩選 `visible: true`，每個物件保留 `objectId`、`objectType`、`name`、`position`、`rotation`、`visible_views`。此功能已整合於 Notebook，不需額外上傳程式。
-
-`position` 與 `rotation` 均保留原始 `x`、`y`、`z`，單位分別為公尺與度。舊版輸出沒有記錄分割結果，無法僅靠其 `objects.json` 重建畫面可見性；需從新版 Notebook 的 Workspace 重新執行並拍攝。
-
-## 資料與建圖流程
-
-```mermaid
-flowchart TD
-    A["AI2-THOR<br/>靜態場景"] --> B["Colab 擷取<br/>四視角資料"]
-    B --> C["下載場景資料"]
-    C --> I["四張 RGB 圖片"]
-    C --> V["相機資訊<br/>views.json"]
-    C --> T["物件真值<br/>僅供評分"]
-    I --> S1["1. 局部觀察<br/>四次獨立 VLM 呼叫"]
-    S1 --> O["四份局部觀察"]
-    O --> S2["2. 物件對應<br/>中央 LLM"]
-    V --> S2
-    S2 --> S3["3. 初步建圖<br/>中央 LLM"]
-    O --> S3
-    V --> S3
-    R["英文 Prompt<br/>與關係定義"] --> S1
-    R --> S2
-    R --> S3
-    S3 --> K["檢查並儲存<br/>Scene graph"]
-    K -.-> E["獨立評分<br/>後續實作"]
-    T -.-> E
-```
-
-圖中節點只列步驟名稱；輸入與輸出如下。建圖輸出路徑皆相對於 `outputs/<run_id>/`。
-
-| 階段 | 預期輸入 | 預期輸出 |
-| --- | --- | --- |
-| 0. 資料擷取 | 場景、四個拍攝位置與相機設定。 | 場景目錄的 `view_01.png`～`view_04.png`、`views.json`；另存真值 `objects.json/.csv`。 |
-| 1. 局部觀察 | 每次一張原圖、視角 ID、相同英文 prompt。 | `observations/view_1.md`～`view_4.md`：物件、關係、證據與不確定事項。 |
-| 2. 物件對應 | 四份觀察、篩選後的相機資訊。 | `correspondence.md`：全域 ID、局部到全域對應、候選與歧義。 |
-| 3. 初步建圖 | 觀察、對應、相機資訊、關係定義與查證預算。 | `scene_graph.md`：三元組（如 `(g1, on, g2)`）、來源、狀態與待查證問題。 |
-| 檢查與紀錄 | 各任務回答、規則與呼叫資料。 | `prompts/`、`responses/`、`normalizations/`、`camera_metadata.json`、`validation_report.json`、`run_manifest.json`。 |
-
-`run_id` 是 UTC 時間，例如 `20261021T161450_548982Z` 表示 2026-10-21 16:14:50.548982 UTC。每個新 run 使用獨立目錄，產物不納入 Git；每次輸入與回答的保存方式見 [紀錄位置](docs/ollama_guide.md#5-輸入與結果位置)。
-
-`objects.json/.csv` 與真值物件總數不送入模型。相機位置採 `cameraPosition`，中央模型只接收白名單資訊。程式驗證格式與來源引用，無法保證場景辨識正確；階段 4–6 的回看查證、圖更新與下游任務尚未實作。完整設計見 [研究文件](docs/research_design.md)。
-
-## 本機 AI2-THOR 任務示範
-
-`local/` 是獨立的固定動作任務，不會自動讀取根目錄產生的 scene graph。請在可執行 AI2-THOR 的電腦操作；本機環境與離線測試指令見 [本機說明](local/README.md)。
+## 測試
 
 ```sh
-cd local
-python -m pip install -r requirements.txt
-python main.py
+python3 -m pip install -r tests/requirements.txt
+python3 -m unittest discover -s tests -v
 ```
+
+不需要實際模型或模擬器。拍攝測試以假 controller 驗證匯出；HTTP 測試使用 localhost。

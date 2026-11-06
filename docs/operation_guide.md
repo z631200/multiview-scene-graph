@@ -1,345 +1,252 @@
 # 程式操作指南
 
-本文件以「要做什麼 → 執行什麼指令 → 會產生什麼」說明目前的程式。
-指令以 Linux 的 `python3` 為例，除本機模擬器章節外，都在專案根目錄執行。
+所有指令從專案根目錄執行，使用 Python 3.10+。程式放在功能目錄，產生資料集中在 `data/`。
 
-## 1. 先選擇要執行的工作
+## 1. 選擇工作與入口
 
-| 想做的事 | 使用程式 | 是否需要模型 | 主要產物 |
-| --- | --- | --- | --- |
-| 擷取場景與照片 | Colab Notebook | 否 | 照片、metadata、遮罩、深度、可見清單 |
-| 產生各視角 Visible GT | `visible_ground_truth.py` | 否 | 可見物件圖、測量證據、HTML |
-| 產生各視角 Full GT | `full_ground_truth.py` | 否 | 全物件圖、幾何證據、人工待辦、HTML |
-| 檢查 GT 中特定物件的關係 | `inspect_graph.py` | 否 | 可篩選的獨立 HTML |
-| 用照片進行模型建圖 | `run_scene_graph.py` | 需要 Ollama | 局部觀察、跨視角對應、模型場景圖與紀錄 |
-| 執行固定機器人任務示範 | `local/main.py` | 否 | 動作紀錄、選用影片 |
+| 想做的事 | 指令入口 | 產物 |
+| --- | --- | --- |
+| 本機拍攝場景 | `python3 -m scene_capture.local` | basic/ 中的照片、metadata、mask、depth |
+| Colab 拍攝 | scene_capture/colab/AI2_THOR_Scene_Capture.ipynb | 下載 ZIP，解壓縮到 capture 的 basic/ |
+| 可見物件 GT | `python3 -m gt.visible` | 該視角可見節點與四種關係 |
+| 全物件 GT | `python3 -m gt.full` | 全部物件相對指定相機的關係 |
+| HTML 檢查器 | `python3 -m visualization` | 物件／關係篩選、證據與人工待辦 |
+| VLM 推理 | `python3 -m reasoning` | 局部觀察、物件對應及 central_llm 的逐視角圖 |
+| 固定任務示範 | `python3 -m scene_capture.demo` | 動作 JSON、選用影片 |
 
-GT 計算與模型推理是兩條獨立流程。執行 GT 產生器不會呼叫 Ollama，
-執行模型建圖也不會自動產生 GT 或計算評分。目前尚未實作自動比較模型圖與 GT 的評分器。
+GT 與模型推理各自執行，不會把 GT 資料傳入模型提示。evaluate/ 預留評估功能，尚未產生評分。
 
-## 2. 準備場景資料與環境
-
-在 Colab 開啟 [AI2_THOR_Scene_Capture.ipynb](../colab/AI2_THOR_Scene_Capture.ipynb)，
-依 Notebook 執行環境啟動、拍攝及下載。將 ZIP 解壓縮至 `colab/scene_output/`。
-Colab 只收集資料，不在拍攝階段產生場景圖。匯出細節見 [Colab 說明](colab_capture.md)。
-
-本文件使用這批已存在的資料，在同一個終端機先設定路徑：
+## 2. 安裝與設定
 
 ```sh
-SCENE_DIR="colab/scene_output/20261105T120357_736949Z"
+python3 -m pip install -r requirements.txt -r requirements-ground-truth.txt
+SCENE_DIR="data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic"
 ```
 
-目錄中應包含：
+requirements.txt 提供 YAML 解析器；Visible GT 另需 NumPy。
+Full GT、HTML 檢查器及模型流程使用純 CLI 時只需標準函式庫。
+設定檔鍵名使用參數的底線名稱，例如 image_size、scene_dir、no_html，CLI 明確指定值優先。
+每次結果都保存實際設定快照。省略 --config 時使用程式預設值。
 
-```text
-views.json                        視角與檔案清單、相機資訊
-objects.json                      全部物件 metadata
-visible_objects.json              所有視角的可見物件聯集
-view_01.png ... view_04.png        一般視角照片
-metadata_01.json ...               每次拍攝的完整 metadata
-depth_01.npy ...                   原始深度陣列
-instance_masks_01.npz ...          物件可見遮罩
-segmentation_mapping_01.json ...   物件 ID、遮罩 key 與像素數對應
-```
+| 模板 | 使用方式 |
+| --- | --- |
+| configs/capture.yaml | 拍攝用 --config |
+| configs/gt.yaml | 兩種 GT 共用 --config |
+| configs/experiments/baseline.yaml | 模型流程用 --config |
 
-`view_00.png` 是俯視參考圖，不參與建圖計算。
-`visible_objects.json` 是跨視角聯集，各張 Visible GT 還會依 `visible_views` 篩選。
+設定快照以 JSON 形式寫入 .yaml，為合法 YAML 1.2，也能用標準函式庫讀取。
+不要把有不同模型參數的場景混入同一個 experiment ID。
 
-Python 需為 3.10+。首次要執行 Visible GT 或完整測試時，安裝 NumPy：
-
-```sh
-python3 -m pip install -r requirements-ground-truth.txt
-```
-
-Full GT、HTML 檢查器與根目錄的模型建圖程式只使用 Python 標準函式庫。
-Ollama 及 AI2-THOR 是各自流程的額外執行環境，不是產生 GT 的共同前置條件。
-
-## 3. 產生 Visible GT
+## 3. 產生不同 GT
 
 ### 全部視角
 
 ```sh
-python3 visible_ground_truth.py --scene-dir "$SCENE_DIR"
+python3 -m gt.visible --config configs/gt.yaml --scene-dir "$SCENE_DIR" --gt-id gt_example
+python3 -m gt.full --config configs/gt.yaml --scene-dir "$SCENE_DIR" --gt-id gt_example
 ```
 
-這批四視角資料會產生四張圖。每張圖的節點只包含該視角可見的物件，關係兩端都必須可見。
-
-| 關係 | 計算來源 |
-| --- | --- |
-| `on`、`inside` | parentReceptacles 與父物件類型對應表 |
-| `image_left_of` | 同一視角的可見遮罩中心 X |
-| `closer_to_camera` | 遮罩內有效原始深度的中位數 |
-
-預設輸出為：
+相同 gt-id 把兩種圖放在相同結果群組，分別保存於：
 
 ```text
-outputs/ground_truth/20261105T120357_736949Z/visible-<UTC時間>/
+data/scenes/sample/FloorPlan1/20261105T120357_736949Z/
+├── basic/                       原始場景，不修改
+└── gt/gt_example/
+    ├── visible/
+    └── full/
 ```
 
-終端機會印出 `Output:` 與 `Inspector:`，後者就是可以直接用瀏覽器開啟的 HTML。
-這批資料的可見節點數依序為 11、23、56、43，全部可完成，沒有人工待辦。
+sample 也允許產生資料，但它會被 Git 追蹤；一般實驗可使用不在 sample 下的 capture。
+省略 --gt-id 會自動使用 gt_<UTC時間>；兩次分開執行會產生不同 ID。
+已存在的同種類結果不覆寫，重跑需更換 gt-id。
 
-### 只產生指定視角
+Visible GT 依各視角 mask 篩選節點；Full GT 保留全部 metadata 物件，包含不可見或畫面外物件。
+
+| 關係 | Visible GT | Full GT |
+| --- | --- | --- |
+| on、inside | parentReceptacles＋父類型表，兩端須可見 | 相同父類型表，包含不可見端點 |
+| image_left_of | 可見 mask 的平均 X | position 轉至相機座標後的水平投影 |
+| closer_to_camera | mask 中有效原始深度中位數 | position 到 cameraPosition 的三維距離 |
+
+兩種排序皆不設差距門檻。完全相等不建立方向邊，另存 equal_pairs。
+Full 的相機後方／平面物件仍保留節點，但相關左右配對列為人工待辦。
+
+### 指定視角
 
 ```sh
-# 一個視角，只輸出 view_3 的圖與測量檔。
-python3 visible_ground_truth.py --scene-dir "$SCENE_DIR" --view view_3
-
-# 多個視角，只輸出 view_1、view_4。
-python3 visible_ground_truth.py --scene-dir "$SCENE_DIR" --view view_1 view_4
+python3 -m gt.visible --scene-dir "$SCENE_DIR" --view view_3 --gt-id visible_view3
+python3 -m gt.full --scene-dir "$SCENE_DIR" --view view_1 view_3 --gt-id full_view1_view3
 ```
 
-即使只選一個視角，輸入仍需保留完整 capture-v2 場景清單及對應的可見聯集資料。
+只會產生所選視角的圖與測量檔，輸入仍需保留完整的 capture-v2 清單與可見聯集。
 
-## 4. 產生 Full GT
-
-### 全部視角
+### 指定位置或略過 HTML
 
 ```sh
-python3 full_ground_truth.py --scene-dir "$SCENE_DIR"
+python3 -m gt.visible --scene-dir "$SCENE_DIR" --output-dir data/runs/gt-check-001/visible
+python3 -m gt.full --scene-dir "$SCENE_DIR" --gt-id json_only --no-html
 ```
 
-每張圖都包含全部 metadata 物件，這批資料每張有 77 個節點。
-不可見或位於畫面外的物件不會被刪除。
+--output-dir 指的是這次結果目錄本身，必須尚未存在；--no-html 只略過 HTML。
 
-| 關係 | 計算來源 |
-| --- | --- |
-| `on`、`inside` | parentReceptacles 與相同父物件類型對應表 |
-| `image_left_of` | 物件 position 轉換至指定相機後的水平投影位置 |
-| `closer_to_camera` | 物件 position 到 cameraPosition 的三維直線距離 |
+### 產物與狀態
 
-預設輸出為：
+Visible／Full 每個結果目錄結構相同：
 
 ```text
-outputs/ground_truth/20261105T120357_736949Z/full-<UTC時間>/
+<visible 或 full>/
+├── config.yaml                         實際 CLI 設定
+├── graphs/view_1.json ...               節點與關係
+├── measurements/view_1.json ...         測量值、相等配對、分類過程
+├── definitions.json                    關係規則快照
+├── input_manifest.json                 capture 身分、來源及 SHA-256
+├── validation_report.json              各視角數量、狀態與待辦統計
+├── review_tasks.json                   人工待辦，沒有時為空清單
+└── inspect.html                        除非指定 --no-html
 ```
 
-Visible 的遠近比較可見表面深度，Full 比較物件位置距離，兩者採不同測量定義。
-對相機後方或相機平面上的物件，Full 仍保留節點及可計算的關係，
-但其相關左右配對會進入人工待辦，圖的狀態為 `needs_review`。
+status=complete 表示該視角完成，needs_review 表示草稿，兩者都在 graphs/。
+每個視角獨立判定。結束碼 0 是全部完成；1 是執行錯誤；2 是結果已輸出但有人工待辦。
+本批 Visible 四視角皆完成；Full 的 view_3 完成，view_1、view_2、view_4 尚有左右待辦。
+尚未提供人工決定匯入器，不能直接手改 status 視為正式 GT。
 
-### 只產生指定視角
+## 4. 查看指定視角、物件與關係
+
+直接以瀏覽器開啟終端機 Inspector: 顯示的 inspect.html。
+已有的範例位於 sample capture 的 gt/gt_v1/visible/inspect.html 與 full/inspect.html。
 
 ```sh
-python3 full_ground_truth.py --scene-dir "$SCENE_DIR" --view view_3
-python3 full_ground_truth.py --scene-dir "$SCENE_DIR" --view view_1 view_3
-```
-
-只選 view_3 時，本批資料可以完整產生 77 個節點、5,888 條關係，沒有人工待辦。
-選全部視角時，view_1、view_2、view_4 仍會產生圖，但標示為草稿。
-
-## 5. 兩種 GT 共用的輸出選項
-
-### 指定輸出位置
-
-以下範例要使用尚未存在的目錄；再次執行時換一個名稱：
-
-```sh
-python3 visible_ground_truth.py --scene-dir "$SCENE_DIR" \
-  --output-dir outputs/ground_truth/my-visible-01
-
-python3 full_ground_truth.py --scene-dir "$SCENE_DIR" \
-  --output-dir outputs/ground_truth/my-full-01
-```
-
-省略 `--output-dir` 會自動建立帶 UTC 時間的新目錄。兩種程式都不會覆寫既有目錄。
-GT 的 `--output-dir` 指的是本次結果目錄本身。
-
-### 只產生 JSON
-
-```sh
-python3 visible_ground_truth.py --scene-dir "$SCENE_DIR" --no-html
-python3 full_ground_truth.py --scene-dir "$SCENE_DIR" --no-html
-```
-
-會產生相同的 JSON 檔案，但略過 `inspect.html`。之後仍可使用檢查器另外產生 HTML。
-
-### 輸出檔案
-
-兩種 GT 的結構相同；只選部分視角時，只會出現那些視角的圖及測量檔。
-
-```text
-<本次輸出目錄>/
-├── graphs/view_1.json ... view_4.json
-├── measurements/view_1.json ... view_4.json
-├── definitions.json
-├── input_manifest.json
-├── validation_report.json
-├── review_tasks.json
-└── inspect.html
-```
-
-| 檔案 | 會產生的內容 |
-| --- | --- |
-| `graphs/view_N.json` | 節點、關係、圖種類及完成狀態 |
-| `measurements/view_N.json` | 測量值、相等配對、父物件分類等證據 |
-| `definitions.json` | 本次使用的規則及版本 |
-| `input_manifest.json` | 場景路徑、實際輸入檔案及 SHA-256 |
-| `validation_report.json` | 各視角的節點數、各類關係數及待辦統計 |
-| `review_tasks.json` | 需要人工判定的內容；沒有待辦時為空清單 |
-| `inspect.html` | 已嵌入圖及證據的離線互動檢查器，除非指定 `--no-html` |
-
-圖的 `status=complete` 表示該視角已完成；`needs_review` 表示仍有人工待辦。
-兩者都放在 `graphs/`，每個視角獨立標示狀態。
-
-| 程式結束碼 | 意義 |
-| --- | --- |
-| `0` | 所選視角全部完成 |
-| `1` | 資料或執行錯誤，未發布新的結果目錄 |
-| `2` | 結果已輸出，但仍有人工待辦；不是整次計算失敗 |
-
-相等值不建立任一方向的排序邊，另記錄在測量檔，不屬於人工待辦。
-目前會輸出人工清單，尚未提供人工決定的匯入器。
-
-## 6. 檢視特定視角與物件關係
-
-### 直接檢視
-
-用瀏覽器開啟剛才終端機 `Inspector:` 顯示的 `inspect.html`。
-Visible GT 與 Full GT 操作相同，可以切換視角、多選物件類型與四種關係，
-並選擇「只看所選物件之間」或「包含與其他物件的關係」。
-點箭頭、節點或清單中的「證據」可查看完整 ID 與測量值。
-圖形排版的位置不代表物件的實際座標；Full 圖中橘色虛線外框代表該視角不可見。
-
-### 另外產生帶有初始篩選的 HTML
-
-先將 `GT_RUN` 設為剛才 `Output:` 印出的目錄。以下以已存在的 Visible GT 示範：
-
-```sh
-GT_RUN="outputs/ground_truth/20261105T120357_736949Z/visible-unified-v1"
-python3 inspect_graph.py --run-dir "$GT_RUN"
-```
-
-改看 Full GT，只需更換路徑，指令相同：
-
-```sh
-GT_RUN="outputs/ground_truth/20261105T120357_736949Z/full-unified-v1"
-python3 inspect_graph.py --run-dir "$GT_RUN"
-```
-
-指定視角、物件類型及關係：
-
-```sh
-python3 inspect_graph.py --run-dir "$GT_RUN" \
-  --view view_3 --types Apple Bowl CounterTop \
+GT_RUN="data/scenes/sample/FloorPlan1/20261105T120357_736949Z/gt/gt_v1/full"
+python3 -m visualization --run-dir "$GT_RUN" --view view_3 --types Apple Bowl CounterTop \
   --relations on inside image_left_of closer_to_camera
 ```
 
-這只設定 HTML 開啟時的初始篩選，之後仍可在介面調整，不會修改原圖。
+HTML 可以切換視角、多選類型與關係、點選箭頭查看證據。圖的位置只是排版，不代表真實座標。
+可選「所選物件之間」或「包含與其他物件的關係」，也可匯出篩選 JSON。
 
 ```sh
-# 查看 Apple、Bowl 與其他物件之間的物理關係。
-python3 inspect_graph.py --run-dir "$GT_RUN" \
-  --types Apple Bowl --relations on inside --scope connected
-
-# 只載入已完成視角；本批 Full GT 只會載入 view_3。
-python3 inspect_graph.py --run-dir "$GT_RUN" --complete-only
-
-# 不啟動瀏覽器，另存一份 HTML；指定檔案必須不存在。
-python3 inspect_graph.py --run-dir "$GT_RUN" \
-  --output outputs/graph_inspection/my-check-01.html --no-open
+python3 -m visualization --run-dir "$GT_RUN" --types Apple Bowl --scope connected
+python3 -m visualization --run-dir "$GT_RUN" --complete-only
+python3 -m visualization --run-dir "$GT_RUN" --output data/runs/check-001/inspect.html --no-open
 ```
 
-檢查器預設另存 `outputs/graph_inspection/<UTC時間>.html` 並嘗試開啟瀏覽器。
-它讀取已計算的圖與測量值，不會重算 GT。HTML 是靜態快照，更新 JSON 後需重新產生。
-介面的「匯出篩選 JSON」會由瀏覽器下載目前結果，不會修改原始 GT。
-新格式預設包含草稿；舊版 `visible/`、`full/`、`drafts/` 結構仍能讀取，
-讀取舊版草稿時加上 `--include-drafts`。
+檢查器不重算 GT，預設另存 data/runs/inspection_<UTC>/inspect.html 並嘗試開啟瀏覽器。
+HTML 是快照，圖更新後需重新產生。草稿保持狀態標示；舊 visible/full/drafts 格式也能讀取，
+載入舊格式草稿需加 --include-drafts。
 
-## 7. 以 VLM 推理產生場景圖
-
-此操作使用模型看照片，產物是推理結果，不是 GT。此版要求恰好四張一般視角圖片。
-
-### 只檢查輸入與提示，不呼叫模型
+## 5. 收集新的場景
 
 ```sh
-python3 run_scene_graph.py --scene-dir "$SCENE_DIR" --dry-run
+python3 -m pip install -r requirements.txt -r requirements-capture.txt
+python3 -m scene_capture.local --config configs/capture.yaml --scene FloorPlan1 --headless
 ```
 
-產生新的 `outputs/<UTC時間>/`，保存相機白名單、提示與執行紀錄，
-不會有完成的模型觀察、物件對應或場景圖。dry-run 目錄不能用來續跑推理。
-
-### 執行完整推理
-
-先準備本機 Ollama。以下兩個服務準備動作分別操作，服務需維持執行：
+這會啟動 AI2-THOR。Linux headless 需可用的 Vulkan 驅動；若使用 X11，省略 --headless。
 
 ```sh
-# 一個終端機；若服務已啟動可略過。
+python3 -m scene_capture.local --scene FloorPlan1 --num-views 4 --image-size 800 \
+  --output-dir data/scenes/FloorPlan1/capture_001/basic --zip
+```
+
+預設保存 data/scenes/<scene>/<UTC capture_id>/basic/。原始資料包含：
+views.json、objects.json、visible_objects.json、RGB、各視角 metadata、depth、instance masks、
+分割圖及對應表，另有僅供觀看的 view_00.png。capture_config.yaml 在 basic 的上一層。
+--zip 另存 basic.zip；basic 目錄仍可直接交給 GT／模型流程。
+每次拍攝使用新的 capture_id，避免改動已被實驗或 GT 引用的原始資料。
+
+Colab 使用 scene_capture/colab/AI2_THOR_Scene_Capture.ipynb。
+下載 ZIP 後解壓縮至 data/scenes/<scene>/<capture_id>/basic/，不在程式碼目錄存放成果。
+
+## 6. 模型推理
+
+先啟動 Ollama 並準備已安裝的影像模型；GT 流程不需要這一步。
+
+```sh
+# 一個終端機，服務已啟動可略過。
 ollama serve
-```
-
-```sh
-# 另一個終端機，模型已安裝可略過。
+# 另一個終端機；使用新終端機時請重新設定 SCENE_DIR。
 ollama pull gemma4:e4b
-python3 run_scene_graph.py --scene-dir "$SCENE_DIR"
+python3 -m reasoning --config configs/experiments/baseline.yaml --scene-dir "$SCENE_DIR"
 ```
 
-若使用新的終端機，先重新設定本文件前面的 `SCENE_DIR`。
-預設模型是 `gemma4:e4b`，可用 `--model` 指定已安裝且支援影像的模型。
-
-完整流程依序產生：
-
-| 產物 | 內容 |
-| --- | --- |
-| `observations/view_1.md`～`view_4.md` | 四次獨立看圖的局部觀察 |
-| `correspondence.md` | 跨視角的物件對應 |
-| `scene_graph.md` | 模型整合的初版場景圖 |
-| `camera_metadata.json` | 送給中央模型的相機白名單 |
-| `prompts/`、`responses/` | 實際提示、原始回答及 API 回應 |
-| `normalizations/` | 發生正規化時的修改紀錄 |
-| `run_manifest.json`、`validation_report.json` | 設定、來源、執行及格式驗證紀錄 |
-
-這些檔案預設存於 `outputs/<UTC時間>/`。模型流程的 `--output-dir` 是存放各次 run 的
-父目錄，與 GT 的「本次結果目錄」含義不同。GT HTML 檢查器目前不解析模型 Markdown 圖。
-
-### 中斷後續跑
-
-將 `MODEL_RUN` 換成實際的推理 run 目錄：
+### 只檢查輸入，不呼叫模型
 
 ```sh
-MODEL_RUN="outputs/本次推理的時間目錄"
-python3 run_scene_graph.py --scene-dir "$SCENE_DIR" --resume "$MODEL_RUN"
+python3 -m reasoning --scene-dir "$SCENE_DIR" --dry-run
 ```
 
-會核對輸入、程式及模型設定，保留有效的完成結果，只繼續缺少的工作。
-程式改版後的恢復可使用 `--fork-from`，細節見 [Ollama 指南](ollama_guide.md)。
+仍會產生新實驗、相機白名單與提示，不會產生完成的模型圖。
 
-## 8. 本機固定任務示範
-
-此操作需要可執行 AI2-THOR 的電腦，與 GT 產生器獨立，不會自動讀取場景圖。
+### 指定實驗 ID
 
 ```sh
-cd local
-python3 -m pip install -r requirements.txt
-python3 main.py --output-dir outputs/my-task-01
+python3 -m reasoning --scene-dir "$SCENE_DIR" --experiment-id exp_001
 ```
 
-會依固定腳本執行 FloorPlan1 任務，產生 `local/outputs/my-task-01/trace_log.json`
-與 `run.mp4`。同一目錄的同名紀錄會被覆寫，請為不同實驗指定不同目錄。
+輸出到 data/runs/exp_001/<scene>/。預設 ID 為 exp_<UTC>。
+可在同一 ID 加入不同場景，需保持實驗設定相同；同一 scene 不可覆寫或改用另一個 capture，
+應使用新的 experiment ID。
+
+```text
+<experiment>/
+├── config.yaml                        共用實驗設定
+├── run_manifest.json                  場景、capture 與狀態索引
+├── summary.csv                        只記錄真實狀態，尚無評分
+└── <scene>/
+    ├── config.yaml、run_manifest.json
+    ├── camera_metadata.json、validation_report.json
+    ├── visible/
+    │   ├── observations/view_1.md ...
+    │   ├── graphs/view_1.json ...
+    │   ├── prompts/、responses/
+    └── full/central_llm/
+        ├── correspondence.md、correspondence.json
+        ├── scene_graph.md
+        ├── graphs/view_1.json ...
+        ├── prompts/、responses/
+        └── normalizations/
+```
+
+目前模型流程要求恰好四張圖。單視角 JSON 保留模型原本的自然語言關係，
+尚未新增語意轉換；central_llm 的逐視角 JSON 保留全部全域節點，只選 physical 或目標視角的邊，
+不把另一視角的左右關係直接改標為目標視角。其他合併方法及評估器仍待設計。
+
+### 續跑與 fork
 
 ```sh
-# 不錄影，只保存 JSON；Linux 離屏模式另需可用 Vulkan 驅動。
-python3 main.py --headless --no-video --output-dir outputs/my-task-02
+MODEL_RUN="data/runs/exp_001/FloorPlan1"
+python3 -m reasoning --scene-dir "$SCENE_DIR" --resume "$MODEL_RUN"
+python3 -m reasoning --scene-dir "$SCENE_DIR" --fork-from "$MODEL_RUN"
 ```
 
-關於模擬器環境、任務內容及參數，見 [local 說明](../local/README.md)。
+resume 指向場景結果目錄，核對輸入、程式及模型設定，只繼續缺少工作；dry-run 不能續跑。
+fork 建立新實驗並重驗可重用結果，保留原紀錄。設定有變時請在指令中給出與來源相同的參數。
+遷移前的原始模型範例保存在 data/runs/sample/ 下的 legacy/，原始 capture 不在專案內，
+場景以 unidentified_scene 標示，不可直接當作目前場景的評分結果。
+GT HTML 檢查器目前只解析 GT JSON，不解析模型的 Markdown 或局部觀察 JSON。
 
-## 9. 驗證程式
+## 7. 固定任務示範與測試
 
-回到專案根目錄，執行離線測試，不需要模型或模擬器：
+```sh
+python3 -m pip install -r scene_capture/demo/requirements.txt
+python3 -m scene_capture.demo --headless --output-dir data/runs/demo_001/FloorPlan1/demo
+```
+
+需可執行模擬器；輸出 trace_log.json 與 run.mp4。加 --no-video 只保存 JSON。
+這個固定動作示範不自動使用場景圖。新實驗請指定新目錄，詳細資訊見 [示範說明](demo.md)。
 
 ```sh
 python3 -m pip install -r tests/requirements.txt
 python3 -m unittest discover -s tests -v
 ```
 
-只檢查某個功能：
+測試使用暫存目錄、假模型／controller，不需要模型或 Unity；HTTP 測試會啟動 localhost。
 
-```sh
-python3 -m unittest discover -s tests -p 'test_visible_ground_truth.py' -v
-python3 -m unittest discover -s tests -p 'test_full_ground_truth.py' -v
-python3 -m unittest discover -s tests -p 'test_inspect_graph.py' -v
-```
+## 8. 哪些資料會上傳 GitHub
 
-測試使用暫存目錄，不會建立新的正式 GT run；本機存在範例場景時，會額外驗收實際場景數量。
-完整測試中的 HTTP client 測試會啟動短暫的 localhost 測試服務，不連線到實際 Ollama。
+- data/scenes/sample/：Git 追蹤的場景範例，包含 basic 與 GT。
+- data/runs/sample/：Git 追蹤的歷史實驗與示範。
+- 其他 data/scenes/、data/runs/ 子目錄：Git 忽略，供一般拍攝與實驗使用。
+
+data/migration_manifest.json 記錄本次資料搬移對應。來源檔原始位元組保留，
+新 GT 範例已重算驗證，歷史原始模型紀錄保存在 legacy/ 以便回查。

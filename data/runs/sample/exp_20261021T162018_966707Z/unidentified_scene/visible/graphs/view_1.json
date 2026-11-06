@@ -1,0 +1,153 @@
+{
+  "schema_version": "local-observation-v1",
+  "graph_type": "visible_reasoning",
+  "view_id": "view_1",
+  "status": "model_prediction",
+  "nodes": [
+    {
+      "id": "v1_o1",
+      "name": "kitchen island",
+      "features": "large, brown base, speckled light countertop",
+      "location": "center",
+      "occlusion": "None"
+    },
+    {
+      "id": "v1_o2",
+      "name": "brown object",
+      "features": "round, brown/tan",
+      "location": "center of island",
+      "occlusion": "None"
+    },
+    {
+      "id": "v1_o3",
+      "name": "orange object",
+      "features": "round, orange",
+      "location": "center of island",
+      "occlusion": "None"
+    },
+    {
+      "id": "v1_o4",
+      "name": "grey/white object",
+      "features": "rectangular/dish shape, grey/white",
+      "location": "center of island",
+      "occlusion": "None"
+    },
+    {
+      "id": "v1_o5",
+      "name": "wooden door",
+      "features": "dark brown, double door style",
+      "location": "left wall",
+      "occlusion": "None"
+    },
+    {
+      "id": "v1_o6",
+      "name": "wooden door",
+      "features": "dark brown, double door style",
+      "location": "right wall",
+      "occlusion": "None"
+    },
+    {
+      "id": "v1_o7",
+      "name": "pendant light",
+      "features": "dark fixture, hanging",
+      "location": "above island",
+      "occlusion": "None"
+    },
+    {
+      "id": "v1_o8",
+      "name": "pendant light",
+      "features": "dark fixture, hanging",
+      "location": "above island",
+      "occlusion": "None"
+    },
+    {
+      "id": "v1_o9",
+      "name": "pendant light",
+      "features": "dark fixture, hanging",
+      "location": "above island",
+      "occlusion": "None"
+    }
+  ],
+  "edges": [
+    {
+      "id": "v1_r1",
+      "source": "v1_o2",
+      "target": "v1_o1",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "The brown object is situated on the kitchen island countertop.",
+      "view": "view_1"
+    },
+    {
+      "id": "v1_r2",
+      "source": "v1_o3",
+      "target": "v1_o1",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "The orange object is situated on the kitchen island countertop.",
+      "view": "view_1"
+    },
+    {
+      "id": "v1_r3",
+      "source": "v1_o4",
+      "target": "v1_o1",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "The grey/white object is situated on the kitchen island countertop.",
+      "view": "view_1"
+    },
+    {
+      "id": "v1_r4",
+      "source": "v1_o5",
+      "target": "v1_o1",
+      "relation": "is left of",
+      "frame": "image",
+      "certainty": "clear",
+      "evidence": "The wooden door on the left is positioned to the left of the kitchen island.",
+      "view": "view_1"
+    },
+    {
+      "id": "v1_r5",
+      "source": "v1_o6",
+      "target": "v1_o1",
+      "relation": "is right of",
+      "frame": "image",
+      "certainty": "clear",
+      "evidence": "The wooden door on the right is positioned to the right of the kitchen island.",
+      "view": "view_1"
+    },
+    {
+      "id": "v1_r6",
+      "source": "v1_o7",
+      "target": "v1_o1",
+      "relation": "is above",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "The first pendant light hangs above the kitchen island.",
+      "view": "view_1"
+    },
+    {
+      "id": "v1_r7",
+      "source": "v1_o8",
+      "target": "v1_o1",
+      "relation": "is above",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "The second pendant light hangs above the kitchen island.",
+      "view": "view_1"
+    },
+    {
+      "id": "v1_r8",
+      "source": "v1_o9",
+      "target": "v1_o1",
+      "relation": "is above",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "The third pendant light hangs above the kitchen island.",
+      "view": "view_1"
+    }
+  ]
+}

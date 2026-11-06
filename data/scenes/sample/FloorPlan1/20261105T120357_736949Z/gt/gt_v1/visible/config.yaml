@@ -1,0 +1,9 @@
+{
+  "scene_dir": "data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic",
+  "view": null,
+  "output_dir": "/home/cheng/桌面/multiview-scene-graph/data/scenes/sample/FloorPlan1/20261105T120357_736949Z/gt/gt_v1/visible",
+  "gt_id": "gt_v1",
+  "no_html": false,
+  "config": "configs/gt.yaml",
+  "graph_kind": "visible"
+}

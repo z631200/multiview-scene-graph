@@ -1,0 +1,11 @@
+{
+  "status": "historical",
+  "scenes": {
+    "unidentified_scene": {
+      "legacy_manifest": "unidentified_scene/legacy/run_manifest.json",
+      "source_scene_dir": "D:\\NSYSU\\AI_LAB\\ai2thor_benchmark\\colab\\scene_output\\20261021T030626_636386Z",
+      "capture_bundled": false,
+      "note": "Original capture is unavailable; no scene ID or GT association is invented."
+    }
+  }
+}

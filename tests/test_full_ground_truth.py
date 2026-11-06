@@ -6,9 +6,9 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from full_ground_truth import build_full_gt, camera_coordinates, measure_object
-from ground_truth_common import DataError, write_artifacts
-from inspect_graph import load_run, render_html
+from gt.full.generate import build_full_gt, camera_coordinates, measure_object
+from gt.common import DataError, write_artifacts
+from visualization.inspect_graph import load_run, render_html
 
 
 def camera(yaw=0, pitch=0):
@@ -178,7 +178,7 @@ class FullGTTests(unittest.TestCase):
 
 class SceneAcceptanceTests(unittest.TestCase):
     def test_all_four_views(self):
-        scene = Path(__file__).resolve().parents[1] / "colab/scene_output/20261105T120357_736949Z"
+        scene = Path(__file__).resolve().parents[1] / "data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic"
         if not scene.is_dir(): self.skipTest("Local captured scene is not installed")
         result = build_full_gt(scene)
         expected = [(1889, 1035, 4853), (2344, 580, 5308), (2924, 0, 5888), (2848, 76, 5812)]

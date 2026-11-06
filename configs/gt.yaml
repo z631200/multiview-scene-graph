@@ -1,0 +1,2 @@
+# Use --scene-dir to select the capture and --gt-id to pair visible/full results.
+no_html: false

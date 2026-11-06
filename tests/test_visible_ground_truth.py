@@ -11,7 +11,7 @@ import unittest
 
 import numpy as np
 
-from visible_ground_truth import DataError, build_visible_gt, main, write_artifacts
+from gt.visible.generate import DataError, build_visible_gt, main, write_artifacts
 
 
 class VisibleGTTests(unittest.TestCase):
@@ -173,7 +173,7 @@ class VisibleGTTests(unittest.TestCase):
         self.assertEqual(result["graphs"]["view_2"]["status"], "needs_review")
         output = Path(self.temp.name) / "mixed"
         write_artifacts(result, output)
-        from inspect_graph import load_run
+        from visualization.inspect_graph import load_run
         self.assertEqual(len(load_run(output)["graphs"]), 2)
         self.assertEqual(len(load_run(output, complete_only=True)["graphs"]), 1)
 
@@ -239,7 +239,7 @@ class VisibleGTTests(unittest.TestCase):
 
 class CapturedSceneAcceptanceTests(unittest.TestCase):
     def test_20261105_scene(self):
-        scene = Path(__file__).resolve().parents[1] / "colab/scene_output/20261105T120357_736949Z"
+        scene = Path(__file__).resolve().parents[1] / "data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic"
         if not scene.is_dir():
             self.skipTest("Local captured scene is not installed")
         result = build_visible_gt(scene)

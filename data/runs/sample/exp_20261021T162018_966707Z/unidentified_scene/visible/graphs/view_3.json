@@ -1,0 +1,164 @@
+{
+  "schema_version": "local-observation-v1",
+  "graph_type": "visible_reasoning",
+  "view_id": "view_3",
+  "status": "model_prediction",
+  "nodes": [
+    {
+      "id": "v3_o1",
+      "name": "Ceiling",
+      "features": "Light gray/white, smooth",
+      "location": "Top of image",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o2",
+      "name": "Wall (Upper)",
+      "features": "Light yellow/beige",
+      "location": "Background",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o3",
+      "name": "Wall (Lower/Cabinets)",
+      "features": "White",
+      "location": "Background",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o4",
+      "name": "Floor",
+      "features": "Light brown wood planks",
+      "location": "Bottom of image",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o5",
+      "name": "Kitchen Island",
+      "features": "Brown/gray countertop, dark brown base",
+      "location": "Center",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o6",
+      "name": "Stool 1",
+      "features": "Black, rectangular seat",
+      "location": "Center foreground",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o7",
+      "name": "Stool 2",
+      "features": "Black, rectangular seat",
+      "location": "Center foreground",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o8",
+      "name": "Upper Cabinets",
+      "features": "White, horizontal rows",
+      "location": "Background",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o9",
+      "name": "Lower Cabinets",
+      "features": "White, below counter",
+      "location": "Background",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o10",
+      "name": "Refrigerator",
+      "features": "Large, white, rectangular",
+      "location": "Right background",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o11",
+      "name": "Range/Stove",
+      "features": "Black/stainless steel",
+      "location": "Background, left of refrigerator",
+      "occlusion": "None"
+    },
+    {
+      "id": "v3_o12",
+      "name": "Shelving Unit",
+      "features": "Brown wood, multiple shelves",
+      "location": "Left side",
+      "occlusion": "None"
+    }
+  ],
+  "edges": [
+    {
+      "id": "v3_r1",
+      "source": "v3_o6",
+      "target": "v3_o7",
+      "relation": "is left of",
+      "frame": "image",
+      "certainty": "clear",
+      "evidence": "Stool 1 is positioned to the left of Stool 2.",
+      "view": "view_3"
+    },
+    {
+      "id": "v3_r2",
+      "source": "v3_o5",
+      "target": "v3_o4",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "The kitchen island is situated on the wooden floor.",
+      "view": "view_3"
+    },
+    {
+      "id": "v3_r3",
+      "source": "v3_o6",
+      "target": "v3_o5",
+      "relation": "is near",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "Stool 1 is positioned next to the kitchen island.",
+      "view": "view_3"
+    },
+    {
+      "id": "v3_r4",
+      "source": "v3_o7",
+      "target": "v3_o5",
+      "relation": "is near",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "Stool 2 is positioned next to the kitchen island.",
+      "view": "view_3"
+    },
+    {
+      "id": "v3_r5",
+      "source": "v3_o11",
+      "target": "v3_o8",
+      "relation": "is below",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "The range/stove is located beneath the upper cabinets.",
+      "view": "view_3"
+    },
+    {
+      "id": "v3_r6",
+      "source": "v3_o10",
+      "target": "v3_o8",
+      "relation": "is adjacent to",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "The refrigerator is positioned next to the run of upper cabinets.",
+      "view": "view_3"
+    },
+    {
+      "id": "v3_r7",
+      "source": "v3_o12",
+      "target": "v3_o4",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "The shelving unit is placed on the wooden floor.",
+      "view": "view_3"
+    }
+  ]
+}

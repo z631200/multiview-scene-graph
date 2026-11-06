@@ -1,7 +1,7 @@
 # 本機擷取 AI2-THOR 場景
 
-[capture_scene.py](../capture_scene.py) 將目前
-[Colab Notebook](../colab/AI2_THOR_Scene_Capture.ipynb) 的拍攝流程移到本機 CLI。
+[scene_capture/local/capture.py](../scene_capture/local/capture.py) 將目前
+[Colab Notebook](../scene_capture/colab/AI2_THOR_Scene_Capture.ipynb) 的拍攝流程移到本機 CLI。
 預設 `FloorPlan1`、4 個不同位置、1600×1600、水平朝向房間中央，另外儲存
 `view_00.png` 俯視參考圖與 `viewpoints.png` 位置圖。可選 3 個一般視角。
 可見性仍以每視角至少 1 個 instance mask 像素判定；俯視圖不參與計算。
@@ -20,23 +20,23 @@
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-capture.txt
-python capture_scene.py --help
+python -m scene_capture.local --help
 ```
 
 依賴包含 `ai2thor==5.0.0`、NumPy、Pillow、Matplotlib；模擬器版本與既有
-`local/requirements.txt` 一致。Colab 使用 `--upgrade ai2thor`，兩邊可能安裝不同版本；
+`scene_capture/demo/requirements.txt` 一致。Colab 使用 `--upgrade ai2thor`，兩邊可能安裝不同版本；
 格式相同不代表不同模擬器版本的渲染或場景內容完全相同，實際版本會記在 `views.json`。
 
 若在 Linux 圖形桌面終端機執行：
 
 ```sh
-python capture_scene.py --output-dir outputs/captures/floorplan1-001
+python -m scene_capture.local --output-dir data/scenes/FloorPlan1/capture_001/basic
 ```
 
 Linux SSH／無視窗環境可指定 CloudRendering：
 
 ```sh
-python capture_scene.py --headless --output-dir outputs/captures/floorplan1-001
+python -m scene_capture.local --headless --output-dir data/scenes/FloorPlan1/capture_001/basic
 ```
 
 `--headless` 在本機離屏渲染，不需要 X11，但需要可用的 Vulkan loader 與 GPU 驅動。
@@ -53,11 +53,12 @@ loader 檢查見 [官方平台實作](https://github.com/allenai/ai2thor/blob/ma
 
 | 參數 | 預設值 | 用途 |
 | --- | --- | --- |
+| `--config` | 無 | 可讀取 configs/capture.yaml，CLI 明確值優先 |
 | `--scene` | `FloorPlan1` | AI2-THOR 場景名稱 |
 | `--num-views` | `4` | `3` 或 `4` 個一般視角 |
 | `--image-size` | `1600` | 正方形照片邊長，可選 `400`、`600`、`800`、`1600` |
 | `--horizon` | `0` | 俯仰角，範圍 -30～60 度，正值向下 |
-| `--output-dir` | `<專案>/outputs/captures/<UTC 時間>` | 新的場景目錄；拒絕覆寫既有目錄 |
+| `--output-dir` | `data/scenes/<scene>/<UTC capture_id>/basic` | 新的場景目錄；拒絕覆寫既有目錄 |
 | `--headless` | 關閉 | Linux Vulkan CloudRendering |
 | `--display` | 繼承 `DISPLAY` | 指定 Linux X11 display；與 `--headless` 互斥 |
 | `--timeout` | `300` | Unity 啟動與每個 action 的 timeout 秒數 |
@@ -66,9 +67,9 @@ loader 檢查見 [官方平台實作](https://github.com/allenai/ai2thor/blob/ma
 例如先用較小照片確認環境，再用新目錄產生正式資料：
 
 ```sh
-python capture_scene.py --headless --image-size 600 --output-dir outputs/captures/check-001
-python capture_scene.py --headless --scene FloorPlan1 --image-size 1600 \
-  --output-dir outputs/captures/floorplan1-002 --zip
+python -m scene_capture.local --headless --image-size 600 --output-dir data/scenes/FloorPlan1/check_001/basic
+python -m scene_capture.local --headless --scene FloorPlan1 --image-size 1600 \
+  --output-dir data/scenes/FloorPlan1/capture_002/basic --zip
 ```
 
 選點規則與 Notebook 相同：取得可到達位置，在 XZ 外接矩形四角附近選擇不同位置，
@@ -81,16 +82,16 @@ ZIP 僅包含本次清單的資料與參考圖，不帶入額外檔案。
 
 ## 接續建圖與 GT
 
-本機產生的資料夾可直接傳給現有程式，不需搬到 `colab/scene_output`：
+本機產生的資料夾可直接傳給現有程式，不需搬到 `data/scenes/<scene>/<capture_id>/basic`：
 
 ```sh
 # 建圖流程仍要求四個一般視角；先離線確認輸入。
-python run_scene_graph.py --scene-dir outputs/captures/floorplan1-002 --dry-run
+python -m reasoning --scene-dir data/scenes/FloorPlan1/capture_002/basic --dry-run
 # 使用本機 Ollama 建圖。
-python run_scene_graph.py --scene-dir outputs/captures/floorplan1-002
+python -m reasoning --scene-dir data/scenes/FloorPlan1/capture_002/basic
 # GT 直接讀取相同目錄；也支援三視角擷取。
-python visible_ground_truth.py --scene-dir outputs/captures/floorplan1-002
-python full_ground_truth.py --scene-dir outputs/captures/floorplan1-002
+python -m gt.visible --scene-dir data/scenes/FloorPlan1/capture_002/basic
+python -m gt.full --scene-dir data/scenes/FloorPlan1/capture_002/basic
 ```
 
 ## 排錯與驗證範圍
@@ -99,7 +100,7 @@ python full_ground_truth.py --scene-dir outputs/captures/floorplan1-002
 從圖形桌面的使用者終端機執行、選擇可容納的 `--image-size 600`，或在具備 Vulkan
 的 Linux 使用 `--headless`。提高 timeout 無法修復顯示授權或螢幕尺寸。
 Vulkan 初始化失敗時，先檢查 GPU 驅動與 `vulkaninfo --summary`；相關說明也見
-[本機任務的 Linux 排錯](../local/README.md#linux-顯示環境排錯)。
+[本機任務的 Linux 排錯](../docs/demo.md#linux-顯示環境排錯)。
 
 Unity 日誌通常位於 `~/.ai2thor/log/unity.log` 或
 `~/.config/unity3d/Allen Institute for Artificial Intelligence/AI2-THOR/Player.log`。

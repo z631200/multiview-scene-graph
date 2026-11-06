@@ -1,6 +1,8 @@
+> 程式已依功能遷移；目前的執行入口與產物路徑見 [操作指南](operation_guide.md)。下列提示內容保留研究設計語意。
+
 # 多視角 VLM 空間建圖：研究目標與階段 Prompt
 
-本文件完整保留原 README 的研究設計與中英文 prompts。實際程式目前完成階段 1–3；階段 4–6 為後續規劃。執行時使用 `scene_prompts.py` 中保存的英文模板，修改本文件不會自動變更模型輸入。
+本文件完整保留原 README 的研究設計與中英文 prompts。實際程式目前完成階段 1–3；階段 4–6 為後續規劃。執行時使用 `reasoning/prompts.py` 中保存的英文模板，修改本文件不會自動變更模型輸入。
 
 返回 [README](../README.md)；操作與實測案例見 [Ollama 指南](ollama_guide.md)，模組互動見 [架構](architecture.md)，固定欄位見 [輸出格式](output_format.md)。
 
@@ -14,11 +16,11 @@
 
 ## 二、流程與資料邊界
 
-階段 0 已由 Colab Notebook 提供；本版實作階段 1–3 與程式檢查，階段 4–6 留待後續。以下建圖輸出路徑皆相對於 `outputs/<run_id>/`。
+階段 0 已由 Colab Notebook 提供；本版實作階段 1–3 與程式檢查，階段 4–6 留待後續。以下建圖輸出路徑皆相對於 `data/runs/<exp_id>/<scene_id>/`。
 
 | 階段 | 執行者 | 預期輸入 | 預期輸出 |
 | --- | --- | --- | --- |
-| 0. 資料擷取 | Colab／AI2-THOR | 場景名稱、四個拍攝位置與相機設定 | `colab/scene_output/<場景資料夾>/`：四張 `view_01.png`～`view_04.png`、`views.json`；另存評分真值 `objects.json/.csv`。 |
+| 0. 資料擷取 | Colab／AI2-THOR | 場景名稱、四個拍攝位置與相機設定 | `data/scenes/<scene>/<capture_id>/basic/`：四張 `view_01.png`～`view_04.png`、`views.json`；另存評分真值 `objects.json/.csv`。 |
 | 1. 局部觀察 | 四個獨立 VLM | 每次一張原圖、`view_1`～`view_4`、相同英文共通規則與階段 1 prompt | `observations/view_1.md`～`view_4.md`：局部物件 ID、屬性、關係 ID、參考視角、可見證據與不確定事項。 |
 | 2. 物件對應 | 中央 LLM | 四份局部觀察、篩選後的相機資訊、英文共通規則與階段 2 prompt | `correspondence.md`：全域物件 `g1…`、每個局部 ID 的對應或候選、來源、匹配理由與歧義。 |
 | 3. 初步建圖 | 中央 LLM | 四份局部觀察、`correspondence.md`、相機資訊、關係定義、查證問題上限、英文共通規則與階段 3 prompt | `scene_graph.md`：節點、`(g1, on, g2)` 等三元組、邊 ID、參考系、狀態、證據來源、衝突與查證請求。 |
@@ -40,7 +42,7 @@
 
 ### 階段 2–3 的相機資訊細節
 
-依 [run_scene_graph.py](../run_scene_graph.py) 的 `load_scene()`，程式讀取 `views.json` 後，以白名單重建 `scene["cameras"]`，並由 `execute()` 保存成 `camera_metadata.json`。它不是完整的 `views.json`，內容如下：
+依 [reasoning/pipeline.py](../reasoning/pipeline.py) 的 `load_scene()`，程式讀取 `views.json` 後，以白名單重建 `scene["cameras"]`，並由 `execute()` 保存成 `camera_metadata.json`。它不是完整的 `views.json`，內容如下：
 
 | 傳入欄位 | 程式來源與意義 |
 | --- | --- |
@@ -54,7 +56,7 @@
 
 位置與角度都須為有限數值。`agent.position`、其他 agent 狀態、場景名稱、`object_count` 與其餘非白名單欄位不會包含在這份相機資料中；程式也不讀取 `objects.json/.csv`。
 
-兩階段使用**同一份** `scene["cameras"]`。[scene_prompts.py](../scene_prompts.py) 的 `correspondence_prompt()` 與 `graph_prompt()` 都用 `json.dumps(cameras, indent=2)` 將它轉成文字，放入 `Camera information:`，沒有在第三階段增加相機欄位或重新估計姿態：
+兩階段使用**同一份** `scene["cameras"]`。[reasoning/prompts.py](../reasoning/prompts.py) 的 `correspondence_prompt()` 與 `graph_prompt()` 都用 `json.dumps(cameras, indent=2)` 將它轉成文字，放入 `Camera information:`，沒有在第三階段增加相機欄位或重新估計姿態：
 
 - **階段 2**：相機資訊與四份局部觀察一起提供，供模型結合外觀、特徵及鄰近關係判斷跨視角物件對應。
 - **階段 3**：沿用相機資訊，另加入局部觀察、物件對應、關係定義與來源對照，供模型區分參考視角、整理關係及衝突。`image_left_of`、`closer_to_camera` 仍以來源 `view_N` 為參考系，`on`、`inside` 使用 `physical`。

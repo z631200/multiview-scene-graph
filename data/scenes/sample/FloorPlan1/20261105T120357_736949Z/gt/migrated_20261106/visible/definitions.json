@@ -1,0 +1,19 @@
+{
+  "version": "visible-parent-mask-depth-v1",
+  "scope": "Both endpoints must have nonempty instance masks in the same view.",
+  "parent_relations": {
+    "CounterTop": "on",
+    "Floor": "on",
+    "Cabinet": "inside",
+    "Fridge": "inside",
+    "Drawer": "inside",
+    "Shelf": "inside"
+  },
+  "physical_candidates": "Only explicit parentReceptacles; provisional on then type override.",
+  "image_left_of": "Strict comparison of visible-mask mean column index (pixels).",
+  "closer_to_camera": "Strict comparison of median finite positive native depth (meters).",
+  "depth_convention": "AI2-THOR native depth; no geometric conversion",
+  "ties": "Exactly equal measurements produce neither directed edge; recorded separately.",
+  "gap_threshold": null,
+  "graph_type": "visible_ground_truth"
+}

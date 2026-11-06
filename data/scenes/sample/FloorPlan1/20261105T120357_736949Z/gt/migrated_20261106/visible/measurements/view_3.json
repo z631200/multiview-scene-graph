@@ -1,0 +1,748 @@
+{
+  "view_id": "view_3",
+  "sources": {
+    "image": "view_03.png",
+    "depth": "depth_03.npy",
+    "instance_masks": "instance_masks_03.npz",
+    "segmentation_mapping": "segmentation_mapping_03.json",
+    "metadata": "metadata_03.json"
+  },
+  "objects": {
+    "Apple|-00.47|+01.15|+00.48": {
+      "mask_key": "mask_0000",
+      "visible_pixel_count": 689,
+      "mask_center_x_px": 1017.7518142235124,
+      "valid_depth_pixel_count": 689,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 2.7611465454101562
+    },
+    "Book|+00.15|+01.10|+00.62": {
+      "mask_key": "mask_0001",
+      "visible_pixel_count": 5987,
+      "mask_center_x_px": 944.1286119926507,
+      "valid_depth_pixel_count": 5987,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 2.09307599067688
+    },
+    "Bottle|+01.54|+00.89|-02.54": {
+      "mask_key": "mask_0002",
+      "visible_pixel_count": 1352,
+      "mask_center_x_px": 191.29807692307693,
+      "valid_depth_pixel_count": 1352,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.8354432582855225
+    },
+    "Bowl|+00.27|+01.10|-00.75": {
+      "mask_key": "mask_0003",
+      "visible_pixel_count": 1054,
+      "mask_center_x_px": 644.8690702087287,
+      "valid_depth_pixel_count": 1054,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.1260489225387573
+    },
+    "Bread|-00.52|+01.17|-00.03": {
+      "mask_key": "mask_0004",
+      "visible_pixel_count": 2160,
+      "mask_center_x_px": 915.2916666666666,
+      "valid_depth_pixel_count": 2160,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.137338399887085
+    },
+    "ButterKnife|-00.41|+01.11|-00.46": {
+      "mask_key": "mask_0005",
+      "visible_pixel_count": 48,
+      "mask_center_x_px": 818.625,
+      "valid_depth_pixel_count": 48,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.448700189590454
+    },
+    "Cabinet|+00.68|+00.50|-02.20": {
+      "mask_key": "mask_0006",
+      "visible_pixel_count": 12825,
+      "mask_center_x_px": 459.48350877192985,
+      "valid_depth_pixel_count": 12825,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.093542575836182
+    },
+    "Cabinet|+00.68|+02.02|-02.46": {
+      "mask_key": "mask_0009",
+      "visible_pixel_count": 12871,
+      "mask_center_x_px": 443.88975215600965,
+      "valid_depth_pixel_count": 12871,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.294054985046387
+    },
+    "Cabinet|+00.72|+02.02|-02.46": {
+      "mask_key": "mask_0007",
+      "visible_pixel_count": 16414,
+      "mask_center_x_px": 339.74357256000974,
+      "valid_depth_pixel_count": 16414,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.942652702331543
+    },
+    "Cabinet|-00.73|+02.02|-02.46": {
+      "mask_key": "mask_0011",
+      "visible_pixel_count": 7082,
+      "mask_center_x_px": 666.1646427562836,
+      "valid_depth_pixel_count": 7082,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 5.26003623008728
+    },
+    "Cabinet|-01.69|+02.02|-02.46": {
+      "mask_key": "mask_0010",
+      "visible_pixel_count": 5931,
+      "mask_center_x_px": 724.8609003540719,
+      "valid_depth_pixel_count": 5931,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 5.572276592254639
+    },
+    "Cabinet|-01.85|+02.02|+00.38": {
+      "mask_key": "mask_0008",
+      "visible_pixel_count": 17188,
+      "mask_center_x_px": 1104.5324063299977,
+      "valid_depth_pixel_count": 17188,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.9704701900482178
+    },
+    "CoffeeMachine|-01.98|+00.90|-00.19": {
+      "mask_key": "mask_0012",
+      "visible_pixel_count": 5407,
+      "mask_center_x_px": 1058.425189569077,
+      "valid_depth_pixel_count": 5407,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.157034873962402
+    },
+    "CounterTop|+00.69|+00.95|-02.48": {
+      "mask_key": "mask_0013",
+      "visible_pixel_count": 2636,
+      "mask_center_x_px": 381.9097116843703,
+      "valid_depth_pixel_count": 2636,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.049108028411865
+    },
+    "CounterTop|-00.08|+01.15|00.00": {
+      "mask_key": "mask_0014",
+      "visible_pixel_count": 26604,
+      "mask_center_x_px": 879.8671628326567,
+      "valid_depth_pixel_count": 26604,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 2.6340370178222656
+    },
+    "CounterTop|-01.87|+00.95|-01.21": {
+      "mask_key": "mask_0015",
+      "visible_pixel_count": 2091,
+      "mask_center_x_px": 908.273075083692,
+      "valid_depth_pixel_count": 2091,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 5.028189182281494
+    },
+    "CreditCard|-00.46|+01.10|+00.87": {
+      "mask_key": "mask_0016",
+      "visible_pixel_count": 87,
+      "mask_center_x_px": 1126.2758620689656,
+      "valid_depth_pixel_count": 87,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 2.5122432708740234
+    },
+    "Drawer|+00.95|+00.22|-02.20": {
+      "mask_key": "mask_0019",
+      "visible_pixel_count": 3873,
+      "mask_center_x_px": 354.15027110766846,
+      "valid_depth_pixel_count": 3873,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.7497270107269287
+    },
+    "Drawer|+00.95|+00.39|-02.20": {
+      "mask_key": "mask_0021",
+      "visible_pixel_count": 3838,
+      "mask_center_x_px": 354.1039603960396,
+      "valid_depth_pixel_count": 3838,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.7497270107269287
+    },
+    "Drawer|+00.95|+00.56|-02.20": {
+      "mask_key": "mask_0018",
+      "visible_pixel_count": 3818,
+      "mask_center_x_px": 354.11655316919854,
+      "valid_depth_pixel_count": 3818,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.7497270107269287
+    },
+    "Drawer|+00.95|+00.71|-02.20": {
+      "mask_key": "mask_0020",
+      "visible_pixel_count": 2814,
+      "mask_center_x_px": 354.136105188344,
+      "valid_depth_pixel_count": 2814,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.7497270107269287
+    },
+    "Drawer|+00.95|+00.83|-02.20": {
+      "mask_key": "mask_0017",
+      "visible_pixel_count": 2791,
+      "mask_center_x_px": 354.13185238265856,
+      "valid_depth_pixel_count": 2791,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.7497270107269287
+    },
+    "Faucet|-02.15|+00.91|-01.50": {
+      "mask_key": "mask_0022",
+      "visible_pixel_count": 157,
+      "mask_center_x_px": 887.0191082802547,
+      "valid_depth_pixel_count": 157,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 5.348949432373047
+    },
+    "Floor|+00.00|+00.00|+00.00": {
+      "mask_key": "mask_0023",
+      "visible_pixel_count": 562834,
+      "mask_center_x_px": 741.9658282904018,
+      "valid_depth_pixel_count": 562834,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 2.0507442951202393
+    },
+    "Fridge|-02.10|+00.00|+01.07": {
+      "mask_key": "mask_0024",
+      "visible_pixel_count": 148371,
+      "mask_center_x_px": 1351.6488195132472,
+      "valid_depth_pixel_count": 148371,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.107658863067627
+    },
+    "GarbageCan|-01.94|00.00|+02.03": {
+      "mask_key": "mask_0025",
+      "visible_pixel_count": 3015,
+      "mask_center_x_px": 1586.9873963515754,
+      "valid_depth_pixel_count": 3015,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 2.7243521213531494
+    },
+    "HousePlant|-01.95|+00.89|-02.52": {
+      "mask_key": "mask_0026",
+      "visible_pixel_count": 1342,
+      "mask_center_x_px": 770.3450074515648,
+      "valid_depth_pixel_count": 1342,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 5.947701930999756
+    },
+    "Kettle|+01.04|+00.90|-02.60": {
+      "mask_key": "mask_0027",
+      "visible_pixel_count": 1082,
+      "mask_center_x_px": 314.8133086876155,
+      "valid_depth_pixel_count": 1082,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.950547218322754
+    },
+    "Microwave|-00.24|+01.69|-02.53": {
+      "mask_key": "mask_0028",
+      "visible_pixel_count": 6785,
+      "mask_center_x_px": 558.1537214443625,
+      "valid_depth_pixel_count": 6785,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.720749378204346
+    },
+    "Mug|-01.76|+00.90|-00.62": {
+      "mask_key": "mask_0029",
+      "visible_pixel_count": 361,
+      "mask_center_x_px": 971.4819944598338,
+      "valid_depth_pixel_count": 361,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.437046527862549
+    },
+    "Pan|+00.72|+00.90|-02.42": {
+      "mask_key": "mask_0030",
+      "visible_pixel_count": 577,
+      "mask_center_x_px": 393.17504332755635,
+      "valid_depth_pixel_count": 577,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.068321704864502
+    },
+    "PaperTowelRoll|-02.06|+01.01|-00.81": {
+      "mask_key": "mask_0031",
+      "visible_pixel_count": 250,
+      "mask_center_x_px": 973.528,
+      "valid_depth_pixel_count": 250,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.803276062011719
+    },
+    "PepperShaker|+00.30|+00.90|-02.47": {
+      "mask_key": "mask_0032",
+      "visible_pixel_count": 159,
+      "mask_center_x_px": 473.2201257861635,
+      "valid_depth_pixel_count": 159,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.416107177734375
+    },
+    "Potato|-01.66|+00.93|-02.15": {
+      "mask_key": "mask_0034",
+      "visible_pixel_count": 75,
+      "mask_center_x_px": 777.4533333333334,
+      "valid_depth_pixel_count": 75,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 5.503178119659424
+    },
+    "Pot|-01.22|+00.90|-02.36": {
+      "mask_key": "mask_0033",
+      "visible_pixel_count": 306,
+      "mask_center_x_px": 707.2679738562091,
+      "valid_depth_pixel_count": 306,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 5.311646938323975
+    },
+    "SaltShaker|+00.35|+00.90|-02.57": {
+      "mask_key": "mask_0035",
+      "visible_pixel_count": 148,
+      "mask_center_x_px": 457.89864864864865,
+      "valid_depth_pixel_count": 148,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.667600631713867
+    },
+    "Shelf|+01.75|+00.17|-02.56": {
+      "mask_key": "mask_0036",
+      "visible_pixel_count": 5670,
+      "mask_center_x_px": 142.27513227513228,
+      "valid_depth_pixel_count": 5670,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.542515277862549
+    },
+    "Shelf|+01.75|+00.55|-02.56": {
+      "mask_key": "mask_0038",
+      "visible_pixel_count": 3329,
+      "mask_center_x_px": 119.97957344547912,
+      "valid_depth_pixel_count": 3329,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.4813997745513916
+    },
+    "Shelf|+01.75|+00.88|-02.56": {
+      "mask_key": "mask_0037",
+      "visible_pixel_count": 1906,
+      "mask_center_x_px": 114.82948583420776,
+      "valid_depth_pixel_count": 1906,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.4705538749694824
+    },
+    "ShelvingUnit|+01.75|+00.01|-02.56": {
+      "mask_key": "mask_0039",
+      "visible_pixel_count": 16121,
+      "mask_center_x_px": 153.16481607840706,
+      "valid_depth_pixel_count": 16121,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.481029748916626
+    },
+    "Sink|-01.90|+00.97|-01.50": {
+      "mask_key": "mask_0040",
+      "visible_pixel_count": 676,
+      "mask_center_x_px": 853.3949704142012,
+      "valid_depth_pixel_count": 676,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 5.541447401046753
+    },
+    "SoapBottle|-01.99|+00.90|-02.03": {
+      "mask_key": "mask_0041",
+      "visible_pixel_count": 189,
+      "mask_center_x_px": 823.031746031746,
+      "valid_depth_pixel_count": 189,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 5.649558067321777
+    },
+    "Spatula|+00.38|+00.91|-02.33": {
+      "mask_key": "mask_0042",
+      "visible_pixel_count": 75,
+      "mask_center_x_px": 453.6933333333333,
+      "valid_depth_pixel_count": 75,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.350870609283447
+    },
+    "Statue|+01.96|+00.18|-02.54": {
+      "mask_key": "mask_0043",
+      "visible_pixel_count": 2711,
+      "mask_center_x_px": 55.3511619328661,
+      "valid_depth_pixel_count": 2711,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.253363847732544
+    },
+    "Stool|+00.70|+00.00|-00.51": {
+      "mask_key": "mask_0044",
+      "visible_pixel_count": 25101,
+      "mask_center_x_px": 574.3676347555875,
+      "valid_depth_pixel_count": 25101,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 2.6675474643707275
+    },
+    "Stool|+00.74|+00.00|+00.56": {
+      "mask_key": "mask_0045",
+      "visible_pixel_count": 51419,
+      "mask_center_x_px": 782.1824422878702,
+      "valid_depth_pixel_count": 51419,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 1.7222464084625244
+    },
+    "StoveBurner|-00.04|+00.92|-02.37": {
+      "mask_key": "mask_0049",
+      "visible_pixel_count": 274,
+      "mask_center_x_px": 539.014598540146,
+      "valid_depth_pixel_count": 274,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.565576076507568
+    },
+    "StoveBurner|-00.04|+00.92|-02.58": {
+      "mask_key": "mask_0047",
+      "visible_pixel_count": 186,
+      "mask_center_x_px": 521.3602150537635,
+      "valid_depth_pixel_count": 186,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.722247123718262
+    },
+    "StoveBurner|-00.47|+00.92|-02.37": {
+      "mask_key": "mask_0046",
+      "visible_pixel_count": 220,
+      "mask_center_x_px": 603.4136363636363,
+      "valid_depth_pixel_count": 220,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.853529214859009
+    },
+    "StoveBurner|-00.47|+00.92|-02.58": {
+      "mask_key": "mask_0048",
+      "visible_pixel_count": 154,
+      "mask_center_x_px": 585.8376623376623,
+      "valid_depth_pixel_count": 154,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 5.012874364852905
+    },
+    "StoveKnob|-00.02|+00.88|-02.19": {
+      "mask_key": "mask_0050",
+      "visible_pixel_count": 111,
+      "mask_center_x_px": 551.1621621621622,
+      "valid_depth_pixel_count": 111,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 4.420279026031494
+    },
+    "Toaster|-01.84|+00.90|+00.13": {
+      "mask_key": "mask_0051",
+      "visible_pixel_count": 2746,
+      "mask_center_x_px": 1107.2246904588492,
+      "valid_depth_pixel_count": 2746,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.892144203186035
+    },
+    "Tomato|-00.39|+01.14|-00.81": {
+      "mask_key": "mask_0052",
+      "visible_pixel_count": 325,
+      "mask_center_x_px": 761.1046153846154,
+      "valid_depth_pixel_count": 325,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.640120029449463
+    },
+    "Vase|+01.56|+00.56|-02.50": {
+      "mask_key": "mask_0053",
+      "visible_pixel_count": 490,
+      "mask_center_x_px": 186.07142857142858,
+      "valid_depth_pixel_count": 490,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.548502802848816
+    },
+    "Vase|+01.99|+00.56|-02.49": {
+      "mask_key": "mask_0054",
+      "visible_pixel_count": 3227,
+      "mask_center_x_px": 56.49705608924698,
+      "valid_depth_pixel_count": 3227,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 3.5055460929870605
+    },
+    "Window|-02.23|+01.43|-01.20": {
+      "mask_key": "mask_0055",
+      "visible_pixel_count": 36865,
+      "mask_center_x_px": 945.624494778245,
+      "valid_depth_pixel_count": 36865,
+      "invalid_depth_pixel_count": 0,
+      "median_native_depth_m": 19.989999771118164
+    }
+  },
+  "equal_pairs": [
+    {
+      "objects": [
+        "Drawer|+00.95|+00.22|-02.20",
+        "Drawer|+00.95|+00.39|-02.20"
+      ],
+      "relation": "closer_to_camera",
+      "value": 3.7497270107269287
+    },
+    {
+      "objects": [
+        "Drawer|+00.95|+00.22|-02.20",
+        "Drawer|+00.95|+00.56|-02.20"
+      ],
+      "relation": "closer_to_camera",
+      "value": 3.7497270107269287
+    },
+    {
+      "objects": [
+        "Drawer|+00.95|+00.22|-02.20",
+        "Drawer|+00.95|+00.71|-02.20"
+      ],
+      "relation": "closer_to_camera",
+      "value": 3.7497270107269287
+    },
+    {
+      "objects": [
+        "Drawer|+00.95|+00.22|-02.20",
+        "Drawer|+00.95|+00.83|-02.20"
+      ],
+      "relation": "closer_to_camera",
+      "value": 3.7497270107269287
+    },
+    {
+      "objects": [
+        "Drawer|+00.95|+00.39|-02.20",
+        "Drawer|+00.95|+00.56|-02.20"
+      ],
+      "relation": "closer_to_camera",
+      "value": 3.7497270107269287
+    },
+    {
+      "objects": [
+        "Drawer|+00.95|+00.39|-02.20",
+        "Drawer|+00.95|+00.71|-02.20"
+      ],
+      "relation": "closer_to_camera",
+      "value": 3.7497270107269287
+    },
+    {
+      "objects": [
+        "Drawer|+00.95|+00.39|-02.20",
+        "Drawer|+00.95|+00.83|-02.20"
+      ],
+      "relation": "closer_to_camera",
+      "value": 3.7497270107269287
+    },
+    {
+      "objects": [
+        "Drawer|+00.95|+00.56|-02.20",
+        "Drawer|+00.95|+00.71|-02.20"
+      ],
+      "relation": "closer_to_camera",
+      "value": 3.7497270107269287
+    },
+    {
+      "objects": [
+        "Drawer|+00.95|+00.56|-02.20",
+        "Drawer|+00.95|+00.83|-02.20"
+      ],
+      "relation": "closer_to_camera",
+      "value": 3.7497270107269287
+    },
+    {
+      "objects": [
+        "Drawer|+00.95|+00.71|-02.20",
+        "Drawer|+00.95|+00.83|-02.20"
+      ],
+      "relation": "closer_to_camera",
+      "value": 3.7497270107269287
+    }
+  ],
+  "excluded_parent_relations": [],
+  "physical_classification": [
+    {
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Book|+00.15|+01.10|+00.62",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Bottle|+01.54|+00.89|-02.54",
+      "target": "Shelf|+01.75|+00.88|-02.56",
+      "initial_relation": "on",
+      "parent_type": "Shelf",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "CoffeeMachine|-01.98|+00.90|-00.19",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Fridge|-02.10|+00.00|+01.07",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "initial_relation": "on",
+      "parent_type": "Floor",
+      "final_relation": "on"
+    },
+    {
+      "source": "GarbageCan|-01.94|00.00|+02.03",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "initial_relation": "on",
+      "parent_type": "Floor",
+      "final_relation": "on"
+    },
+    {
+      "source": "HousePlant|-01.95|+00.89|-02.52",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Kettle|+01.04|+00.90|-02.60",
+      "target": "CounterTop|+00.69|+00.95|-02.48",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Mug|-01.76|+00.90|-00.62",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Pan|+00.72|+00.90|-02.42",
+      "target": "CounterTop|+00.69|+00.95|-02.48",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "PaperTowelRoll|-02.06|+01.01|-00.81",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "PepperShaker|+00.30|+00.90|-02.47",
+      "target": "CounterTop|+00.69|+00.95|-02.48",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Potato|-01.66|+00.93|-02.15",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Pot|-01.22|+00.90|-02.36",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "SaltShaker|+00.35|+00.90|-02.57",
+      "target": "CounterTop|+00.69|+00.95|-02.48",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "ShelvingUnit|+01.75|+00.01|-02.56",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "initial_relation": "on",
+      "parent_type": "Floor",
+      "final_relation": "on"
+    },
+    {
+      "source": "SoapBottle|-01.99|+00.90|-02.03",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Spatula|+00.38|+00.91|-02.33",
+      "target": "CounterTop|+00.69|+00.95|-02.48",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Statue|+01.96|+00.18|-02.54",
+      "target": "Shelf|+01.75|+00.17|-02.56",
+      "initial_relation": "on",
+      "parent_type": "Shelf",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Stool|+00.70|+00.00|-00.51",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "initial_relation": "on",
+      "parent_type": "Floor",
+      "final_relation": "on"
+    },
+    {
+      "source": "Stool|+00.74|+00.00|+00.56",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "initial_relation": "on",
+      "parent_type": "Floor",
+      "final_relation": "on"
+    },
+    {
+      "source": "Toaster|-01.84|+00.90|+00.13",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Vase|+01.56|+00.56|-02.50",
+      "target": "Shelf|+01.75|+00.55|-02.56",
+      "initial_relation": "on",
+      "parent_type": "Shelf",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Vase|+01.99|+00.56|-02.49",
+      "target": "Shelf|+01.75|+00.55|-02.56",
+      "initial_relation": "on",
+      "parent_type": "Shelf",
+      "final_relation": "inside"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 # Local scene capture; the scene graph pipeline does not need these packages.
-# Keep the simulator version aligned with local/requirements.txt.
+# Keep the simulator version aligned with scene_capture/demo/requirements.txt.
 ai2thor==5.0.0
 numpy>=1.24,<3
 Pillow>=9

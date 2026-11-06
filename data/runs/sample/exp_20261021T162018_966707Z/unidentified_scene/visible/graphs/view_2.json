@@ -1,0 +1,164 @@
+{
+  "schema_version": "local-observation-v1",
+  "graph_type": "visible_reasoning",
+  "view_id": "view_2",
+  "status": "model_prediction",
+  "nodes": [
+    {
+      "id": "v2_o1",
+      "name": "Ceiling",
+      "features": "White, flat, contains recessed lighting",
+      "location": "Top of image",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o2",
+      "name": "Floor",
+      "features": "Light brown wood planks",
+      "location": "Bottom of image",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o3",
+      "name": "Wall",
+      "features": "Yellow/tan, smooth",
+      "location": "Right side of image",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o4",
+      "name": "Cabinets",
+      "features": "White, modern, includes upper and lower sections",
+      "location": "Left side of image",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o5",
+      "name": "Bar/Island",
+      "features": "Dark brown, rectangular, large countertop",
+      "location": "Center/Foreground",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o6",
+      "name": "Stool 1",
+      "features": "Black, high, rectangular seat",
+      "location": "Left of v2_o5",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o7",
+      "name": "Stool 2",
+      "features": "Black, high, rectangular seat",
+      "location": "Right of v2_o5",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o8",
+      "name": "Blue Box",
+      "features": "Blue, rectangular",
+      "location": "On v2_o5",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o9",
+      "name": "Red Object 1",
+      "features": "Red, small",
+      "location": "On v2_o5",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o10",
+      "name": "Brown Basket",
+      "features": "Brown, woven/basket shape",
+      "location": "On v2_o5",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o11",
+      "name": "Red Object 2",
+      "features": "Red, small",
+      "location": "On v2_o5",
+      "occlusion": "None"
+    },
+    {
+      "id": "v2_o12",
+      "name": "Window",
+      "features": "Glass, large",
+      "location": "Behind v2_o4",
+      "occlusion": "None"
+    }
+  ],
+  "edges": [
+    {
+      "id": "v2_r1",
+      "source": "v2_o6",
+      "target": "v2_o7",
+      "relation": "is left of",
+      "frame": "image",
+      "certainty": "clear",
+      "evidence": "Visual placement",
+      "view": "view_2"
+    },
+    {
+      "id": "v2_r2",
+      "source": "v2_o8",
+      "target": "v2_o5",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "Visual contact",
+      "view": "view_2"
+    },
+    {
+      "id": "v2_r3",
+      "source": "v2_o9",
+      "target": "v2_o5",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "Visual contact",
+      "view": "view_2"
+    },
+    {
+      "id": "v2_r4",
+      "source": "v2_o10",
+      "target": "v2_o5",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "Visual contact",
+      "view": "view_2"
+    },
+    {
+      "id": "v2_r5",
+      "source": "v2_o11",
+      "target": "v2_o5",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "Visual contact",
+      "view": "view_2"
+    },
+    {
+      "id": "v2_r6",
+      "source": "v2_o6",
+      "target": "v2_o5",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "Visual contact",
+      "view": "view_2"
+    },
+    {
+      "id": "v2_r7",
+      "source": "v2_o7",
+      "target": "v2_o5",
+      "relation": "rests on",
+      "frame": "physical",
+      "certainty": "clear",
+      "evidence": "Visual contact",
+      "view": "view_2"
+    }
+  ]
+}

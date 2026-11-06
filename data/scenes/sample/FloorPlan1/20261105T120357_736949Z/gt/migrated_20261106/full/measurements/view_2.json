@@ -1,0 +1,2443 @@
+{
+  "view_id": "view_2",
+  "camera": {
+    "position": [
+      2.0,
+      1.575999140739441,
+      -2.0
+    ],
+    "yaw": 320.52752685546875,
+    "pitch": 0.0,
+    "vertical_fov": 90.0,
+    "image_width": 1600,
+    "image_height": 1600
+  },
+  "sources": {
+    "objects": "objects.json",
+    "metadata": "metadata_02.json",
+    "cameras": "views.json"
+  },
+  "objects": {
+    "Apple|-00.47|+01.15|+00.48": {
+      "world_position": {
+        "x": -0.46516576409339905,
+        "y": 1.151225209236145,
+        "z": 0.47580063343048096
+      },
+      "camera_position": {
+        "x": -0.3290507626268775,
+        "y": -0.4247739315032959,
+        "z": 3.4782691984042344
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.09460186772715576,
+      "projected_pixel": {
+        "x": 724.3185058182754,
+        "y": 897.6977703044203
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 12.387063913837729,
+      "distance_m": 3.51952609222289,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.4036007551932164,
+        "max_camera_z": 3.5528387972672975,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Book|+00.15|+01.10|+00.62": {
+      "world_position": {
+        "x": 0.15499889850616455,
+        "y": 1.0992612838745117,
+        "z": 0.6169993281364441
+      },
+      "camera_position": {
+        "x": 0.23943405961885023,
+        "y": -0.4767378568649292,
+        "z": 3.193021434170855
+      },
+      "camera_region": "front",
+      "projected_x_over_z": 0.07498667470768954,
+      "projected_pixel": {
+        "x": 859.9893397661516,
+        "y": 919.4449499807322
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 10.479993532148232,
+      "distance_m": 3.2372818122845333,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.8176230737017445,
+        "max_camera_z": 3.5682344538013835,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Bottle|+01.54|+00.89|-02.54": {
+      "world_position": {
+        "x": 1.5399900674819946,
+        "y": 0.8861728310585022,
+        "z": -2.5399646759033203
+      },
+      "camera_position": {
+        "x": -0.6983550652200157,
+        "y": -0.6898263096809387,
+        "z": -0.12438324694324943
+      },
+      "camera_region": "behind",
+      "projected_x_over_z": null,
+      "projected_pixel": null,
+      "position_in_frame": false,
+      "distance_squared_m2": 0.97903132676662,
+      "distance_m": 0.9894601188358326,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.1995284225239674,
+        "max_camera_z": -0.049240214917422975,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Bowl|+00.27|+01.10|-00.75": {
+      "world_position": {
+        "x": 0.2731873095035553,
+        "y": 1.1010472774505615,
+        "z": -0.7532863020896912
+      },
+      "camera_position": {
+        "x": -0.540433508961695,
+        "y": -0.4749518632888794,
+        "z": 2.060123475670358
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.26233063956801883,
+      "projected_pixel": {
+        "x": 590.1354883455848,
+        "y": 984.4362705043517
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 4.761756385058345,
+      "distance_m": 2.1821449046885832,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.9289130447033496,
+        "max_camera_z": 2.191335649628078,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Bread|-00.52|+01.17|-00.03": {
+      "world_position": {
+        "x": -0.5223836302757263,
+        "y": 1.1704490184783936,
+        "z": -0.028279820457100868
+      },
+      "camera_position": {
+        "x": -0.6936666459702476,
+        "y": -0.40555012226104736,
+        "z": 3.125528152003757
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.22193581763950587,
+      "projected_pixel": {
+        "x": 622.4513458883953,
+        "y": 903.8032876462306
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 10.414570546365585,
+      "distance_m": 3.2271613759410274,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.977226288284192,
+        "max_camera_z": 3.273831436131911,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "ButterKnife|-00.41|+01.11|-00.46": {
+      "world_position": {
+        "x": -0.41180744767189026,
+        "y": 1.1053317785263062,
+        "z": -0.462016224861145
+      },
+      "camera_position": {
+        "x": -0.8840390193991243,
+        "y": -0.47066736221313477,
+        "z": 2.7204198700597297
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.32496418259866416,
+      "projected_pixel": {
+        "x": 540.0286539210687,
+        "y": 938.4102115686431
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 8.403737023088631,
+      "distance_m": 2.8989199752819377,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.614186326630294,
+        "max_camera_z": 2.8348814945378553,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Cabinet|+00.68|+00.50|-02.20": {
+      "world_position": {
+        "x": 0.6800000071525574,
+        "y": 0.4949999749660492,
+        "z": -2.200000047683716
+      },
+      "camera_position": {
+        "x": -1.1460892274742622,
+        "y": -1.0809991657733917,
+        "z": 0.6847477512618689
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.6737393081791399,
+      "projected_pixel": {
+        "x": -538.991446543312,
+        "y": 2062.9458527246584
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 2.950959196593506,
+      "distance_m": 1.7178356139612154,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.3700949154689408,
+        "max_camera_z": 1.0012711057096677,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Cabinet|+00.68|+02.02|-02.46": {
+      "world_position": {
+        "x": 0.6800000071525574,
+        "y": 2.015000104904175,
+        "z": -2.4600000381469727
+      },
+      "camera_position": {
+        "x": -1.3113731537308906,
+        "y": 0.4390009641647339,
+        "z": 0.48404593571929055
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.709191539398414,
+      "projected_pixel": {
+        "x": -1367.3532315187317,
+        "y": 74.44743274229948
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 2.146721862750031,
+      "distance_m": 1.4651695679169803,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.25779366970471573,
+        "max_camera_z": 0.8005694742095641,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Cabinet|+00.72|+02.02|-02.46": {
+      "world_position": {
+        "x": 0.7199999690055847,
+        "y": 2.015000104904175,
+        "z": -2.4600000381469727
+      },
+      "camera_position": {
+        "x": -1.2804959796539515,
+        "y": 0.4390009641647339,
+        "z": 0.4586176626897266
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.7920773311346685,
+      "projected_pixel": {
+        "x": -1433.6618649077352,
+        "y": 34.21882778773684
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 2.0427219609784864,
+      "distance_m": 1.429238245002731,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.06037584182901046,
+        "max_camera_z": 0.48462289384475327,
+        "intersects_camera_plane": true
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Cabinet|-00.73|+02.02|-02.46": {
+      "world_position": {
+        "x": -0.7278000116348267,
+        "y": 2.015000104904175,
+        "z": -2.4600000381469727
+      },
+      "camera_position": {
+        "x": -2.39809634625129,
+        "y": 0.4390009641647339,
+        "z": 1.3789948704278747
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.7390175972933157,
+      "projected_pixel": {
+        "x": -591.2140778346528,
+        "y": 545.3211909172537
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 7.845214785107743,
+      "distance_m": 2.8009310568287367,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.153052201746977,
+        "max_camera_z": 1.695518446809264,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Cabinet|-01.18|+00.50|-02.20": {
+      "world_position": {
+        "x": -1.1799999475479126,
+        "y": 0.4949999749660492,
+        "z": -2.200000047683716
+      },
+      "camera_position": {
+        "x": -2.5818791563598684,
+        "y": -1.0809991657733917,
+        "z": 1.867163545978946
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.3827814718855815,
+      "projected_pixel": {
+        "x": -306.22517750846544,
+        "y": 1263.1620698042832
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 11.320958881880983,
+      "distance_m": 3.3646632642630054,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.2600853051082228,
+        "max_camera_z": 2.0869471309129004,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Cabinet|-01.55|+00.50|+00.38": {
+      "world_position": {
+        "x": -1.5499999523162842,
+        "y": 0.4949999749660492,
+        "z": 0.3799999952316284
+      },
+      "camera_position": {
+        "x": -1.227368090801535,
+        "y": -1.0809991657733917,
+        "z": 4.093954959257658
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.2998000962433864,
+      "projected_pixel": {
+        "x": 560.1599230052908,
+        "y": 1011.2381160088593
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 19.43545883515094,
+      "distance_m": 4.408566528379825,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.808667239995506,
+        "max_camera_z": 4.354323359516113,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Cabinet|-01.55|+00.50|-01.97": {
+      "world_position": {
+        "x": -1.5499999523162842,
+        "y": 0.4949999749660492,
+        "z": -1.9649999141693115
+      },
+      "camera_position": {
+        "x": -2.7181019612398845,
+        "y": -1.0809991657733917,
+        "z": 2.283778972614835
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.190177330570553,
+      "projected_pixel": {
+        "x": -152.14186445644256,
+        "y": 1178.6703279908706
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 13.772283863856543,
+      "distance_m": 3.711102782712511,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.2588315847978238,
+        "max_camera_z": 3.258954919248,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Cabinet|-01.69|+02.02|-02.46": {
+      "world_position": {
+        "x": -1.6852999925613403,
+        "y": 2.015000104904175,
+        "z": -2.4616000652313232
+      },
+      "camera_position": {
+        "x": -3.138236539986216,
+        "y": 0.4390009641647339,
+        "z": 1.986449615391622
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.579821866948044,
+      "projected_pixel": {
+        "x": -463.85749355843535,
+        "y": 623.2017723426884
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 13.987232501931743,
+      "distance_m": 3.7399508689195025,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.4679915712965073,
+        "max_camera_z": 2.0105479328465754,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Cabinet|-01.85|+02.02|+00.38": {
+      "world_position": {
+        "x": -1.8499999046325684,
+        "y": 2.015000104904175,
+        "z": 0.3799999952316284
+      },
+      "camera_position": {
+        "x": -1.4589470804210523,
+        "y": 0.4390009641647339,
+        "z": 4.28466715854385
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.3405041807067407,
+      "projected_pixel": {
+        "x": 527.5966554346073,
+        "y": 718.0331264164886
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 20.679621089510903,
+      "distance_m": 4.547485139009352,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.8265325911167842,
+        "max_camera_z": 4.481991743712551,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "CoffeeMachine|-01.98|+00.90|-00.19": {
+      "world_position": {
+        "x": -1.9780069589614868,
+        "y": 0.8999992609024048,
+        "z": -0.18905165791511536
+      },
+      "camera_position": {
+        "x": -1.9195099422412825,
+        "y": -0.6759998798370361,
+        "z": 3.9267741015855337
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.48882616941632373,
+      "projected_pixel": {
+        "x": 408.9390644669409,
+        "y": 937.7211649764288
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 19.561049100785695,
+      "distance_m": 4.42278748085251,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.5886189525119008,
+        "max_camera_z": 4.129298468613314,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "CounterTop|+00.69|+00.95|-02.48": {
+      "world_position": {
+        "x": 0.6930000185966492,
+        "y": 0.9462000131607056,
+        "z": -2.4839999675750732
+      },
+      "camera_position": {
+        "x": -1.3165949872564837,
+        "y": -0.6297991275787354,
+        "z": 0.45725546419056745
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.8793422722396924,
+      "projected_pixel": {
+        "x": -1503.4738177917543,
+        "y": 1901.8770501843726
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 2.3391518610999675,
+      "distance_m": 1.5294286060813587,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.11880219124428754,
+        "max_camera_z": 1.0018167420264954,
+        "intersects_camera_plane": true
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "CounterTop|-00.08|+01.15|00.00": {
+      "world_position": {
+        "x": -0.07900000363588333,
+        "y": 1.1470999717712402,
+        "z": -0.0010000000474974513
+      },
+      "camera_position": {
+        "x": -0.3340634994210667,
+        "y": -0.4288991689682007,
+        "z": 2.8647239994950056
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.1166128044027821,
+      "projected_pixel": {
+        "x": 706.7097564777744,
+        "y": 919.7739591091657
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 8.502196512069721,
+      "distance_m": 2.915852621802021,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.7100525949202066,
+        "max_camera_z": 3.9890630867927745,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "CounterTop|-01.87|+00.95|-01.21": {
+      "world_position": {
+        "x": -1.8680000305175781,
+        "y": 0.9469000101089478,
+        "z": -1.2059999704360962
+      },
+      "camera_position": {
+        "x": -2.4810738845030382,
+        "y": -0.6290991306304932,
+        "z": 3.0718288791318558
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.8076862293202434,
+      "projected_pixel": {
+        "x": 153.85101654380523,
+        "y": 963.8370248822678
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 15.987625999191508,
+      "distance_m": 3.9984529507287574,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.09886606303845,
+        "max_camera_z": 4.534532794870741,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "CreditCard|-00.46|+01.10|+00.87": {
+      "world_position": {
+        "x": -0.463664710521698,
+        "y": 1.1003444194793701,
+        "z": 0.8652696013450623
+      },
+      "camera_position": {
+        "x": -0.08030373677556102,
+        "y": -0.4756547212600708,
+        "z": 3.7779577822048167
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.021255858695354648,
+      "projected_pixel": {
+        "x": 782.9953130437164,
+        "y": 900.7220829201493
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 14.50566110811905,
+      "distance_m": 3.808629820305335,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.7082110338540555,
+        "max_camera_z": 3.847704790380284,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Cup|+00.37|+01.64|-02.58": {
+      "world_position": {
+        "x": 0.37134993076324463,
+        "y": 1.6448094844818115,
+        "z": -2.5791807174682617
+      },
+      "camera_position": {
+        "x": -1.6253934779831078,
+        "y": 0.0688103437423706,
+        "z": 0.5882579308788917
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.76306258303169,
+      "projected_pixel": {
+        "x": -1410.4500664253526,
+        "y": 706.4215336431569
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 2.9926862149178817,
+      "distance_m": 1.729938211300589,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.5281355503181819,
+        "max_camera_z": 0.6477856810170362,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": false
+    },
+    "DishSponge|-01.94|+00.75|-01.71": {
+      "world_position": {
+        "x": -1.8567615747451782,
+        "y": 0.14490127563476562,
+        "z": -1.6192175149917603
+      },
+      "camera_position": {
+        "x": -2.735084046454182,
+        "y": -1.4310978651046753,
+        "z": 2.7457094537025903
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.9961301778547326,
+      "projected_pixel": {
+        "x": 3.0958577162138567,
+        "y": 1216.96993487052
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 17.067646244827117,
+      "distance_m": 4.131300793312818,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.6419774324820144,
+        "max_camera_z": 2.8494424600940014,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": false
+    },
+    "Drawer|+00.95|+00.22|-02.20": {
+      "world_position": {
+        "x": 0.949999988079071,
+        "y": 0.22100000083446503,
+        "z": -2.2009999752044678
+      },
+      "camera_position": {
+        "x": -0.9383037797688495,
+        "y": -1.354999139904976,
+        "z": 0.5123348826086686
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.8314266930084173,
+      "projected_pixel": {
+        "x": -665.1413544067341,
+        "y": 2915.8022783936826
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 2.978923684209372,
+      "distance_m": 1.725955875510545,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.07641645457139135,
+        "max_camera_z": 0.682344326080349,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Drawer|+00.95|+00.39|-02.20": {
+      "world_position": {
+        "x": 0.949999988079071,
+        "y": 0.39399999380111694,
+        "z": -2.2009999752044678
+      },
+      "camera_position": {
+        "x": -0.9383037797688495,
+        "y": -1.181999146938324,
+        "z": 0.5123348826086686
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.8314266930084173,
+      "projected_pixel": {
+        "x": -665.1413544067341,
+        "y": 2645.6664764576
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 2.540022998429073,
+      "distance_m": 1.5937449602835057,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.07641645457139135,
+        "max_camera_z": 0.682344326080349,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Drawer|+00.95|+00.56|-02.20": {
+      "world_position": {
+        "x": 0.949999988079071,
+        "y": 0.5600000023841858,
+        "z": -2.2011001110076904
+      },
+      "camera_position": {
+        "x": -0.9383674368431671,
+        "y": -1.0159991383552551,
+        "z": 0.5122575847692656
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.8318273164580523,
+      "projected_pixel": {
+        "x": -665.461853166442,
+        "y": 2386.7003922456524
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 2.175195528819877,
+      "distance_m": 1.4748544093638114,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.07633915673198838,
+        "max_camera_z": 0.682267028240946,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Drawer|+00.95|+00.71|-02.20": {
+      "world_position": {
+        "x": 0.949999988079071,
+        "y": 0.7081000208854675,
+        "z": -2.200200080871582
+      },
+      "camera_position": {
+        "x": -0.9377952809966218,
+        "y": -0.8678991198539734,
+        "z": 0.5129523451115184
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.8282308092240818,
+      "projected_pixel": {
+        "x": -662.5846473792656,
+        "y": 2153.5746595177966
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 1.8958289796582406,
+      "distance_m": 1.3768910558421972,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.07703373303176647,
+        "max_camera_z": 0.6829619726256736,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Drawer|+00.95|+00.83|-02.20": {
+      "world_position": {
+        "x": 0.949999988079071,
+        "y": 0.8327999711036682,
+        "z": -2.197000026702881
+      },
+      "camera_position": {
+        "x": -0.9357609827787856,
+        "y": -0.7431991696357727,
+        "z": 0.5154225632078675
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.815521961155196,
+      "projected_pixel": {
+        "x": -652.417568924157,
+        "y": 1953.5376565748738
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 1.6936540413021888,
+      "distance_m": 1.3014046416477039,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.07950395112811554,
+        "max_camera_z": 0.6854321907220227,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Drawer|-01.56|+00.33|-00.20": {
+      "world_position": {
+        "x": -1.5604000091552734,
+        "y": 0.3310000002384186,
+        "z": -0.19699999690055847
+      },
+      "camera_position": {
+        "x": -1.6021993908540442,
+        "y": -1.2449991405010223,
+        "z": 3.6551626979269183
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.4383387343503905,
+      "projected_pixel": {
+        "x": 449.3290125196875,
+        "y": 1072.4911022334832
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 17.47728009621774,
+      "distance_m": 4.180583702812053,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.482512346707753,
+        "max_camera_z": 4.0467971278996675,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Drawer|-01.56|+00.66|-00.20": {
+      "world_position": {
+        "x": -1.5604000091552734,
+        "y": 0.6552000045776367,
+        "z": -0.19699999690055847
+      },
+      "camera_position": {
+        "x": -1.6021993908540442,
+        "y": -0.9207991361618042,
+        "z": 3.6551626979269183
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.4383387343503905,
+      "projected_pixel": {
+        "x": 449.3290125196875,
+        "y": 1001.5339315394195
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 16.77512828552578,
+      "distance_m": 4.095745144113069,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.4825121951432907,
+        "max_camera_z": 4.0467971278996675,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Drawer|-01.56|+00.84|+00.20": {
+      "world_position": {
+        "x": -1.5609999895095825,
+        "y": 0.8396000266075134,
+        "z": 0.2045000046491623
+      },
+      "camera_position": {
+        "x": -1.3474259988098563,
+        "y": -0.7363991141319275,
+        "z": 3.965474041462971
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.33978938828527905,
+      "projected_pixel": {
+        "x": 528.1684893717767,
+        "y": 948.5621353577692
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 18.082824851079693,
+      "distance_m": 4.252390486665082,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.8127693902044806,
+        "max_camera_z": 4.337162794480354,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Drawer|-01.56|+00.84|-00.20": {
+      "world_position": {
+        "x": -1.5609999895095825,
+        "y": 0.8396000266075134,
+        "z": -0.19709999859333038
+      },
+      "camera_position": {
+        "x": -1.6027261055611077,
+        "y": -0.7363991141319275,
+        "z": 3.655466915581694
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.4384463442219572,
+      "projected_pixel": {
+        "x": 449.2429246224342,
+        "y": 961.1611607793188
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 16.4734529956537,
+      "distance_m": 4.058750176551114,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.4852958512871113,
+        "max_camera_z": 4.044621732495625,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Egg|-02.04|+00.81|+01.24": {
+      "world_position": {
+        "x": -2.03973388671875,
+        "y": 0.8123221397399902,
+        "z": 1.2443753480911255
+      },
+      "camera_position": {
+        "x": -1.0559186140793777,
+        "y": -0.7636770009994507,
+        "z": 5.072519803336984
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.20816451290830565,
+      "projected_pixel": {
+        "x": 633.4683896733555,
+        "y": 920.4414422192397
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 27.428623836660705,
+      "distance_m": 5.2372343690788465,
+      "aabb_camera_depth": {
+        "min_camera_z": 5.025567305926753,
+        "max_camera_z": 5.1194723007472165,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": false
+    },
+    "Faucet|-02.15|+00.91|-01.50": {
+      "world_position": {
+        "x": -2.1510000228881836,
+        "y": 0.906000018119812,
+        "z": -1.4989999532699585
+      },
+      "camera_position": {
+        "x": -2.8857923602065685,
+        "y": -0.6699991226196289,
+        "z": 3.0255585749766287
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.9538048227107486,
+      "projected_pixel": {
+        "x": 36.95614183140101,
+        "y": 977.1571380335427
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 17.930701061152277,
+      "distance_m": 4.234465853109726,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.8056098183237714,
+        "max_camera_z": 3.075606133491115,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Floor|+00.00|+00.00|+00.00": {
+      "world_position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "camera_position": {
+        "x": -0.27244531219285095,
+        "y": -1.575999140739441,
+        "z": 2.8152750401806466
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.09677395931282404,
+      "projected_pixel": {
+        "x": 722.5808325497408,
+        "y": 1247.8423225428987
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 10.483773291611456,
+      "distance_m": 3.2378655456351884,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.9680908714483522,
+        "max_camera_z": 6.2707981578325445,
+        "intersects_camera_plane": true
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Fork|+00.95|+00.77|-02.37": {
+      "world_position": {
+        "x": 0.9492349624633789,
+        "y": 0.7680964469909668,
+        "z": -2.3652503490448
+      },
+      "camera_position": {
+        "x": -1.0433095094183407,
+        "y": -0.8079026937484741,
+        "z": 0.38603140953029497
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.7026544567650364,
+      "projected_pixel": {
+        "x": -1362.1235654120294,
+        "y": 2474.27348926139
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 1.8902217441527256,
+      "distance_m": 1.3748533536900311,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.2625490370403924,
+        "max_camera_z": 0.47514545203095754,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": false
+    },
+    "Fridge|-02.10|+00.00|+01.07": {
+      "world_position": {
+        "x": -2.0969998836517334,
+        "y": 0.0,
+        "z": 1.0720000267028809
+      },
+      "camera_position": {
+        "x": -1.2097042330359802,
+        "y": -1.575999140739441,
+        "z": 4.975862526163645
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.2431144804896074,
+      "projected_pixel": {
+        "x": 605.508415608314,
+        "y": 1053.3830679529685
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 28.706365502316274,
+      "distance_m": 5.357832164440789,
+      "aabb_camera_depth": {
+        "min_camera_z": 4.307019079483179,
+        "max_camera_z": 5.549369453239198,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "GarbageCan|-01.94|00.00|+02.03": {
+      "world_position": {
+        "x": -1.9349995851516724,
+        "y": -0.002286478877067566,
+        "z": 2.029000997543335
+      },
+      "camera_position": {
+        "x": -0.4762786987521035,
+        "y": -1.5782856196165085,
+        "z": 5.611615576147749
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.08487372170975732,
+      "projected_pixel": {
+        "x": 732.1010226321941,
+        "y": 1025.0026714338785
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 34.20805627043729,
+      "distance_m": 5.848765362915262,
+      "aabb_camera_depth": {
+        "min_camera_z": 5.308234831808445,
+        "max_camera_z": 5.913091133538989,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "HousePlant|-01.95|+00.89|-02.52": {
+      "world_position": {
+        "x": -1.9487520456314087,
+        "y": 0.8894974589347839,
+        "z": -2.5208652019500732
+      },
+      "camera_position": {
+        "x": -3.379278394391399,
+        "y": -0.686501681804657,
+        "z": 2.1081795012949485
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.6029367481828176,
+      "projected_pixel": {
+        "x": -482.3493985462543,
+        "y": 1060.5097645178596
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 16.335227835601348,
+      "distance_m": 4.041686261401464,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.7339106977737644,
+        "max_camera_z": 2.41355057280706,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Kettle|+01.04|+00.90|-02.60": {
+      "world_position": {
+        "x": 1.0373425483703613,
+        "y": 0.9045257568359375,
+        "z": -2.5963099002838135
+      },
+      "camera_position": {
+        "x": -1.12218288682399,
+        "y": -0.6714733839035034,
+        "z": 0.1516589426111692
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -7.399384879671085,
+      "projected_pixel": {
+        "x": -5119.507903736869,
+        "y": 4342.018016702441
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 1.7331713716453834,
+      "distance_m": 1.3164996664053445,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.010809074362784221,
+        "max_camera_z": 0.29715984567591397,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Knife|-01.70|+00.79|-00.22": {
+      "world_position": {
+        "x": -1.7018152475357056,
+        "y": 0.790888249874115,
+        "z": -0.22279910743236542
+      },
+      "camera_position": {
+        "x": -1.7277627545787775,
+        "y": -0.7851108908653259,
+        "z": 3.725146306297431
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.4638107103761164,
+      "projected_pixel": {
+        "x": 428.9514316991069,
+        "y": 968.6077971301328
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 17.47827825038638,
+      "distance_m": 4.18070308086886,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.513692191106073,
+        "max_camera_z": 3.868355222794075,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": false
+    },
+    "Lettuce|-01.81|+00.97|-00.94": {
+      "world_position": {
+        "x": -1.806976079940796,
+        "y": 0.9737611413002014,
+        "z": -0.9429916143417358
+      },
+      "camera_position": {
+        "x": -2.266771294312012,
+        "y": -0.6022379994392395,
+        "z": 3.2360595637095937
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.7004726735355709,
+      "projected_pixel": {
+        "x": 239.62186117154323,
+        "y": 948.8818082813966
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 15.973024208561856,
+      "distance_m": 3.9966266035948186,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.098879228466444,
+        "max_camera_z": 3.379755444575278,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "LightSwitch|+02.33|+01.31|-00.16": {
+      "world_position": {
+        "x": 2.3299999237060547,
+        "y": 1.309000015258789,
+        "z": -0.1599999964237213
+      },
+      "camera_position": {
+        "x": 1.4244385473250747,
+        "y": -0.26699912548065186,
+        "z": 1.210567960794081
+      },
+      "camera_region": "front",
+      "projected_x_over_z": 1.1766696240586971,
+      "projected_pixel": {
+        "x": 1741.335699246958,
+        "y": 976.4455258211275
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 3.5657884958141404,
+      "distance_m": 1.8883295516975156,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.1749744417039727,
+        "max_camera_z": 1.2709784338926156,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Microwave|-00.24|+01.69|-02.53": {
+      "world_position": {
+        "x": -0.23699793219566345,
+        "y": 1.6890130043029785,
+        "z": -2.5251078605651855
+      },
+      "camera_position": {
+        "x": -2.060620980425801,
+        "y": 0.1130138635635376,
+        "z": 1.016729653793983
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.0267147444126175,
+      "projected_pixel": {
+        "x": -821.3717955300943,
+        "y": 711.0765673908928
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 5.292670147232578,
+      "distance_m": 2.300580393559977,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.6847513241664664,
+        "max_camera_z": 1.3704031373527874,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Mug|-01.76|+00.90|-00.62": {
+      "world_position": {
+        "x": -1.7607921361923218,
+        "y": 0.9000071287155151,
+        "z": -0.6206092834472656
+      },
+      "camera_position": {
+        "x": -2.0261796748516385,
+        "y": -0.6759920120239258,
+        "z": 3.4555567085168755
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.5863540511020219,
+      "projected_pixel": {
+        "x": 330.9167591183824,
+        "y": 956.499706193868
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 16.50324144087803,
+      "distance_m": 4.062418176514824,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.3832891892333308,
+        "max_camera_z": 3.5422610136294583,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Pan|+00.72|+00.90|-02.42": {
+      "world_position": {
+        "x": 0.7211822271347046,
+        "y": 0.9000632166862488,
+        "z": -2.4154083728790283
+      },
+      "camera_position": {
+        "x": -1.2512361060162385,
+        "y": -0.6759359240531921,
+        "z": 0.49228774050902074
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.541676347094227,
+      "projected_pixel": {
+        "x": -1233.341077675382,
+        "y": 1898.4403931802667
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 2.264828385879799,
+      "distance_m": 1.5049346782767015,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.1980929720060156,
+        "max_camera_z": 0.669756817181272,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "PaperTowelRoll|-02.06|+01.01|-00.81": {
+      "world_position": {
+        "x": -2.062819242477417,
+        "y": 1.007476568222046,
+        "z": -0.8149154782295227
+      },
+      "camera_position": {
+        "x": -2.3828453777190064,
+        "y": -0.568522572517395,
+        "z": 3.497566786591487
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.6812865981155947,
+      "projected_pixel": {
+        "x": 254.9707215075242,
+        "y": 930.0384197830156
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 18.23414343624653,
+      "distance_m": 4.270145598951695,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.451606556471826,
+        "max_camera_z": 3.551119336512614,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "PepperShaker|+00.30|+00.90|-02.47": {
+      "world_position": {
+        "x": 0.300026535987854,
+        "y": 0.9000789523124695,
+        "z": -2.465442419052124
+      },
+      "camera_position": {
+        "x": -1.6081458707893683,
+        "y": -0.6759201884269714,
+        "z": 0.7213967577288196
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.229211392427531,
+      "projected_pixel": {
+        "x": -983.3691139420253,
+        "y": 1549.5683130653124
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 3.5634145249217006,
+      "distance_m": 1.8877008568419151,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.6740161816715188,
+        "max_camera_z": 0.7683303215098385,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Plate|+00.96|+01.65|-02.61": {
+      "world_position": {
+        "x": 0.9559999704360962,
+        "y": 1.6460758447647095,
+        "z": -2.6061999797821045
+      },
+      "camera_position": {
+        "x": -1.1912608672146336,
+        "y": 0.07007670402526855,
+        "z": 0.19573457400340633
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -6.086103455559683,
+      "projected_pixel": {
+        "x": -4068.882764447747,
+        "y": 513.5847690391212
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 1.462325221664301,
+      "distance_m": 1.2092663981374414,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.046528634012660164,
+        "max_camera_z": 0.34052117667403614,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": false
+    },
+    "Potato|-01.66|+00.93|-02.15": {
+      "world_position": {
+        "x": -1.6557016372680664,
+        "y": 0.9333286881446838,
+        "z": -2.150597095489502
+      },
+      "camera_position": {
+        "x": -2.917681779739262,
+        "y": -0.6426704525947571,
+        "z": 2.207706270786906
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.3215896599774095,
+      "projected_pixel": {
+        "x": -257.27172798192777,
+        "y": 1032.8825935220761
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 13.799859256532645,
+      "distance_m": 3.7148161807191276,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.145155709404417,
+        "max_camera_z": 2.2729352144109205,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Pot|-01.22|+00.90|-02.36": {
+      "world_position": {
+        "x": -1.2190016508102417,
+        "y": 0.9009172916412354,
+        "z": -2.3559999465942383
+      },
+      "camera_position": {
+        "x": -2.7111560397231416,
+        "y": -0.6750818490982056,
+        "z": 1.771536202894791
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.5303983262057859,
+      "projected_pixel": {
+        "x": -424.31866096462886,
+        "y": 1104.8571507576683
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 10.944443092876014,
+      "distance_m": 3.3082386692734267,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.598486597979585,
+        "max_camera_z": 1.9442013320730545,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "SaltShaker|+00.35|+00.90|-02.57": {
+      "world_position": {
+        "x": 0.34677639603614807,
+        "y": 0.9000768661499023,
+        "z": -2.566875696182251
+      },
+      "camera_position": {
+        "x": -1.6365401353273636,
+        "y": -0.6759222745895386,
+        "z": 0.6133781257006432
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.6680771073438487,
+      "projected_pixel": {
+        "x": -1334.4616858750794,
+        "y": 1681.5733672503604
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 3.5113672609116344,
+      "distance_m": 1.8738642589343644,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.5654602510814556,
+        "max_camera_z": 0.661294365589363,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Shelf|+01.75|+00.17|-02.56": {
+      "world_position": {
+        "x": 1.7510097026824951,
+        "y": 0.1726451963186264,
+        "z": -2.5595011711120605
+      },
+      "camera_position": {
+        "x": -0.5478821548296305,
+        "y": -1.4033539444208145,
+        "z": -0.2736108058050112
+      },
+      "camera_region": "behind",
+      "projected_x_over_z": null,
+      "projected_pixel": null,
+      "position_in_frame": false,
+      "distance_squared_m2": 2.344440021955485,
+      "distance_m": 1.5311564328818545,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.5335084355412479,
+        "max_camera_z": 0.09276669346515021,
+        "intersects_camera_plane": true
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Shelf|+01.75|+00.55|-02.56": {
+      "world_position": {
+        "x": 1.7510102987289429,
+        "y": 0.5529817342758179,
+        "z": -2.559494972229004
+      },
+      "camera_position": {
+        "x": -0.5478777540474145,
+        "y": -1.023017406463623,
+        "z": -0.27360639961182387
+      },
+      "camera_region": "behind",
+      "projected_x_over_z": null,
+      "projected_pixel": null,
+      "position_in_frame": false,
+      "distance_squared_m2": 1.4215951092161419,
+      "distance_m": 1.192306633889178,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.5389908443441286,
+        "max_camera_z": 0.09276675842117443,
+        "intersects_camera_plane": true
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Shelf|+01.75|+00.88|-02.56": {
+      "world_position": {
+        "x": 1.7510106563568115,
+        "y": 0.8809456825256348,
+        "z": -2.560189723968506
+      },
+      "camera_position": {
+        "x": -0.5483191368278965,
+        "y": -0.6950534582138062,
+        "z": -0.27414292672999463
+      },
+      "camera_region": "behind",
+      "projected_x_over_z": null,
+      "projected_pixel": null,
+      "position_in_frame": false,
+      "distance_squared_m2": 0.8589075298627478,
+      "distance_m": 0.9267726419477151,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.5332370146105604,
+        "max_camera_z": 0.02672422990646922,
+        "intersects_camera_plane": true
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "ShelvingUnit|+01.75|+00.01|-02.56": {
+      "world_position": {
+        "x": 1.751009464263916,
+        "y": 0.006781816482543945,
+        "z": -2.560004234313965
+      },
+      "camera_position": {
+        "x": -0.5482021398883201,
+        "y": -1.569217324256897,
+        "z": -0.2739989838623111
+      },
+      "camera_region": "behind",
+      "projected_x_over_z": null,
+      "projected_pixel": null,
+      "position_in_frame": false,
+      "distance_squared_m2": 2.8380440400836875,
+      "distance_m": 1.684649530342643,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.7525053589677503,
+        "max_camera_z": 0.20450169675078972,
+        "intersects_camera_plane": true
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Sink|-01.90|+00.97|-01.50": {
+      "world_position": {
+        "x": -1.899999976158142,
+        "y": 0.9649999737739563,
+        "z": -1.5
+      },
+      "camera_position": {
+        "x": -2.692673609161438,
+        "y": -0.6109991669654846,
+        "z": 2.8652240136783416
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.9397776914847975,
+      "projected_pixel": {
+        "x": 48.1778468121619,
+        "y": 970.5972486754614
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 15.833319796066025,
+      "distance_m": 3.9791104277295477,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.405879557833219,
+        "max_camera_z": 3.3523941580803096,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Sink|-01.90|+00.97|-01.50|SinkBasin": {
+      "world_position": {
+        "x": -1.9081000089645386,
+        "y": 0.7591999769210815,
+        "z": -1.488800048828125
+      },
+      "camera_position": {
+        "x": -2.691806376001275,
+        "y": -0.8167991638183594,
+        "z": 2.879018844027534
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.9349735176570215,
+      "projected_pixel": {
+        "x": 52.021185874382695,
+        "y": 1026.9659791946947
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 16.201731944161125,
+      "distance_m": 4.025137506242628,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.47091575571962,
+        "max_camera_z": 3.25953195768254,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": false
+    },
+    "SoapBottle|-01.99|+00.90|-02.03": {
+      "world_position": {
+        "x": -1.9914913177490234,
+        "y": 0.899879515171051,
+        "z": -2.0323102474212646
+      },
+      "camera_position": {
+        "x": -3.101692108949301,
+        "y": -0.6761196255683899,
+        "z": 2.5124794433061335
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.2345144224813365,
+      "projected_pixel": {
+        "x": -187.61153798506936,
+        "y": 1015.2836322286305
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 16.390184639833,
+      "distance_m": 4.048479299667099,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.46638901611865,
+        "max_camera_z": 2.560584745856193,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Spatula|+00.38|+00.91|-02.33": {
+      "world_position": {
+        "x": 0.38115280866622925,
+        "y": 0.9074085354804993,
+        "z": -2.3329858779907227
+      },
+      "camera_position": {
+        "x": -1.461318452404721,
+        "y": -0.6685906052589417,
+        "z": 0.7720713726670365
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.892724564254669,
+      "projected_pixel": {
+        "x": -714.1796514037354,
+        "y": 1492.7759571754286
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 3.1785592212710085,
+      "distance_m": 1.782851429948948,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.5450518302190411,
+        "max_camera_z": 0.8482154688276808,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Spoon|+00.98|+00.77|-02.29": {
+      "world_position": {
+        "x": 0.9829990863800049,
+        "y": 0.7667461037635803,
+        "z": -2.2869675159454346
+      },
+      "camera_position": {
+        "x": -0.9674809874699407,
+        "y": -0.8092530369758606,
+        "z": 0.4249961792722218
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.27644631800382,
+      "projected_pixel": {
+        "x": -1021.1570544030565,
+        "y": 2323.3135288164776
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 1.7715316913664516,
+      "distance_m": 1.3309889899493728,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.3214553599110807,
+        "max_camera_z": 0.5073572497756291,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": false
+    },
+    "Statue|+01.96|+00.18|-02.54": {
+      "world_position": {
+        "x": 1.9550410509109497,
+        "y": 0.1809232234954834,
+        "z": -2.5430257320404053
+      },
+      "camera_position": {
+        "x": -0.37991065915456546,
+        "y": -1.3950759172439575,
+        "z": -0.3905971631002374
+      },
+      "camera_region": "behind",
+      "projected_x_over_z": null,
+      "projected_pixel": null,
+      "position_in_frame": false,
+      "distance_squared_m2": 2.2431350676352793,
+      "distance_m": 1.497709941088487,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.5760529258253073,
+        "max_camera_z": -0.1715493652925221,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Stool|+00.70|+00.00|-00.51": {
+      "world_position": {
+        "x": 0.7027497291564941,
+        "y": 0.0005893111228942871,
+        "z": -0.5144200921058655
+      },
+      "camera_position": {
+        "x": -0.05699232757773709,
+        "y": -1.5754098296165466,
+        "z": 1.9714354675057377
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.028909050545714205,
+      "projected_pixel": {
+        "x": 776.8727595634286,
+        "y": 1439.2945061944156
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 6.371722059194731,
+      "distance_m": 2.5242270221187972,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.525769250147019,
+        "max_camera_z": 2.4261597382857047,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Stool|+00.74|+00.00|+00.56": {
+      "world_position": {
+        "x": 0.7430257797241211,
+        "y": 0.0005869865417480469,
+        "z": 0.5636938810348511
+      },
+      "camera_position": {
+        "x": 0.659463032950297,
+        "y": -1.5754121541976929,
+        "z": 2.7780602970896235
+      },
+      "camera_region": "front",
+      "projected_x_over_z": 0.2373825484065877,
+      "projected_pixel": {
+        "x": 989.9060387252702,
+        "y": 1253.6725587556584
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 10.634433961687506,
+      "distance_m": 3.2610479851862815,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.358431398142426,
+        "max_camera_z": 3.2039796453953584,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "StoveBurner|-00.04|+00.92|-02.37": {
+      "world_position": {
+        "x": -0.03610000014305115,
+        "y": 0.9150999784469604,
+        "z": -2.3722000122070312
+      },
+      "camera_position": {
+        "x": -1.80833716642671,
+        "y": -0.6608991622924805,
+        "z": 1.0070515141685976
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.7956749391510904,
+      "projected_pixel": {
+        "x": -636.5399513208725,
+        "y": 1325.017163864239
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 4.7210237623883495,
+      "distance_m": 2.1727916978827837,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.8644590605269373,
+        "max_camera_z": 1.149643967810258,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "StoveBurner|-00.04|+00.92|-02.58": {
+      "world_position": {
+        "x": -0.03610000014305115,
+        "y": 0.9150999784469604,
+        "z": -2.576200008392334
+      },
+      "camera_position": {
+        "x": -1.938021480129056,
+        "y": -0.6608991622924805,
+        "z": 0.8495777791422288
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.2811583915080362,
+      "projected_pixel": {
+        "x": -1024.9267132064294,
+        "y": 1422.3318721539574
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 4.914497362972761,
+      "distance_m": 2.216866564088322,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.7069853255005685,
+        "max_camera_z": 0.9921702327838892,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "StoveBurner|-00.47|+00.92|-02.37": {
+      "world_position": {
+        "x": -0.4652000069618225,
+        "y": 0.9150999784469604,
+        "z": -2.371999979019165
+      },
+      "camera_position": {
+        "x": -2.139445209907019,
+        "y": -0.6608991622924805,
+        "z": 1.2799879892095634
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.6714572542420498,
+      "projected_pixel": {
+        "x": -537.1658033936401,
+        "y": 1213.0658524073237
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 6.652382761433731,
+      "distance_m": 2.579221347894308,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.137395497676787,
+        "max_camera_z": 1.4225804807423392,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "StoveBurner|-00.47|+00.92|-02.58": {
+      "world_position": {
+        "x": -0.4652000069618225,
+        "y": 0.9150999784469604,
+        "z": -2.5759999752044678
+      },
+      "camera_position": {
+        "x": -2.269129523609365,
+        "y": -0.6608991622924805,
+        "z": 1.1225142541831945
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -2.0214705649867346,
+      "projected_pixel": {
+        "x": -817.176451989388,
+        "y": 1271.013466299999
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 6.84577474847902,
+      "distance_m": 2.616443148336883,
+      "aabb_camera_depth": {
+        "min_camera_z": 0.9799217626504184,
+        "max_camera_z": 1.2651067457159704,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "StoveKnob|-00.02|+00.88|-02.19": {
+      "world_position": {
+        "x": -0.022000014781951904,
+        "y": 0.8813999891281128,
+        "z": -2.1875998973846436
+      },
+      "camera_position": {
+        "x": -1.6801012985447192,
+        "y": -0.6945991516113281,
+        "z": 1.1405864315803913
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.4730153296815731,
+      "projected_pixel": {
+        "x": -378.41226374525866,
+        "y": 1287.187385281373
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 4.606145762696119,
+      "distance_m": 2.1461933190409757,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.0911212367225631,
+        "max_camera_z": 1.2022775680371223,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "StoveKnob|-00.18|+00.88|-02.19": {
+      "world_position": {
+        "x": -0.18310000002384186,
+        "y": 0.8813999891281128,
+        "z": -2.1875998973846436
+      },
+      "camera_position": {
+        "x": -1.8044592243443327,
+        "y": -0.6945991516113281,
+        "z": 1.2429988894932595
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.451698178974212,
+      "projected_pixel": {
+        "x": -361.3585431793698,
+        "y": 1247.0473191778954
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 5.283587313022004,
+      "distance_m": 2.2986055148767925,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.193533697003626,
+        "max_camera_z": 1.3046900235817958,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": false
+    },
+    "StoveKnob|-00.33|+00.88|-02.19": {
+      "world_position": {
+        "x": -0.32899999618530273,
+        "y": 0.8813999891281128,
+        "z": -2.1875998973846436
+      },
+      "camera_position": {
+        "x": -1.9170838212340722,
+        "y": -0.6945991516113281,
+        "z": 1.3357486013814266
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.4352130477632024,
+      "projected_pixel": {
+        "x": -348.17043821056205,
+        "y": 1216.0059166181277
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 5.941902685149046,
+      "distance_m": 2.43760183072401,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.2862833994190142,
+        "max_camera_z": 1.3974397449427416,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "StoveKnob|-00.48|+00.88|-02.19": {
+      "world_position": {
+        "x": -0.48350000381469727,
+        "y": 0.8813999891281128,
+        "z": -2.1875998973846436
+      },
+      "camera_position": {
+        "x": -2.036347025733858,
+        "y": -0.6945991516113281,
+        "z": 1.433965404475018
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.4200810001266206,
+      "projected_pixel": {
+        "x": -336.06480010129667,
+        "y": 1187.5123622612775
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 6.685433971865507,
+      "distance_m": 2.5856206163831357,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.3845002214581634,
+        "max_camera_z": 1.4956565290907753,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Toaster|-01.84|+00.90|+00.13": {
+      "world_position": {
+        "x": -1.8350030183792114,
+        "y": 0.9000004529953003,
+        "z": 0.1340002566576004
+      },
+      "camera_position": {
+        "x": -1.6037543947751884,
+        "y": -0.6759986877441406,
+        "z": 4.085238926627381
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.39257297396291757,
+      "projected_pixel": {
+        "x": 485.94162082966596,
+        "y": 932.3787812434695
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 19.718179472224165,
+      "distance_m": 4.440515676385364,
+      "aabb_camera_depth": {
+        "min_camera_z": 3.897289840206157,
+        "max_camera_z": 4.262680651050265,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Tomato|-00.39|+01.14|-00.81": {
+      "world_position": {
+        "x": -0.38504892587661743,
+        "y": 1.137034296989441,
+        "z": -0.8119610548019409
+      },
+      "camera_position": {
+        "x": -1.085845840494723,
+        "y": -0.43896484375,
+        "z": 2.433276335481203
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.4462484694653421,
+      "projected_pixel": {
+        "x": 443.0012244277263,
+        "y": 944.3205894371026
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 7.292585048180985,
+      "distance_m": 2.700478670195524,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.355487237737112,
+        "max_camera_z": 2.509916590869315,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "Vase|+01.56|+00.56|-02.50": {
+      "world_position": {
+        "x": 1.5619902610778809,
+        "y": 0.5563275218009949,
+        "z": -2.499983310699463
+      },
+      "camera_position": {
+        "x": -0.6559560028379955,
+        "y": -1.019671618938446,
+        "z": -0.10750611475361899
+      },
+      "camera_region": "behind",
+      "projected_x_over_z": null,
+      "projected_pixel": null,
+      "position_in_frame": false,
+      "distance_squared_m2": 1.4815660528371701,
+      "distance_m": 1.2171959796339988,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.21359823398340233,
+        "max_camera_z": -0.0010557406095194621,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Vase|+01.99|+00.56|-02.49": {
+      "world_position": {
+        "x": 1.988030195236206,
+        "y": 0.5554119944572449,
+        "z": -2.48699688911438
+      },
+      "camera_position": {
+        "x": -0.3188273942151813,
+        "y": -1.020587146282196,
+        "z": -0.36831825766736626
+      },
+      "camera_region": "behind",
+      "projected_x_over_z": null,
+      "projected_pixel": null,
+      "position_in_frame": false,
+      "distance_squared_m2": 1.2789073693896036,
+      "distance_m": 1.1308878677347298,
+      "aabb_camera_depth": {
+        "min_camera_z": -0.5015124991291361,
+        "max_camera_z": -0.2351501935406236,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": true
+    },
+    "Window|-02.23|+01.43|-01.20": {
+      "world_position": {
+        "x": -2.2300000190734863,
+        "y": 1.4299999475479126,
+        "z": -1.2039999961853027
+      },
+      "camera_position": {
+        "x": -2.7592411690637686,
+        "y": -0.14599919319152832,
+        "z": 3.303498802539256
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -0.8352481214592419,
+      "projected_pixel": {
+        "x": 131.80150283260642,
+        "y": 835.3562575725605
+      },
+      "position_in_frame": true,
+      "distance_squared_m2": 18.54783193184727,
+      "distance_m": 4.306719393209554,
+      "aabb_camera_depth": {
+        "min_camera_z": 2.586343716304891,
+        "max_camera_z": 4.108429046173015,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": true,
+      "ever_visible": true
+    },
+    "WineBottle|-01.00|+01.65|-02.58": {
+      "world_position": {
+        "x": -1.001008152961731,
+        "y": 1.645018458366394,
+        "z": -2.5838327407836914
+      },
+      "camera_position": {
+        "x": -2.687715300244024,
+        "y": 0.06901931762695312,
+        "z": 1.4570851272962577
+      },
+      "camera_region": "front",
+      "projected_x_over_z": -1.844583579842931,
+      "projected_pixel": {
+        "x": -675.666863874345,
+        "y": 762.1055399803447
+      },
+      "position_in_frame": false,
+      "distance_squared_m2": 9.351674269559467,
+      "distance_m": 3.058050730377027,
+      "aabb_camera_depth": {
+        "min_camera_z": 1.3950145159589484,
+        "max_camera_z": 1.5191513432665869,
+        "intersects_camera_plane": false
+      },
+      "visible_in_view": false,
+      "ever_visible": false
+    }
+  },
+  "equal_pairs": [
+    {
+      "objects": [
+        "Drawer|+00.95|+00.22|-02.20",
+        "Drawer|+00.95|+00.39|-02.20"
+      ],
+      "relation": "image_left_of",
+      "value": -1.8314266930084173,
+      "method": "projected_x_over_z"
+    },
+    {
+      "objects": [
+        "Drawer|-01.56|+00.33|-00.20",
+        "Drawer|-01.56|+00.66|-00.20"
+      ],
+      "relation": "image_left_of",
+      "value": -0.4383387343503905,
+      "method": "projected_x_over_z"
+    }
+  ],
+  "excluded_parent_relations": [],
+  "physical_classification": [
+    {
+      "source": "Apple|-00.47|+01.15|+00.48",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Book|+00.15|+01.10|+00.62",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Bottle|+01.54|+00.89|-02.54",
+      "target": "Shelf|+01.75|+00.88|-02.56",
+      "initial_relation": "on",
+      "parent_type": "Shelf",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Bowl|+00.27|+01.10|-00.75",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Bread|-00.52|+01.17|-00.03",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "ButterKnife|-00.41|+01.11|-00.46",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "CoffeeMachine|-01.98|+00.90|-00.19",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "CreditCard|-00.46|+01.10|+00.87",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Cup|+00.37|+01.64|-02.58",
+      "target": "Cabinet|+00.68|+02.02|-02.46",
+      "initial_relation": "inside",
+      "parent_type": "Cabinet",
+      "final_relation": "inside"
+    },
+    {
+      "source": "DishSponge|-01.94|+00.75|-01.71",
+      "target": "Cabinet|-01.55|+00.50|-01.97",
+      "initial_relation": "inside",
+      "parent_type": "Cabinet",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Egg|-02.04|+00.81|+01.24",
+      "target": "Fridge|-02.10|+00.00|+01.07",
+      "initial_relation": "inside",
+      "parent_type": "Fridge",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Fork|+00.95|+00.77|-02.37",
+      "target": "Drawer|+00.95|+00.83|-02.20",
+      "initial_relation": "inside",
+      "parent_type": "Drawer",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Fridge|-02.10|+00.00|+01.07",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "initial_relation": "on",
+      "parent_type": "Floor",
+      "final_relation": "on"
+    },
+    {
+      "source": "GarbageCan|-01.94|00.00|+02.03",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "initial_relation": "on",
+      "parent_type": "Floor",
+      "final_relation": "on"
+    },
+    {
+      "source": "HousePlant|-01.95|+00.89|-02.52",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Kettle|+01.04|+00.90|-02.60",
+      "target": "CounterTop|+00.69|+00.95|-02.48",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Knife|-01.70|+00.79|-00.22",
+      "target": "Drawer|-01.56|+00.84|-00.20",
+      "initial_relation": "inside",
+      "parent_type": "Drawer",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Lettuce|-01.81|+00.97|-00.94",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Mug|-01.76|+00.90|-00.62",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Pan|+00.72|+00.90|-02.42",
+      "target": "CounterTop|+00.69|+00.95|-02.48",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "PaperTowelRoll|-02.06|+01.01|-00.81",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "PepperShaker|+00.30|+00.90|-02.47",
+      "target": "CounterTop|+00.69|+00.95|-02.48",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Plate|+00.96|+01.65|-02.61",
+      "target": "Cabinet|+00.72|+02.02|-02.46",
+      "initial_relation": "inside",
+      "parent_type": "Cabinet",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Potato|-01.66|+00.93|-02.15",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Pot|-01.22|+00.90|-02.36",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "SaltShaker|+00.35|+00.90|-02.57",
+      "target": "CounterTop|+00.69|+00.95|-02.48",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "ShelvingUnit|+01.75|+00.01|-02.56",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "initial_relation": "on",
+      "parent_type": "Floor",
+      "final_relation": "on"
+    },
+    {
+      "source": "SoapBottle|-01.99|+00.90|-02.03",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Spatula|+00.38|+00.91|-02.33",
+      "target": "CounterTop|+00.69|+00.95|-02.48",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Spoon|+00.98|+00.77|-02.29",
+      "target": "Drawer|+00.95|+00.83|-02.20",
+      "initial_relation": "inside",
+      "parent_type": "Drawer",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Statue|+01.96|+00.18|-02.54",
+      "target": "Shelf|+01.75|+00.17|-02.56",
+      "initial_relation": "on",
+      "parent_type": "Shelf",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Stool|+00.70|+00.00|-00.51",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "initial_relation": "on",
+      "parent_type": "Floor",
+      "final_relation": "on"
+    },
+    {
+      "source": "Stool|+00.74|+00.00|+00.56",
+      "target": "Floor|+00.00|+00.00|+00.00",
+      "initial_relation": "on",
+      "parent_type": "Floor",
+      "final_relation": "on"
+    },
+    {
+      "source": "Toaster|-01.84|+00.90|+00.13",
+      "target": "CounterTop|-01.87|+00.95|-01.21",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Tomato|-00.39|+01.14|-00.81",
+      "target": "CounterTop|-00.08|+01.15|00.00",
+      "initial_relation": "on",
+      "parent_type": "CounterTop",
+      "final_relation": "on"
+    },
+    {
+      "source": "Vase|+01.56|+00.56|-02.50",
+      "target": "Shelf|+01.75|+00.55|-02.56",
+      "initial_relation": "on",
+      "parent_type": "Shelf",
+      "final_relation": "inside"
+    },
+    {
+      "source": "Vase|+01.99|+00.56|-02.49",
+      "target": "Shelf|+01.75|+00.55|-02.56",
+      "initial_relation": "on",
+      "parent_type": "Shelf",
+      "final_relation": "inside"
+    },
+    {
+      "source": "WineBottle|-01.00|+01.65|-02.58",
+      "target": "Cabinet|-00.73|+02.02|-02.46",
+      "initial_relation": "inside",
+      "parent_type": "Cabinet",
+      "final_relation": "inside"
+    }
+  ]
+}

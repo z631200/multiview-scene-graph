@@ -1,0 +1,20 @@
+{
+  "raw_sha256": "a7bf0dcc57f4acf59c4d8c4b5a32a53f9c0a48f9eb62d64e4ec5bb2af5c54f96",
+  "normalized_sha256": "44523dcceb7f63bd799971cf178cfe6dd6cabfdb8bca45ec8cdb7edc48cdd5bc",
+  "changes": [
+    {
+      "kind": "duplicate_edge",
+      "edge": "e20",
+      "retained": "e17",
+      "before_statuses": [
+        "provisional",
+        "provisional"
+      ],
+      "after_status": "provisional",
+      "sources": [
+        "v3_r2",
+        "v4_r5"
+      ]
+    }
+  ]
+}

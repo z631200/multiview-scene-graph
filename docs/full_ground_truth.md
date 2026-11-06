@@ -1,26 +1,28 @@
 # Full ground-truth
 
-`full_ground_truth.py` 以 capture-v2 匯出資料計算指定相機下全部物件的場景圖。
+`gt/full/generate.py` 以 capture-v2 匯出資料計算指定相機下全部物件的場景圖。
 僅需 Python 3.10+ 標準函式庫，不使用模型、RGB、遮罩或深度圖來推斷關係。
-`ground_truth_common.py` 提供 Visible／Full 共用的檔案讀取、父物件分類及輸出工具。
+`gt/common.py` 提供 Visible／Full 共用的檔案讀取、父物件分類及輸出工具。
 
 ## 執行與輸出
 
 ```sh
 # 預設產生全部視角，以及共用現有介面的 HTML 檢查器。
-python3 full_ground_truth.py --scene-dir colab/scene_output/20261105T120357_736949Z
+python3 -m gt.full --scene-dir data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic
 
 # 指定一個或多個視角。
-python3 full_ground_truth.py --scene-dir colab/scene_output/20261105T120357_736949Z --view view_1 view_3
+python3 -m gt.full --scene-dir data/scenes/sample/FloorPlan1/20261105T120357_736949Z/basic --view view_1 view_3
 ```
 
-可用 `--output-dir PATH` 指定新目錄，既有目錄不覆寫；`--no-html` 略過 HTML。
-預設輸出為 `outputs/ground_truth/<scene_id>/full-<UTC run_id>/`：
+可用 `--config configs/gt.yaml` 載入設定、`--gt-id ID` 群組兩種 GT，
+或用 `--output-dir PATH` 指定新目錄，既有目錄不覆寫；`--no-html` 略過 HTML。
+預設輸出為 `data/scenes/<scene>/<capture_id>/gt/<gt_id>/full/`：
 
 ```text
 <run>/
 ├── graphs/view_1.json ... view_4.json
 ├── measurements/view_1.json ... view_4.json
+├── config.yaml
 ├── definitions.json
 ├── input_manifest.json
 ├── validation_report.json
@@ -108,8 +110,8 @@ AABB 只記錄角點的相機深度範圍及是否跨越相機平面；不替換
 也可以重新建立檢查器：
 
 ```sh
-python3 inspect_graph.py \
-  --run-dir outputs/ground_truth/20261105T120357_736949Z/full-unified-v1
+python3 -m visualization \
+  --run-dir data/scenes/sample/FloorPlan1/20261105T120357_736949Z/gt/gt_v1/full
 ```
 
 新格式預設載入所有視角，`--complete-only` 只載入完成圖。
@@ -129,7 +131,7 @@ HTML 為本次輸出的靜態快照，更新圖後需要重新產生。
 15、8、1 個物件中心位於相機後方；每個相關配對列為一筆待辦，不是遺漏節點。
 
 ```sh
-python3 -m unittest discover -s tests -p 'test_full_ground_truth.py' -v
+python3 -m unittest discover -s tests -p 'test_gt/full/generate.py' -v
 ```
 
 測試包含旋轉、平移、俯仰、相機平面、畫面外物件、AABB 診斷、相等值、極小差距、

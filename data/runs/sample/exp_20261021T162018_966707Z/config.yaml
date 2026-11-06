@@ -1,0 +1,21 @@
+{
+  "historical": true,
+  "source_config": {
+    "model": "gemma4:e4b",
+    "ollama_url": "http://localhost:11434",
+    "thinking": "on",
+    "options": {
+      "temperature": 0.2,
+      "seed": 42,
+      "num_ctx": 32768,
+      "num_predict": 8192
+    },
+    "verification_budget": 4,
+    "source_hashes": {
+      "scene_prompts.py": "23bb25c659c1da9b45ec7b5e9b68ddc83093936dc036ee525431272e5395639d",
+      "scene_validation.py": "a8c17308ade81b7eab8067f885bbce84f37cd402a35006a97b35ae8b2f1165ab",
+      "run_scene_graph.py": "01aec81b7c9b2fbc9000290838d65898e9d24739cfb65e24d7c8121b47db06fb",
+      "ollama_client.py": "bb58cb87dadb556c857f002616a44d2ad4600e364ac586eee9b50e5b349ac840"
+    }
+  }
+}
