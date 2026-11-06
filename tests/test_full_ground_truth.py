@@ -119,25 +119,25 @@ class FullGTTests(unittest.TestCase):
     def test_per_view_publication_and_inspector(self):
         result = build_full_gt(self.root)
         out = Path(self.temp.name) / "out"
-        write_artifacts(result, out, graph_kind="full", per_view=True)
-        self.assertTrue((out / "full/view_1.json").is_file())
-        self.assertTrue((out / "drafts/view_2.json").is_file())
+        write_artifacts(result, out)
+        self.assertTrue((out / "graphs/view_1.json").is_file())
+        self.assertTrue((out / "graphs/view_2.json").is_file())
         self.assertFalse((out / "full/view_2.json").exists())
-        self.assertEqual(len(load_run(out)["graphs"]), 1)
-        data = load_run(out, include_drafts=True)
+        self.assertEqual(len(load_run(out, complete_only=True)["graphs"]), 1)
+        data = load_run(out)
         self.assertEqual(len(data["graphs"]), 2)
         self.assertEqual(len(data["graphs"][1]["review_tasks"]), 3)
         html = render_html(data)
         self.assertIn('source_graph_status', html)
         self.assertIn('review-title', html)
-        self.assertNotIn('unresolved', (out / "drafts/view_2.json").read_text())
+        self.assertNotIn('unresolved', (out / "graphs/view_2.json").read_text())
 
     def test_all_draft_run_is_loadable_explicitly(self):
         result = build_full_gt(self.root, ["view_2"])
         out = Path(self.temp.name) / "draft-run"
-        write_artifacts(result, out, graph_kind="full", per_view=True)
-        with self.assertRaises(ValueError): load_run(out)
-        self.assertEqual(load_run(out, include_drafts=True)["graphs"][0]["status"], "needs_review")
+        write_artifacts(result, out)
+        with self.assertRaises(ValueError): load_run(out, complete_only=True)
+        self.assertEqual(load_run(out)["graphs"][0]["status"], "needs_review")
 
     def test_unknown_parent_is_reviewed(self):
         self.objects[2]["objectType"] = "UnknownContainer"

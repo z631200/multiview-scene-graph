@@ -13,25 +13,32 @@ import webbrowser
 RELATIONS = ("on", "inside", "image_left_of", "closer_to_camera")
 
 
-def load_run(run_dir, graph_kind="auto", include_drafts=False):
+def load_run(run_dir, graph_kind="auto", include_drafts=None, complete_only=False):
     """Load saved graphs and their measurements, validating references before display."""
     root = Path(run_dir).resolve()
+    unified = (root / "graphs").is_dir()
+    allow_drafts = unified if include_drafts is None else include_drafts
     if graph_kind == "auto":
-        kinds = [k for k in ("visible", "full") if (root / k).is_dir()]
-        if not kinds and include_drafts and (root / "definitions.json").is_file():
-            kind = json.loads((root / "definitions.json").read_text())["graph_type"]
-            kinds = [kind.removesuffix("_ground_truth")]
+        kinds = [] if unified else [k for k in ("visible", "full") if (root / k).is_dir()]
+        if not kinds and (unified or allow_drafts) and (root / "definitions.json").is_file():
+            kind = json.loads((root / "definitions.json").read_text()).get("graph_type")
+            if kind is None and not unified:
+                drafts = sorted((root / "drafts").glob("view_*.json"))
+                if drafts:
+                    kind = json.loads(drafts[0].read_text()).get("graph_type")
+            if kind:
+                kinds = [kind.removesuffix("_ground_truth")]
         if len(kinds) != 1:
             raise ValueError("請用 --graph-kind visible 或 full 指定圖種類；草稿需加 --include-drafts。")
         graph_kind = kinds[0]
     if graph_kind not in ("visible", "full"):
         raise ValueError("Unknown graph kind")
-    folder = root / graph_kind
+    folder = root / "graphs" if unified else root / graph_kind
     tasks_path = root / "review_tasks.json"
     tasks = json.loads(tasks_path.read_text(encoding="utf-8")) if tasks_path.is_file() else []
     graphs = []
     candidates = list(folder.glob("view_*.json"))
-    if include_drafts:
+    if allow_drafts and not unified:
         candidates.extend((root / "drafts").glob("view_*.json"))
     files = sorted(candidates, key=lambda p: int(re.search(r"view_(\d+)", p.stem)[1])
                    if re.fullmatch(r"view_\d+", p.stem) else -1)
@@ -46,7 +53,9 @@ def load_run(run_dir, graph_kind="auto", include_drafts=False):
             raise ValueError(f"{view} 同時存在多份圖")
         if graph.get("status") not in ("complete", "needs_review"):
             raise ValueError(f"{view} 的狀態無效")
-        if graph.get("status") != "complete" and not include_drafts:
+        if complete_only and graph.get("status") == "needs_review":
+            continue
+        if graph.get("status") != "complete" and not allow_drafts:
             raise ValueError(f"{view} 尚未定稿")
         graph["review_tasks"] = [t for t in tasks if t["view_id"] == view]
         if "review_task_count" in graph and graph["review_task_count"] != len(graph["review_tasks"]):
@@ -66,7 +75,7 @@ def load_run(run_dir, graph_kind="auto", include_drafts=False):
             raise ValueError(f"{view} 的測量檔視角不一致")
         graphs.append(graph)
     if not graphs:
-        raise ValueError(f"{folder} 沒有可載入的圖；若只有草稿，請加 --include-drafts。")
+        raise ValueError(f"{folder} 沒有符合條件的圖；請檢查 --complete-only 或舊格式草稿選項。")
     return {"run_dir": str(root), "graphs": graphs}
 
 
@@ -131,7 +140,7 @@ function svgEl(tag,attrs){const n=document.createElementNS(ns,tag);Object.entrie
 function choices(container,values,selected,onchange){container.replaceChildren();values.forEach(value=>{const label=el('label');label.className='choice';const input=el('input');input.type='checkbox';input.value=value;input.checked=selected.has(value);input.addEventListener('change',()=>onchange(value,input.checked));label.append(input,document.createTextNode(value));container.append(label);});}
 function relations(){return new Set([...$('relations').querySelectorAll('input:checked')].map(n=>n.value));}
 function scope(){return document.querySelector('input[name=scope]:checked').value;}
-function typeFor(id){return graph.nodes.find(n=>n.id===id)?.objectType||id.split('|')[0];}
+function typeFor(id){return graph.nodes.find(n=>n.id===id)?.objectType||(typeof id==='string'?id.split('|')[0]:'');}
 function matches(a,b){const sa=selectedTypes.has(typeFor(a)),sb=selectedTypes.has(typeFor(b));return scope()==='between'?sa&&sb:sa||sb;}
 function showTypes(){const types=[...new Set(graph.nodes.map(n=>n.objectType))].sort();choices($('types'),types,selectedTypes,(t,on)=>{on?selectedTypes.add(t):selectedTypes.delete(t);render();});filterTypes();}
 function filterTypes(){const q=$('type-search').value.toLowerCase();[...$('types').children].forEach(n=>n.hidden=!n.textContent.toLowerCase().includes(q));}
@@ -153,7 +162,7 @@ function render(){
  $('nodes').replaceChildren();nodes.forEach(n=>{const tr=el('tr'),td=el('td'),button=el('button',nodeLabel(n.id));button.addEventListener('click',()=>inspectNode(n));td.append(button);tr.append(td,el('td',n.id));$('nodes').append(tr);});
  const ties=(graph.measurements?.equal_pairs||[]).filter(t=>wanted.has(t.relation)&&matches(...t.objects));
  const excluded=(graph.measurements?.excluded_parent_relations||[]).filter(e=>{const relation=PARENTS[typeFor(e.target)];return (relation?wanted.has(relation):(wanted.has('on')||wanted.has('inside')))&&matches(e.source,e.target);});
- const review=(graph.review_tasks||[]).filter(t=>(t.relation==='on_or_inside'?(wanted.has('on')||wanted.has('inside')):wanted.has(t.relation))&&matches(...(t.objects||[t.source,t.target])));
+ const review=(graph.review_tasks||[]).filter(t=>{const ids=t.objects||(t.objectId?[t.objectId]:[t.source,t.target]);return (t.relation==='on_or_inside'?(wanted.has('on')||wanted.has('inside')):wanted.has(t.relation))&&(ids.length===1?selectedTypes.has(typeFor(ids[0])):matches(...ids));});
  current.equal_pairs=ties;current.excluded_parent_relations=excluded;current.review_tasks=review;
  $('review-title').textContent='人工待辦（目前篩選）：'+review.length;$('review').textContent=pretty(review);
  $('ties-title').textContent='相等配對：'+ties.length;$('ties').textContent=pretty(ties);
@@ -194,9 +203,10 @@ changeView(true);document.body.dataset.ready='true';
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--run-dir", required=True, type=Path, help="含 visible/、full/ 或 drafts/ 的 GT run 目錄")
+    parser.add_argument("--run-dir", required=True, type=Path, help="GT run 目錄（graphs/；相容舊版 visible/full/drafts）")
     parser.add_argument("--graph-kind", choices=("auto", "visible", "full"), default="auto")
-    parser.add_argument("--include-drafts", action="store_true", help="一併顯示草稿與人工待辦")
+    parser.add_argument("--include-drafts", action="store_true", default=None, help="載入舊格式的草稿；新格式預設已包含")
+    parser.add_argument("--complete-only", action="store_true", help="只顯示已完成的視角")
     parser.add_argument("--view", help="初始視角，例如 view_3")
     parser.add_argument("--types", nargs="*", default=[], help="初始物件類型，例如 Apple Bowl CounterTop")
     parser.add_argument("--relations", nargs="+", choices=RELATIONS, default=["on", "inside"])
@@ -205,7 +215,7 @@ def main(argv=None):
     parser.add_argument("--no-open", action="store_true", help="只產生檔案，不自動開啟瀏覽器")
     args = parser.parse_args(argv)
     try:
-        data = load_run(args.run_dir, args.graph_kind, args.include_drafts)
+        data = load_run(args.run_dir, args.graph_kind, args.include_drafts, args.complete_only)
         html = render_html(data, view=args.view, types=args.types, relations=args.relations, scope=args.scope)
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S_%fZ")
         output = (args.output or Path("outputs/graph_inspection") / f"{stamp}.html").resolve()

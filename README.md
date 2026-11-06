@@ -6,11 +6,13 @@
 
 | 文件 | 內容 |
 | --- | --- |
+| [程式操作指南](docs/operation_guide.md) | 依工作查指令：產生不同 GT、指定視角、檢視關係、模型推理及各項產物。 |
 | [專案架構](docs/architecture.md) | 目錄、各 Python 檔案功能與依流程的互動方式。 |
 | [Ollama 指南](docs/ollama_guide.md) | 合併原 instruction／interaction：呼叫與隔離、參數、重試、續跑、紀錄位置及實測案例。 |
 | [輸出格式](docs/output_format.md) | 各階段的固定欄位、ID、引用與正規化規則。 |
 | [Visible ground-truth](docs/ground_truth_relations.md) | 四種關係計算、執行方式與場景驗收數量。 |
 | [Full ground-truth](docs/full_ground_truth.md) | 全物件建圖、指定／全部視角、人工待辦與 HTML 檢查器。 |
+| [GT 統一輸出與檢視](docs/ground_truth_outputs.md) | 兩種 GT 共用的操作、檔案格式、草稿狀態與舊結果相容方式。 |
 | [研究設計與 prompts](docs/research_design.md) | 階段 0–6 的設計、完整中英文 prompts 與評估規劃。 |
 | [本機任務示範](local/README.md) | 獨立的 AI2-THOR 動作計畫、環境設定與測試。 |
 | [歷史範例](local/examples/legacy/README.md) | 舊動作草稿、影片、紀錄與環境清單的用途。 |
@@ -39,45 +41,38 @@ python -m unittest discover -s tests -v
 
 四個 view 使用相同英文模板，各自獨立、依序呼叫；中央模型另用純文字對話。完整新 run 若一次全通過共六次推論，每任務預設最多再修正三次。參數、失敗處理與恢復指令見 [Ollama 指南](docs/ollama_guide.md)。
 
-## 產生 Visible ground-truth
+## 產生與檢視 Ground-truth
 
-使用 Colab 的 capture-v2 匯出資料，以父容器類型、可見遮罩中心及深度中位數
-計算每個視角的 Visible GT，不需啟動 Ollama 或 AI2-THOR：
+Visible GT 使用可見遮罩與深度；Full GT 使用全部物件位置與相機幾何。
+兩者共用輸出格式與操作方式，關係定義分別見 [Visible GT](docs/ground_truth_relations.md)
+及 [Full GT](docs/full_ground_truth.md)，完整操作見 [統一輸出與檢視](docs/ground_truth_outputs.md)。
 
 ```sh
+# 首次安裝；只有 Visible GT 需要 NumPy。
 python3 -m pip install -r requirements-ground-truth.txt
 python3 visible_ground_truth.py --scene-dir colab/scene_output/20261105T120357_736949Z
-```
-
-預設寫入新的 `outputs/ground_truth/<scene_id>/<UTC run_id>/`，正式圖為
-`visible/view_1.json`～`view_4.json`。輸出包含測量值、來源雜湊與驗收報告。
-資料不一致會停止；未知父物件類型或缺少有效深度會產生人工處理清單及草稿，
-不輸出正式圖。規則及已驗證數量見 [GT 文件](docs/ground_truth_relations.md)。
-
-互動檢查指定 run：
-
-```sh
-python3 inspect_graph.py --run-dir outputs/ground_truth/20261105T120357_736949Z/visible-v1
-```
-
-在瀏覽器切換視角、多選物件類型及關係，點箭頭查看證據；可切換只看所選物件之間，
-或包含它們與其他物件的關係。檢查器只需 Python 標準函式庫。
-
-## 產生 Full ground-truth
-
-Full GT 使用物件位置、父容器及相機資訊，保留全部 metadata 物件，包含不可見物件。
-Python 部分只使用標準函式庫，預設計算全部一般視角並附上可離線開啟的 `inspect.html`：
-
-```sh
 python3 full_ground_truth.py --scene-dir colab/scene_output/20261105T120357_736949Z
-# 只計算指定視角：
-python3 full_ground_truth.py --scene-dir colab/scene_output/20261105T120357_736949Z --view view_3
 ```
 
-每個視角獨立定稿：正式圖位於 `full/`，仍需人工處理的圖位於 `drafts/`。
-這批資料的 view_3 已完整；其他視角因相機後方物件的左右配對需要人工處理，保留草稿。
-有待辦時結束碼為 `2`，但四個視角的圖、證據、待辦及 HTML 均已輸出。
-算法、實際數量與操作方式見 [Full GT 文件](docs/full_ground_truth.md)。
+預設分別輸出到 `outputs/ground_truth/<scene_id>/visible-<UTC>/` 與 `full-<UTC>/`。
+兩者都有 `graphs/view_N.json`、`measurements/view_N.json`、規則、來源、驗收報告、
+人工清單及 **`inspect.html`**。直接用瀏覽器開啟 `inspect.html`，不必另外產生 HTML。
+
+兩種程式都支援 `--view view_1 view_3`、`--output-dir PATH`、`--no-html`。
+圖以 `status=complete` 或 `needs_review` 區分完成／草稿，統一放在 `graphs/`。
+有人工待辦時結束碼為 `2`，結果與 HTML 仍會輸出；草稿在介面中明確標示，不是完整真值。
+每次執行建立新目錄，不覆寫舊結果。
+
+若要依新的篩選條件另存檢查器，兩種 GT 使用相同指令：
+
+```sh
+python3 inspect_graph.py --run-dir <輸出目錄>
+# 只載入已完成的視角：
+python3 inspect_graph.py --run-dir <輸出目錄> --complete-only
+```
+
+檢查器可切換視角、多選物件類型及關係、點箭頭查看證據，並匯出篩選結果。
+舊版 `visible/`、`full/`、`drafts/` 仍可讀取；舊版草稿需加 `--include-drafts`。
 
 ## 匯出可見物件
 

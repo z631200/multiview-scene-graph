@@ -14,9 +14,11 @@ python3 visible_ground_truth.py \
   --scene-dir colab/scene_output/20261105T120357_736949Z
 ```
 
-預設輸出 `outputs/ground_truth/<scene_id>/<UTC run_id>/`。
+預設輸出 `outputs/ground_truth/<scene_id>/visible-<UTC run_id>/`，與 Full GT 共用
+[統一輸出與檢視方式](ground_truth_outputs.md)。兩者預設都產生 `inspect.html`。
 可用 `--output-dir PATH` 指定新的目錄，既有目錄一律拒絕覆寫。
-依清單處理全部一般視角；四視角輸入會得到四張圖，亦支援 capture-v2 的三視角資料。
+預設處理全部一般視角，可用 `--view view_1 view_3` 指定視角，`--no-html` 略過 HTML。
+四視角輸入會得到四張圖，亦支援 capture-v2 的三視角資料。
 `view_00.png` 不參與計算。
 
 ## 資料檢查與可見範圍
@@ -78,11 +80,12 @@ python3 visible_ground_truth.py \
 ├── validation_report.json
 ├── review_tasks.json
 ├── measurements/view_1.json ...
-└── visible/view_1.json ...
+├── graphs/view_1.json ...
+└── inspect.html
 ```
 
-圖格式為 `visible-gt-v1`，包含 `graph_type`、`view_id`、`definition_version`、
-`status`、`nodes`、`edges`。節點保存 `id`、`objectType`、`name`；邊保存
+圖格式統一為 `ground-truth-v1`，`graph_type=visible_ground_truth`，包含 `graph_type`、`view_id`、`definition_version`、
+`status`、`review_task_count`、`nodes`、`edges`。節點保存 `id`、`objectType`、`name`；邊保存
 `id`、`source`、`relation`、`target`、`frame`、`status=accepted`、
 `definition_version`、`evidence`。物理邊引用 metadata 與父物件類型；
 排序邊保存兩端數值並引用輸出根目錄下的 measurements 檔案。
@@ -90,13 +93,14 @@ python3 visible_ground_truth.py \
 Measurements 保存各物件像素數、遮罩中心、深度中位數及有效像素數、
 相等配對、不可見父容器的排除紀錄，以及父物件分類過程。
 
-- 結束碼 `0`：全部視角完成，正式圖存於 `visible/`，人工清單為空。
-- 結束碼 `1`：資料缺漏、不一致或寫入失敗；不發布新的完成目錄。
-- 結束碼 `2`：需要人工處理；圖放在 `drafts/`，沒有 `visible/`。
-  受影響圖及總報告標示 `needs_review`，已能確定的邊仍為 accepted；不產生 unresolved 邊。
+- 結束碼 `0`：全部所選視角完成，人工清單為空。
+- 結束碼 `1`：資料缺漏、不一致或寫入失敗；不發布新的輸出目錄。
+- 結束碼 `2`：已輸出但需要人工處理。圖仍在 `graphs/`，受影響圖及總報告標示
+  `needs_review`，已能確定的邊為 accepted；不產生 unresolved 邊。
 
-任何待處理案例都會阻止本次整組正式圖發布。此版只產生人工清單，尚未提供
-人工覆寫匯入功能；不能直接把草稿改名當作正式圖。全部檔案序列化完成後才發布輸出目錄。
+與 Full GT 相同，各視角獨立標示狀態。人工待辦不會隱藏其他已完成的圖，
+HTML 預設列出全部視角並標示草稿。尚未提供人工覆寫匯入功能，不能手改狀態當作定稿。
+全部檔案序列化完成後才發布輸出目錄。
 
 ## 場景驗收：20261105T120357_736949Z
 
@@ -119,10 +123,11 @@ python3 -m unittest discover -s tests -p 'test_visible_ground_truth.py' -v
 ```
 
 測試涵蓋關係方向、六種父物件分類、不可見父物件、空視角、相等值、無效深度、
-人工處理阻擋發布、輸入不一致與覆寫保護；本機存在上述場景時另驗收四張圖的實際數量。
+人工待辦與草稿狀態、輸入不一致與覆寫保護；本機存在上述場景時另驗收四張圖的實際數量。
 
 ## 互動檢查場景圖
 
+產生器已自動輸出 `inspect.html`，可直接開啟。若要另存檢查器，
 `inspect_graph.py` 只使用 Python 標準函式庫，讀取已產生的 GT run，輸出可離線開啟的
 單一 HTML 檔，並嘗試開啟瀏覽器。不需要安裝網頁套件或啟動服務。
 
@@ -148,6 +153,6 @@ python3 inspect_graph.py \
 
 預設輸出為 `outputs/graph_inspection/<UTC>.html`。可用 `--output PATH` 指定檔名，
 已有檔案不覆寫；`--no-open` 只產生檔案，供遠端或無桌面環境使用。
-檢查器預設讀取 `visible/` 或 `full/` 的正式 JSON 圖，可用 `--graph-kind visible|full`
-指定種類；加上 `--include-drafts` 可瀏覽草稿及人工待辦。草稿在介面與匯出的篩選 JSON
-中都保留狀態，不會被當成完整真值。尚不解析 VLM 的 Markdown 輸出。
+檢查器預設讀取 `graphs/`，包含所有完成與待人工處理視角。
+`--complete-only` 只載入完成圖；草稿在介面與匯出 JSON 中都保留狀態。
+相容舊版 `visible/`、`full/`，舊版草稿可加 `--include-drafts`。尚不解析 VLM 的 Markdown 輸出。

@@ -2,20 +2,15 @@
 
 from __future__ import annotations
 
-import argparse
 from collections import Counter
-from datetime import datetime, timezone
 import itertools
-import json
-from pathlib import Path
 import re
 import struct
-import zipfile
 
 import numpy as np
 
 from ground_truth_common import (
-    Capture, DataError, PARENT_RELATIONS, indexed, require, write_artifacts,
+    Capture, DataError, PARENT_RELATIONS, finalize_result, indexed, require, run_generator_cli, write_artifacts,
 )
 
 
@@ -33,7 +28,7 @@ DEFINITIONS = {
 }
 
 
-def build_visible_gt(scene_dir):
+def build_visible_gt(scene_dir, selected_views=None):
     """Return artifacts in memory. Review cases produce drafts, never complete GT."""
     capture = Capture(scene_dir)
     manifest = capture.json("views.json")
@@ -65,8 +60,12 @@ def build_visible_gt(scene_dir):
                 f"Visible union view mismatch: {oid}")
         require(obj["objectType"] == objects[oid]["objectType"], f"Type mismatch: {oid}")
 
+    chosen = set(selected_views) if selected_views is not None else set(view_ids)
+    require(bool(chosen) and chosen <= set(view_ids), "Unknown or empty view selection")
     graphs, measurements, summaries, review = {}, {}, {}, []
     for view in views:
+        if view["view_id"] not in chosen:
+            continue
         vid = view["view_id"]
         height, width = view["image_height"], view["image_width"]
         image_header = capture.path(view["image"]).read_bytes()[:24]
@@ -190,32 +189,18 @@ def build_visible_gt(scene_dir):
         summaries[vid] = {"status": graph["status"], "node_count": len(ids),
                           "edge_count": len(edges), "relations": counts,
                           "equal_pair_count": len(ties), "excluded_parent_count": len(excluded)}
-    return {
+    return finalize_result({
         "definitions": DEFINITIONS, "graphs": graphs, "measurements": measurements,
         "review_tasks": review,
         "input_manifest": {"scene_dir": str(capture.root), "scene": manifest.get("scene"),
                            "ai2thor_version": manifest.get("ai2thor_version"),
                            "inputs_sha256": capture.hashes},
         "validation_report": {"status": "needs_review" if review else "complete", "views": summaries},
-    }
+    }, "visible")
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--scene-dir", type=Path, required=True)
-    parser.add_argument("--output-dir", type=Path)
-    args = parser.parse_args(argv)
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S_%fZ")
-    output = args.output_dir or Path("outputs/ground_truth") / args.scene_dir.name / stamp
-    try:
-        require(not output.exists(), f"Output already exists: {output}")
-        result = build_visible_gt(args.scene_dir)
-        write_artifacts(result, output)
-    except (ValueError, OSError, KeyError, TypeError, IndexError, zipfile.BadZipFile) as exc:
-        parser.exit(1, f"Visible GT failed: {exc}\n")
-    print(json.dumps(result["validation_report"], ensure_ascii=False, indent=2))
-    print(f"Output: {output.resolve()}")
-    return 2 if result["review_tasks"] else 0
+    return run_generator_cli("visible", build_visible_gt, argv)
 
 
 if __name__ == "__main__":

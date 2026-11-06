@@ -61,6 +61,15 @@ class InspectorTests(unittest.TestCase):
                 with self.assertRaises(ValueError): load_run(self.root)
                 self.graph = original
 
+    def test_legacy_visible_draft_without_kind_in_definitions(self):
+        (self.root / "visible").rename(self.root / "drafts")
+        self.graph.update(status="needs_review", graph_type="visible_ground_truth")
+        (self.root / "drafts/view_1.json").write_text(json.dumps(self.graph))
+        (self.root / "definitions.json").write_text(json.dumps({"version": "legacy"}))
+        with self.assertRaises(ValueError):
+            load_run(self.root)
+        self.assertEqual(load_run(self.root, include_drafts=True)["graphs"][0]["status"], "needs_review")
+
 
 if __name__ == "__main__":
     unittest.main()

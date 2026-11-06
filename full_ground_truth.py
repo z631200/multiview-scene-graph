@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-import argparse
 from collections import Counter
-from datetime import datetime, timezone
 import itertools
-import json
 import math
-from pathlib import Path
 import re
 
-from ground_truth_common import Capture, PARENT_RELATIONS, indexed, require, write_artifacts
+from ground_truth_common import Capture, PARENT_RELATIONS, finalize_result, indexed, require, run_generator_cli
 
 
 VERSION = "full-parent-position-camera-v1"
@@ -212,37 +208,14 @@ def build_full_gt(scene_dir, selected_views=None):
             camera_regions=dict(Counter(s["camera_region"] for s in stats.values())),
             visible_node_count=sum(s["visible_in_view"] for s in stats.values()))
         review.extend(tasks)
-    return dict(definitions=DEFINITIONS, graphs=graphs, measurements=measurements, review_tasks=review,
+    return finalize_result(dict(definitions=DEFINITIONS, graphs=graphs, measurements=measurements, review_tasks=review,
                 input_manifest=dict(scene_dir=str(capture.root), scene=manifest.get("scene"),
                     ai2thor_version=manifest.get("ai2thor_version"), inputs_sha256=capture.hashes),
-                validation_report=dict(status="needs_review" if review else "complete", views=summaries))
+                validation_report=dict(status="needs_review" if review else "complete", views=summaries)), "full")
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--scene-dir", type=Path, required=True)
-    parser.add_argument("--view", nargs="+", help="Selected view IDs; default: all views")
-    parser.add_argument("--output-dir", type=Path)
-    parser.add_argument("--no-html", action="store_true", help="Skip standalone inspect.html")
-    args = parser.parse_args(argv)
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S_%fZ")
-    output = args.output_dir or Path("outputs/ground_truth") / args.scene_dir.name / f"full-{stamp}"
-    try:
-        require(not output.exists(), f"Output already exists: {output}")
-        result = build_full_gt(args.scene_dir, args.view)
-        html = None
-        if not args.no_html:
-            from inspect_graph import render_html
-            data = dict(run_dir=str(output.resolve()), graphs=[dict(g, measurements=result["measurements"][vid],
-                review_tasks=[t for t in result["review_tasks"] if t["view_id"] == vid])
-                for vid, g in result["graphs"].items()])
-            html = render_html(data)
-        write_artifacts(result, output, graph_kind="full", per_view=True, html=html)
-    except (ValueError, OSError, KeyError, TypeError, IndexError, OverflowError) as exc:
-        parser.exit(1, f"Full GT failed: {exc}\n")
-    print(json.dumps(result["validation_report"], ensure_ascii=False, indent=2))
-    print(f"Output: {output.resolve()}")
-    return 2 if result["review_tasks"] else 0
+    return run_generator_cli("full", build_full_gt, argv)
 
 
 if __name__ == "__main__":

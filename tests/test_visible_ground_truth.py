@@ -137,8 +137,47 @@ class VisibleGTTests(unittest.TestCase):
         self.assertEqual(code, 2)
         self.assertFalse((output / "visible").exists())
         self.assertTrue((output / "review_tasks.json").exists())
+        self.assertTrue((output / "inspect.html").is_file())
 
-    def test_no_valid_depth_publishes_only_drafts(self):
+    def test_selected_view_and_no_html_use_shared_cli(self):
+        output = Path(self.temp.name) / "selected"
+        with contextlib.redirect_stdout(io.StringIO()):
+            code = main(["--scene-dir", str(self.root), "--view", "view_1",
+                         "--output-dir", str(output), "--no-html"])
+        self.assertEqual(code, 0)
+        self.assertTrue((output / "graphs/view_1.json").is_file())
+        self.assertFalse((output / "inspect.html").exists())
+        with self.assertRaises(DataError):
+            build_visible_gt(self.root, ["view_9"])
+
+    def test_complete_and_review_views_keep_independent_status(self):
+        objects = self.load("objects.json")
+        for obj in objects:
+            obj["visible_views"].append("view_2")
+        self.save("objects.json", objects)
+        self.save("visible_objects.json", objects)
+        self.save("metadata.json", {"objects": objects})
+        mapping = self.load("mapping.json")
+        mapping["view_id"] = "view_2"
+        self.save("mapping2.json", mapping)
+        depth = np.load(self.root / "depth.npy")
+        depth[0, 0] = depth[0, 2] = 0
+        np.save(self.root / "depth2.npy", depth)
+        manifest = self.load("views.json")
+        second = dict(manifest["views"][0], view_id="view_2", depth="depth2.npy", segmentation_mapping="mapping2.json")
+        manifest["views"].append(second)
+        manifest["num_views"] = 2
+        self.save("views.json", manifest)
+        result = build_visible_gt(self.root)
+        self.assertEqual(result["graphs"]["view_1"]["status"], "complete")
+        self.assertEqual(result["graphs"]["view_2"]["status"], "needs_review")
+        output = Path(self.temp.name) / "mixed"
+        write_artifacts(result, output)
+        from inspect_graph import load_run
+        self.assertEqual(len(load_run(output)["graphs"]), 2)
+        self.assertEqual(len(load_run(output, complete_only=True)["graphs"]), 1)
+
+    def test_no_valid_depth_preserves_draft_status_in_graphs(self):
         depth = np.load(self.root / "depth.npy")
         depth[0, 0], depth[0, 2] = np.inf, 0
         np.save(self.root / "depth.npy", depth)
@@ -147,8 +186,12 @@ class VisibleGTTests(unittest.TestCase):
         output = Path(self.temp.name) / "output"
         write_artifacts(result, output)
         self.assertFalse((output / "visible").exists())
-        self.assertTrue((output / "drafts/view_1.json").is_file())
-        self.assertNotIn("unresolved", (output / "drafts/view_1.json").read_text())
+        self.assertTrue((output / "graphs/view_1.json").is_file())
+        graph = json.loads((output / "graphs/view_1.json").read_text())
+        self.assertEqual(graph["status"], "needs_review")
+        self.assertEqual(graph["review_task_count"], 1)
+        self.assertEqual(result["review_tasks"][0]["objects"], ["A"])
+        self.assertNotIn("unresolved", (output / "graphs/view_1.json").read_text())
 
     def test_unknown_parent_type_requires_review(self):
         self.make_scene(parent_type="Bowl")
@@ -187,10 +230,10 @@ class VisibleGTTests(unittest.TestCase):
         result = build_visible_gt(self.root)
         output = Path(self.temp.name) / "output"
         write_artifacts(result, output)
-        original = (output / "visible/view_1.json").read_bytes()
+        original = (output / "graphs/view_1.json").read_bytes()
         with self.assertRaises(DataError):
             write_artifacts(result, output)
-        self.assertEqual((output / "visible/view_1.json").read_bytes(), original)
+        self.assertEqual((output / "graphs/view_1.json").read_bytes(), original)
         self.assertEqual(len(result["input_manifest"]["inputs_sha256"]), 8)
 
 

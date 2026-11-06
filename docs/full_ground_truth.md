@@ -19,8 +19,7 @@ python3 full_ground_truth.py --scene-dir colab/scene_output/20261105T120357_7369
 
 ```text
 <run>/
-├── full/view_3.json
-├── drafts/view_1.json, view_2.json, view_4.json
+├── graphs/view_1.json ... view_4.json
 ├── measurements/view_1.json ... view_4.json
 ├── definitions.json
 ├── input_manifest.json
@@ -29,7 +28,9 @@ python3 full_ground_truth.py --scene-dir colab/scene_output/20261105T120357_7369
 └── inspect.html
 ```
 
-每個視角獨立判定完成，不因其他視角的待辦而阻止正式圖發布。
+與 Visible GT 共用 [統一輸出格式與檢視方式](ground_truth_outputs.md)。
+圖格式為 `ground-truth-v1`，`graph_type=full_ground_truth`；所有圖統一放在 `graphs/`。
+每個視角獨立判定完成，以圖內 status 區分完成與草稿，不因其他視角的待辦而隱藏已完成的圖。
 結束碼 `0` 表示所選視角全部完成，`1` 表示輸入／執行錯誤，`2` 表示已有輸出但仍需人工處理。
 輸入錯誤不會發布新的輸出目錄。
 
@@ -92,8 +93,8 @@ AABB 只記錄角點的相機深度範圍及是否跨越相機平面；不替換
 ## 草稿與人工處理
 
 每個待辦包含 view_id、物件配對、關係種類與原因；相機後方案例另記 camera_regions。
-沒有 unresolved 邊；已算出的邊皆為 accepted，有待辦的圖標為 needs_review 並放入 drafts。
-完整圖為 complete，放入 full。人工清單是本版交付的處理入口，尚未實作人工決定的匯入器；
+沒有 unresolved 邊；已算出的邊皆為 accepted，有待辦的圖標為 needs_review。
+完整圖為 complete，兩者都放入 graphs，並保存 review_task_count。人工清單是本版交付的處理入口，尚未實作人工決定的匯入器；
 不可把草稿直接改名當作正式 GT。
 
 ## HTML 檢查器
@@ -108,11 +109,12 @@ AABB 只記錄角點的相機深度範圍及是否跨越相機平面；不替換
 
 ```sh
 python3 inspect_graph.py \
-  --run-dir outputs/ground_truth/20261105T120357_736949Z/full-v1 \
-  --graph-kind full --include-drafts
+  --run-dir outputs/ground_truth/20261105T120357_736949Z/full-unified-v1
 ```
 
-未加 `--include-drafts` 時只載入正式圖。HTML 為本次輸出的靜態快照，更新圖後需要重新產生。
+新格式預設載入所有視角，`--complete-only` 只載入完成圖。
+舊版 full/drafts 目錄仍可讀取，舊版草稿需加 `--include-drafts`。
+HTML 為本次輸出的靜態快照，更新圖後需要重新產生。
 
 ## 場景驗收：20261105T120357_736949Z
 
